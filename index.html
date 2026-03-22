@@ -498,6 +498,73 @@
     .trust-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); font-weight: 500; }
     .trust-item span { font-size: 20px; }
 
+    /* ===== HERO TRUST TAGS ===== */
+    .hero-trust-tags {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+    }
+    .hero-trust-tags span {
+      font-size: 12px; font-weight: 600;
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.85); border-radius: 20px;
+      padding: 5px 12px;
+    }
+
+    /* ===== SERVICE PATH ===== */
+    .service-path-bg { background: #f8faff; }
+    .service-path-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
+      position: relative;
+    }
+    .service-path-connector {
+      position: absolute; top: 42px; left: calc(33.33% - 14px); right: calc(33.33% - 14px);
+      height: 2px; background: linear-gradient(90deg, var(--blue), var(--sky));
+      z-index: 0;
+    }
+    @media (max-width: 768px) {
+      .service-path-grid { grid-template-columns: 1fr; }
+      .service-path-connector { display: none; }
+    }
+    .service-step {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 28px;
+      position: relative; z-index: 1;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .service-step:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .service-step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 800; margin-bottom: 20px;
+    }
+    .service-step-icon { font-size: 24px; margin-bottom: 6px; }
+    .service-step-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .service-step-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .service-path-cta { text-align: center; margin-top: 48px; }
+
+    /* ===== PRODUCT CARD CTA ===== */
+    .product-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; color: var(--blue);
+      margin-top: 14px; border-top: 1px solid var(--border);
+      padding-top: 14px; width: 100%;
+      transition: color .25s, gap .2s;
+    }
+    .product-card:hover .product-cta { color: rgba(255,255,255,.9); border-top-color: rgba(255,255,255,.15); gap: 10px; }
+
+    /* ===== AI EXAMPLE CHIPS ===== */
+    .ai-examples {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 32px;
+    }
+    .ai-example-chip {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.85); border-radius: 20px;
+      padding: 8px 18px; font-size: 13px; cursor: pointer;
+      transition: all .2s;
+    }
+    .ai-example-chip:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); transform: translateY(-1px); }
+
     /* ===== SCROLL ANIMATIONS ===== */
     .fade-up { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -518,11 +585,11 @@
       BIO<span class="dot">.</span>Corporation
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about">关于我们</a></li>
-      <li><a href="#products">产品系列</a></li>
+      <li><a href="#products">产品选型</a></li>
       <li><a href="#solutions">应用方案</a></li>
-      <li><a href="#ai">AI 助手</a></li>
-      <li><a href="#contact" class="nav-cta">立即咨询</a></li>
+      <li><a href="#ai">AI 选材助手</a></li>
+      <li><a href="#contact">样品·询价</a></li>
+      <li><a href="#contact" class="nav-cta">💬 加微信咨询</a></li>
     </ul>
     <button class="nav-menu-btn" id="menuBtn" aria-label="菜单">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -545,22 +612,29 @@
     <div class="hero-left">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        NuSil 授权代理商 · 医疗级认证
+        NuSil 中国授权代理 · 医疗级认证
       </div>
       <h1 class="hero-title">
-        医疗硅胶材料<br/>
-        <span class="accent">专家级</span>技术支持
+        NuSil 医疗级硅胶<br/>
+        <span class="accent">选型与技术支持</span>
       </h1>
       <p class="hero-subtitle">
-        BIO Corporation 专注于 NuSil 医疗级硅胶材料的分销与技术服务，为国内医疗器械制造商提供精准的材料选型指导和工程咨询。
+        专为医疗器械研发、采购与法规团队提供 NuSil 全系硅胶材料的选型指导、样品支持与注册配合，帮助产品更快从立项走到量产。
       </p>
       <div class="hero-actions">
-        <a href="#ai" class="btn-primary">
-          🤖 立即咨询 AI 助手
+        <a href="#products" class="btn-primary">
+          ⚡ 3 分钟匹配材料
         </a>
-        <a href="#products" class="btn-ghost">
-          查看产品系列 →
+        <a href="#contact" class="btn-ghost">
+          💬 加微信咨询工程师
         </a>
+      </div>
+      <div class="hero-trust-tags">
+        <span>✅ NuSil 授权代理</span>
+        <span>🧬 USP Class VI</span>
+        <span>📋 ISO 10993</span>
+        <span>🔍 CoA 可追溯</span>
+        <span>⚡ 24h 技术响应</span>
       </div>
     </div>
     <!-- Right -->
@@ -607,6 +681,43 @@
     <div class="trust-item"><span>📋</span> FDA 合规数据支持</div>
   </div>
 </div>
+
+<!-- ===== SERVICE PATH ===== -->
+<section class="service-path-bg" id="service-path">
+  <div class="section-inner">
+    <div class="section-header center fade-up">
+      <div class="section-label">合作流程</div>
+      <h2 class="section-title">三步完成从需求到交付</h2>
+      <p class="section-subtitle">无论你处于哪个项目阶段，我们都能在对的节点提供专业支持</p>
+    </div>
+    <div class="service-path-grid">
+      <div class="service-path-connector"></div>
+      <div class="service-step fade-up">
+        <div class="service-step-num">1</div>
+        <div class="service-step-icon">🎯</div>
+        <div class="service-step-title">材料预筛选</div>
+        <div class="service-step-text">告诉我们应用场景与技术要求，24 小时内给出 3–5 个候选型号及对比分析，帮助团队快速锁定方向。</div>
+      </div>
+      <div class="service-step fade-up fade-up-delay-1">
+        <div class="service-step-num">2</div>
+        <div class="service-step-icon">🧪</div>
+        <div class="service-step-title">样品与测试支持</div>
+        <div class="service-step-text">提供原厂样品及完整 TDS / SDS / 生物相容性资料，协调测试机构，确保数据满足注册要求。</div>
+      </div>
+      <div class="service-step fade-up fade-up-delay-2">
+        <div class="service-step-num">3</div>
+        <div class="service-step-icon">🚀</div>
+        <div class="service-step-title">注册与量产协同</div>
+        <div class="service-step-text">配合技术文件与法规审查，注册通过后无缝切换量产供应，持续提供批次 CoA 及变更管理支持。</div>
+      </div>
+    </div>
+    <div class="service-path-cta fade-up">
+      <a href="#contact" class="btn-primary" style="background:var(--navy);color:#fff;display:inline-flex">
+        提交项目需求 →
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- ===== ABOUT ===== -->
 <section id="about">
@@ -692,64 +803,70 @@
       <p class="section-subtitle">覆盖医疗器械从研发到量产的全部硅胶材料需求，点击卡片了解详情或向 AI 助手提问</p>
     </div>
     <div class="products-grid">
-      <div class="product-card fade-up" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card fade-up">
         <div class="product-icon-wrap">🩺</div>
         <div class="product-title">植入级弹性体</div>
-        <div class="product-text">长期植入用固态硅胶，优异的机械性能与生物相容性，适用于骨科、心脏、神经器械。</div>
+        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>骨科、心脏、神经等长期植入器械，要求材料在体内长期稳定、无溶出。</div>
         <div class="product-tags">
           <span class="product-tag">MED-4940</span>
           <span class="product-tag">MED-4950</span>
           <span class="product-tag">MED-4965</span>
         </div>
+        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-1" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card fade-up fade-up-delay-1">
         <div class="product-icon-wrap">💉</div>
         <div class="product-title">液体硅橡胶 LSR</div>
-        <div class="product-text">双组分注射成劋液硅，适合精密医疗部件批量生产，流动性好、收缩率低。</div>
+        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>可穿戴、手术器械精密部件，注射成型批量生产，流动性好、收缩率低。</div>
         <div class="product-tags">
           <span class="product-tag">MED-6820</span>
           <span class="product-tag">MED-6830</span>
           <span class="product-tag">LSR系列</span>
         </div>
+        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-2" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card fade-up fade-up-delay-2">
         <div class="product-icon-wrap">🔗</div>
         <div class="product-title">医用硅胶粘合剂</div>
-        <div class="product-text">用于器械组装与导管封端，常温/加热固化多种选择，与各类基材相容性优。</div>
+        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>器械组装、导管封端与基材粘接，常温/加热固化多种选择，与金属、塑料相容性优。</div>
         <div class="product-tags">
           <span class="product-tag">MED-1511</span>
           <span class="product-tag">MED-1137</span>
           <span class="product-tag">单组分系列</span>
         </div>
+        <a href="#contact" class="product-cta">申请样品 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-3" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card fade-up fade-up-delay-3">
         <div class="product-icon-wrap">💧</div>
         <div class="product-title">植入级凝胶</div>
-        <div class="product-text">柔软的硅凝胶，用于缓冲填充与导线包覆，在体内长期维持稳定的柔顺性。</div>
+        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>脑起搏器导线包覆、脊柱融合器缓冲填充，需长期植入且维持柔顺性。</div>
         <div class="product-tags">
           <span class="product-tag">MED-6345</span>
           <span class="product-tag">MED-6382</span>
           <span class="product-tag">凝胶系列</span>
         </div>
+        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-4" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card fade-up fade-up-delay-4">
         <div class="product-icon-wrap">🎨</div>
         <div class="product-title">硅胶涂层与流体</div>
-        <div class="product-text">润滑涂层、电绝缘流体，提升导管滑动性与器械表面防护性，满足 IVD 及手术器械需求。</div>
+        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>导管润滑、IVD 试剂盒密封件、手术器械表面防护，要求化学惰性与皮肤安全。</div>
         <div class="product-tags">
           <span class="product-tag">涂层系列</span>
           <span class="product-tag">流体系列</span>
         </div>
+        <a href="#contact" class="product-cta">申请样品 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-5" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+      <div class="product-card fade-up fade-up-delay-5">
         <div class="product-icon-wrap">🔧</div>
         <div class="product-title">特种功能硅胶</div>
-        <div class="product-text">荧光可视化、X 射线显影、导电型等特殊功能改性硅胶，满足特定诊断与介入器械需求。</div>
+        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>介入器械显影、神经刺激电极等特殊场景，提供荧光、X 光显影、导电改性方案。</div>
         <div class="product-tags">
           <span class="product-tag">显影系列</span>
           <span class="product-tag">导电系列</span>
           <span class="product-tag">功能改性</span>
         </div>
+        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
       </div>
     </div>
   </div>
@@ -804,9 +921,16 @@
 <section class="ai-section" id="ai">
   <div class="ai-inner">
     <div class="ai-header fade-up">
-      <div class="ai-label">🤖 AI 智能助手</div>
-      <h2 class="ai-title">立即提问，秒级获得<br/>专业材料建议</h2>
-      <p class="ai-subtitle">基于完整 NuSil 技术文档构建的 RAG 知识库，可回答材料性能、工艺参数、法规合规等专业问题</p>
+      <div class="ai-label">🤖 AI 选材助手</div>
+      <h2 class="ai-title">不确定该选哪款？<br/>先问 AI 选材助手</h2>
+      <p class="ai-subtitle">基于完整 NuSil 技术文档库，中英文均可提问，可转人工工程师跟进</p>
+    </div>
+    <div class="ai-examples fade-up">
+      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">植入级硅胶有哪几类，我该怎么选？</div>
+      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">MED-4940 和 MED-4950 有什么区别？</div>
+      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">心脏导管用哪款硅胶粘合剂更合适？</div>
+      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">LSR 注射成型时需要注意哪些工艺参数？</div>
+      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">NuSil 的 ISO 10993 测试报告可以提供吗？</div>
     </div>
     <div class="ai-features fade-up">
       <div class="ai-feature">
@@ -858,7 +982,7 @@
     <div class="contact-split">
       <div>
         <div class="section-label">联系我们</div>
-        <h2 class="section-title">获取材料䔯持<br/>与报价</h2>
+        <h2 class="section-title">获取材料支持<br/>与报价</h2>
         <p class="section-subtitle" style="margin-bottom:40px">
           无论是材料选型咨询、样品申请还是批量采购，我们的技术团队将在 24 小时内响应。
         </p>
