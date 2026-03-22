@@ -351,6 +351,7 @@
       border-radius: 20px; overflow: hidden;
       box-shadow: 0 20px 80px rgba(0,0,0,.4);
       border: 1px solid rgba(255,255,255,.12);
+      -webkit-transform: translateZ(0); transform: translateZ(0);
     }
     .ai-frame-bar {
       background: rgba(255,255,255,.06); padding: 12px 20px;
@@ -372,6 +373,8 @@
     iframe.ai-chat {
       display: block; width: 100%; height: 600px; border: none;
       background: #fff;
+      -webkit-overflow-scrolling: touch;
+      pointer-events: auto;
     }
 
     /* ===== SOLUTIONS ===== */
@@ -492,7 +495,7 @@
     .footer-copy { font-size: 13px; }
     .footer-icp { font-size: 13px; opacity: .5; }
 
-    /* ===== BADGE / TRUST ===== */
+    /* ===== BAGDE / TRUST ===== */
     .trust-bar { background: #f8faff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 24px; }
     .trust-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
     .trust-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); font-weight: 500; }
@@ -745,7 +748,7 @@
           <div class="about-bullet-icon" style="background:#f0fdf4">🧪</div>
           <div>
             <div class="about-bullet-title">技术文档与法规支持</div>
-            <div class="about-bullet-desc">提供完整 TDS、SDS、生物相容性测试报告及 FDA/CE 法规咨询</div>
+            <div class="about-bullet-desc">提供完整 TDS, SDS 插生物相容性测试报告及 FDA/CE 法规咨询</div>
           </div>
         </div>
         <div class="about-bullet fade-up fade-up-delay-2">
@@ -971,6 +974,8 @@
         src=""
         allow="microphone"
         title="BIO Corporation AI 助手"
+        scrolling="yes"
+        allowfullscreen
       ></iframe>
     </div>
   </div>
@@ -982,9 +987,9 @@
     <div class="contact-split">
       <div>
         <div class="section-label">联系我们</div>
-        <h2 class="section-title">获取材料支持<br/>与报价</h2>
+        <h2 class="section-title">获取材料f��持<br/>与报价</h2>
         <p class="section-subtitle" style="margin-bottom:40px">
-          无论是材料选型咨询、样品申请还是批量采购，我们的技术团队将在 24 小时内响应。
+          无论是材料选型咨询、样品申请还是批量采购，我们的技术团队将在 24 h时内响应。
         </p>
         <div class="contact-info-item">
           <div class="contact-info-icon">📧</div>
@@ -996,7 +1001,7 @@
         <div class="contact-info-item">
           <div class="contact-info-icon">💬</div>
           <div>
-            <div class="contact-info-label">微信 / 企业微信</div>
+            <div class="contact-info-label">微信 / 弁业微信</div>
             <div class="contact-info-value">扫描或搜索：BIOCorporation</div>
           </div>
         </div>
@@ -1004,14 +1009,14 @@
           <div class="contact-info-icon">🌍</div>
           <div>
             <div class="contact-info-label">服务范围</div>
-            <div class="contact-info-value">中国大陆 · 港澳台 · 东南亚</div>
+            <div class="contact-info-value">中国大陆 · 每深台 · 圜南亚</div>
           </div>
         </div>
         <div class="contact-info-item">
           <div class="contact-info-icon">⏱️</div>
           <div>
             <div class="contact-info-label">响应时效</div>
-            <div class="contact-info-value">工作日 24h 内回复，紧急需求优先</div>
+            <div class="contact-info-value">工作日 24h 内回复，紧急最求优先</div>
           </div>
         </div>
       </div>
@@ -1021,9 +1026,145 @@
           <form id="contactForm" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">姓名 *</label>
-                <input class="form-input" type="text" placeholder="您的姓名" required />
+                <label class="form-label">好名 *</label>
+                <input class="form-input" type="text" placeholder="您的好名" required />
               </div>
+              <div class="form-group">
+                <label class="form-label">公司</label>
+                <input class="form-input" type="text" placeholder="所圩公司" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">联系推选 *</label>
+              <input class="form-input" type="text" placeholder="邮篱或手机号" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">咨询类垆</label>
+              <select class="form-select">
+                <option>产品选型咨询</option>
+                <option>样品申请</option>
+                <option>批秏采购报价</option>
+                <option>技术文档料支持</option>
+                <option>法规合规咪询8�/option>
+                <option>其他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">详建需求</label>
+              <textarea class="form-textarea" placeholder="请描述您的具体最求，妜产品类型、应用场景、数量缉"></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              发送咨询 →
+            </button>
+            <div class="form-success" id="formSuccess">
+              ✅ 言是扠已全包！我们将在 24 h紧急沆怦您。
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:#fff">
+          <div class="nav-logo-icon">🔬</div>
+          BIO<span class="dot">.</span>Corporation
+        </div>
+        <p>专注于 NuSil 医疗级硅胶材料的分销与技术服务，为国内医疗器械制造商提供从材料供应到工程落地的全链路支持。</p>
+      </div>
+      <div>
+        <div class="footer-col-title">产品</div>
+        <ul class="footer-links">
+          <li><a href="#products">植入级弹性体</a></li>
+          <li><a href="#products">液体硅橡胶 LSR</a></li>
+          <li><a href="#products">医用粘合剂</a></li>
+          <li><a href="#products">植入级凝胶</a></li>
+          <li><a href="#products">硅胶涂层</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">服务</div>
+        <ul class="footer-links">
+          <li><a href="#solutions">材料选型咨询</a></li>
+          <li><a href="#solutions">工程联合开发</a></li>
+          <li><a href="#solutions">注册法规支持</a></li>
+          <li><a href="#ai">AI 智能助手</a></li>
+          <li><a href="#contact">样品申请</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">公司</div>
+        <ul class="footer-links">
+          <li><a href="#about">关于我们</a></li>
+          <li><a href="#contact">联系我们</a></li>
+          <li><a href="#">隐私政策</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 BIO Corporation. 保留所有权利。</div>
+      <div class="footer-icp">医疗硅胶材料专业供应商</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== NAV scroll effect =====
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ===== Mobile menu =====
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ===== Scroll animations =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ===== Lazy load AI iframe from config =====
+  const CONFIG_URL = 'https://gist.githubusercontent.com/garyyangsh76/8c9fdf06aa1be7f146422df9d7af8f0a/raw/bio-chat-config.json';
+  const FALLBACK_URL = 'https://defensive-assignment-previously-seminars.trycloudflare.com/chat.html';
+
+  function loadChat(src) {
+    const frame = document.getElementById('aiChatFrame');
+    if (frame && !frame.src) frame.src = src;
+  }
+
+  // Load when AI section is in viewport
+  const aiSection = document.getElementById('ai');
+  const aiObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      fetch(CONFIG_URL + '?t=' + Date.now())
+        .then(r => r.json())
+        .then(cfg => loadChat((cfg.url || '').replace(/\/+$/, '') + '/chat.html'))
+        .catch(() => loadChat(FALLBACK_URL));
+      aiObserver.disconnect();
+    }
+  }, { threshold: 0.1 });
+  if (aiSection) aiObserver.observe(aiSection);
+
+  // ===== Contact form (demo) =====
+  function handleSubmit(e) {
+    e.preventDefault();
+    setTimeout(() => {
+      document.getElementById('formSuccess').style.display = 'block';
+      e.target.reset();
+    }, 300);
+  }
+
+  // ==
               <div class="form-group">
                 <label class="form-label">公司</label>
                 <input class="form-input" type="text" placeholder="所在公司" />
@@ -1159,7 +1300,7 @@
     }, 300);
   }
 
-  // ===== Smooth active nav highlight =====
+  //=== Smooth active nav highlight =====
   const sections = document.querySelectorAll('section[id], div[id]');
   const navAnchors = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
