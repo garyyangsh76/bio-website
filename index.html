@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIO Corporation â å»ççº§ç¡è¶ææä¸å®¶</title>
+  <meta name="description" content="BIO Corporation æ¯ä¸æ³¨äºå»ççº§ç¡è¶ææçä¸ä¸ä¾åºåï¼ä»£ç NuSil å¨ç³»äº§åï¼ä¸ºå»çå¨æ¢°å¶é åæä¾ææéåãææ¯å¨è¯¢å AI æºè½å©ææå¡ã" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      color: #0f172a;
+      background: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --navy:    #0f2a5e;
+      --blue:    #1d4ed8;
+      --sky:     #0ea5e9;
+      --teal:    #0891b2;
+      --green:   #059669;
+      --light:   #f0f7ff;
+      --border:  #e2eaf4;
+      --muted:   #64748b;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(15,42,94,.08);
+      --shadow-lg: 0 12px 48px rgba(15,42,94,.14);
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(15,42,94,.1); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 18px; color: var(--navy);
+      letter-spacing: -.3px;
+    }
+    .nav-logo .dot { color: var(--sky); }
+    .nav-logo-icon {
+      width: 36px; height: 36px; background: var(--navy);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      padding: 8px 14px; border-radius: 8px;
+      font-size: 14px; font-weight: 500; color: var(--muted);
+      transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: var(--light); color: var(--navy); }
+    .nav-cta {
+      background: var(--navy); color: #fff !important;
+      padding: 8px 18px !important; border-radius: 8px !important;
+      font-weight: 600 !important;
+      transition: background .15s !important;
+    }
+    .nav-cta:hover { background: var(--blue) !important; }
+    .nav-menu-btn {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 8px; color: var(--navy);
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; align-items: flex-start;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: #fff; border-bottom: 1px solid var(--border);
+        padding: 12px 24px 20px; gap: 2px;
+        box-shadow: 0 8px 24px rgba(0,0,0,.08);
+      }
+      .nav-menu-btn { display: flex; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a1f4e 0%, #0f2a5e 40%, #1a3c6e 70%, #1d4ed8 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 100px 24px 60px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+    }
+    .hero-circle {
+      position: absolute; border-radius: 50%; opacity: .06;
+      background: radial-gradient(circle, #fff 0%, transparent 70%);
+    }
+    .hero-circle-1 { width: 600px; height: 600px; top: -200px; right: -100px; }
+    .hero-circle-2 { width: 400px; height: 400px; bottom: -100px; left: -50px; }
+    .hero-circle-3 { width: 300px; height: 300px; top: 30%; left: 40%; opacity: .04; }
+    /* Animated dots grid */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: .5;
+    }
+
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 13px; color: rgba(255,255,255,.85);
+      margin-bottom: 20px;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px; background: #4ade80;
+      border-radius: 50%; animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(1.3); }
+    }
+    .hero-title {
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 800; color: #fff;
+      line-height: 1.15; letter-spacing: -.5px;
+      margin-bottom: 20px;
+    }
+    .hero-title .accent { color: #38bdf8; }
+    .hero-subtitle {
+      font-size: 18px; color: rgba(255,255,255,.7);
+      line-height: 1.7; margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--navy);
+      padding: 14px 28px; border-radius: 10px;
+      font-weight: 700; font-size: 15px;
+      transition: all .2s; box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); color: #fff;
+      padding: 14px 28px; border-radius: 10px;
+      font-weight: 600; font-size: 15px;
+      border: 1px solid rgba(255,255,255,.25);
+      transition: all .2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.18); }
+
+    .hero-right {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(12px);
+      border-radius: 16px; padding: 22px 24px;
+      color: #fff;
+      transition: transform .2s;
+    }
+    .hero-card:hover { transform: translateY(-3px); }
+    .hero-card-top {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    }
+    .hero-card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .hero-card-title { font-size: 15px; font-weight: 600; }
+    .hero-card-text { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5; }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 12px; margin-top: 4px;
+    }
+    .hero-stat {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px; padding: 14px; text-align: center; color: #fff;
+    }
+    .hero-stat-num { font-size: 26px; font-weight: 800; color: #38bdf8; }
+    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 2px; }
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-right { display: none; }
+    }
+
+    /* ===== SECTIONS ===== */
+    section { padding: 96px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--blue); background: #eff6ff;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800; color: var(--navy);
+      letter-spacing: -.3px; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      font-size: 18px; color: var(--muted);
+      max-width: 600px; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 56px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-subtitle { margin: 0 auto; }
+
+    /* ===== ABOUT / FEATURES ===== */
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-top: 48px;
+    }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
+    @media (min-width: 600px) and (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+    .feature-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .feature-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .feature-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 18px;
+    }
+    .feature-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .feature-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    /* ===== ABOUT SPLIT ===== */
+    .about-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    @media (max-width: 900px) { .about-split { grid-template-columns: 1fr; gap: 40px; } }
+    .about-visual {
+      background: linear-gradient(135deg, var(--light) 0%, #e0f2fe 100%);
+      border-radius: 24px; padding: 40px; min-height: 360px;
+      display: flex; flex-direction: column; justify-content: center; gap: 16px;
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .about-visual::before {
+      content: ''; position: absolute;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(14,165,233,.12), transparent);
+      top: -40px; right: -40px;
+    }
+    .about-bullet {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: #fff; border-radius: 12px; padding: 16px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      transition: transform .2s;
+    }
+    .about-bullet:hover { transform: translateX(4px); }
+    .about-bullet-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .about-bullet-title { font-size: 14px; font-weight: 600; color: var(--navy); }
+    .about-bullet-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ===== PRODUCTS ===== */
+    .products-bg { background: var(--light); }
+    .products-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .products-grid { grid-template-columns: 1fr; } }
+    .product-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      cursor: pointer;
+      transition: all .25s;
+      position: relative; overflow: hidden;
+    }
+    .product-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      opacity: 0; transition: opacity .25s;
+    }
+    .product-card:hover::before { opacity: 1; }
+    .product-card:hover .product-title,
+    .product-card:hover .product-text,
+    .product-card:hover .product-tag { color: rgba(255,255,255,.9) !important; }
+    .product-card:hover .product-icon-wrap { background: rgba(255,255,255,.15); }
+    .product-card:hover .product-tags { border-top-color: rgba(255,255,255,.15); }
+    .product-card > * { position: relative; z-index: 1; }
+    .product-icon-wrap {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--light); display: flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 16px;
+      transition: background .25s;
+    }
+    .product-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; transition: color .25s; }
+    .product-text { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; transition: color .25s; }
+    .product-tags { border-top: 1px solid var(--border); padding-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; transition: border-color .25s; }
+    .product-tag { font-size: 11px; font-weight: 600; color: var(--blue); background: #eff6ff; padding: 3px 10px; border-radius: 20px; transition: color .25s, background .25s; }
+    .product-card:hover .product-tag { background: rgba(255,255,255,.15); }
+
+    /* ===== AI ASSISTANT ===== */
+    .ai-section { background: linear-gradient(160deg, #0a1f4e 0%, #0f2a5e 60%, #1d4ed8 100%); }
+    .ai-inner { max-width: 1200px; margin: 0 auto; }
+    .ai-header { text-align: center; margin-bottom: 48px; }
+    .ai-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+      color: #38bdf8; background: rgba(56,189,248,.12);
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .ai-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: #fff; letter-spacing: -.3px; margin-bottom: 16px; }
+    .ai-subtitle { font-size: 18px; color: rgba(255,255,255,.65); max-width: 560px; margin: 0 auto; }
+    .ai-features {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px;
+    }
+    @media (max-width: 768px) { .ai-features { grid-template-columns: 1fr; } }
+    .ai-feature {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 18px 20px;
+      display: flex; align-items: flex-start; gap: 12px; color: #fff;
+    }
+    .ai-feature-icon { font-size: 22px; margin-top: 2px; flex-shrink: 0; }
+    .ai-feature-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .ai-feature-text { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.5; }
+    .ai-frame-wrap {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 20px 80px rgba(0,0,0,.4);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .ai-frame-bar {
+      background: rgba(255,255,255,.06); padding: 12px 20px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .ai-frame-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .ai-frame-title {
+      margin-left: 8px; font-size: 13px; color: rgba(255,255,255,.6); font-weight: 500;
+    }
+    .ai-frame-status {
+      margin-left: auto; font-size: 12px; color: #4ade80;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .ai-status-dot {
+      width: 7px; height: 7px; background: #4ade80;
+      border-radius: 50%; animation: pulse 2s infinite;
+    }
+    iframe.ai-chat {
+      display: block; width: 100%; height: 600px; border: none;
+      background: #fff;
+    }
+
+    /* ===== SOLUTIONS ===== */
+    .solutions-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+    @media (max-width: 768px) { .solutions-grid { grid-template-columns: 1fr; } }
+    .solution-card {
+      border-radius: 20px; padding: 36px;
+      position: relative; overflow: hidden;
+    }
+    .solution-card-primary {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .solution-card-light { background: var(--light); border: 1px solid var(--border); }
+    .solution-card-teal { background: linear-gradient(135deg, #0c4a6e, #0891b2); }
+    .solution-card-green { background: linear-gradient(135deg, #064e3b, #059669); }
+    .solution-number {
+      font-size: 72px; font-weight: 900; opacity: .08; position: absolute;
+      right: 20px; top: 10px; line-height: 1; color: #fff;
+    }
+    .solution-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .solution-card-primary .solution-label { color: rgba(255,255,255,.6); }
+    .solution-card-light .solution-label { color: var(--blue); }
+    .solution-card-teal .solution-label,
+    .solution-card-green .solution-label { color: rgba(255,255,255,.6); }
+    .solution-title { font-size: 22px; font-weight: 800; margin-bottom: 12px; line-height: 1.3; }
+    .solution-card-primary .solution-title,
+    .solution-card-teal .solution-title,
+    .solution-card-green .solution-title { color: #fff; }
+    .solution-card-light .solution-title { color: var(--navy); }
+    .solution-text { font-size: 14px; line-height: 1.7; }
+    .solution-card-primary .solution-text,
+    .solution-card-teal .solution-text,
+    .solution-card-green .solution-text { color: rgba(255,255,255,.7); }
+    .solution-card-light .solution-text { color: var(--muted); }
+    .solution-list { list-style: none; margin-top: 20px; }
+    .solution-list li {
+      font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.8); display: flex; align-items: center; gap: 8px;
+    }
+    .solution-list li::before { content: 'â'; color: #38bdf8; font-weight: 700; }
+    .solution-card-primary .solution-cta {
+      margin-top: 32px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--navy);
+      padding: 12px 22px; border-radius: 10px;
+      font-weight: 700; font-size: 14px;
+      transition: all .2s; align-self: flex-start;
+    }
+    .solution-card-primary .solution-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.2); }
+
+    /* ===== CONTACT ===== */
+    .contact-split {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;
+    }
+    @media (max-width: 900px) { .contact-split { grid-template-columns: 1fr; gap: 40px; } }
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px;
+    }
+    .contact-info-icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--light); display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0; border: 1px solid var(--border);
+    }
+    .contact-info-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: 4px; }
+    .contact-info-value { font-size: 15px; font-weight: 500; color: var(--navy); }
+    .contact-form { background: var(--light); border-radius: 20px; padding: 36px; border: 1px solid var(--border); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { margin-bottom: 18px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 7px; }
+    .form-input, .form-textarea, .form-select {
+      width: 100%; background: #fff; border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 11px 14px;
+      font-size: 14px; font-family: inherit; color: var(--navy);
+      transition: border-color .2s, box-shadow .2s; outline: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,78,216,.1);
+    }
+    .form-textarea { min-height: 100px; resize: vertical; }
+    .form-submit {
+      width: 100%; background: var(--navy); color: #fff;
+      border: none; border-radius: 10px; padding: 14px;
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: all .2s; font-family: inherit;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .form-submit:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(29,78,216,.3); }
+    .form-success {
+      display: none; background: #ecfdf5; border: 1px solid #a7f3d0;
+      border-radius: 10px; padding: 16px 18px; color: #065f46;
+      font-size: 14px; font-weight: 500; text-align: center; margin-top: 12px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 64px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
+    }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand .nav-logo { margin-bottom: 14px; }
+    .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-col-title { font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 16px; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.6); transition: color .15s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin-bottom: 24px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-copy { font-size: 13px; }
+    .footer-icp { font-size: 13px; opacity: .5; }
+
+    /* ===== BADGE / TRUST ===== */
+    .trust-bar { background: #f8faff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 24px; }
+    .trust-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); font-weight: 500; }
+    .trust-item span { font-size: 20px; }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-delay-1 { transition-delay: .1s; }
+    .fade-up-delay-2 { transition-delay: .2s; }
+    .fade-up-delay-3 { transition-delay: .3s; }
+    .fade-up-delay-4 { transition-delay: .4s; }
+    .fade-up-delay-5 { transition-delay: .5s; }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">ð¬</div>
+      BIO<span class="dot">.</span>Corporation
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">å³äºæä»¬</a></li>
+      <li><a href="#products">äº§åç³»å</a></li>
+      <li><a href="#solutions">åºç¨æ¹æ¡</a></li>
+      <li><a href="#ai">AI å©æ</a></li>
+      <li><a href="#contact" class="nav-cta">ç«å³å¨è¯¢</a></li>
+    </ul>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="èå">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-circle hero-circle-1"></div>
+    <div class="hero-circle hero-circle-2"></div>
+    <div class="hero-circle hero-circle-3"></div>
+  </div>
+  <div class="hero-inner">
+    <!-- Left -->
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        NuSil ææä»£çå Â· å»ççº§è®¤è¯
+      </div>
+      <h1 class="hero-title">
+        å»çç¡è¶ææ<br/>
+        <span class="accent">ä¸å®¶çº§</span>ææ¯æ¯æ
+      </h1>
+      <p class="hero-subtitle">
+        BIO Corporation ä¸æ³¨äº NuSil å»ççº§ç¡è¶ææçåéä¸ææ¯æå¡ï¼ä¸ºå½åå»çå¨æ¢°å¶é åæä¾ç²¾åçææéåæå¯¼åå·¥ç¨å¨è¯¢ã
+      </p>
+      <div class="hero-actions">
+        <a href="#ai" class="btn-primary">
+          ð¤ ç«å³å¨è¯¢ AI å©æ
+        </a>
+        <a href="#products" class="btn-ghost">
+          æ¥çäº§åç³»å â
+        </a>
+      </div>
+    </div>
+    <!-- Right -->
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div class="hero-card-icon" style="background:rgba(56,189,248,.2)">ð§¬</div>
+          <div class="hero-card-title">NuSil MED ç³»å</div>
+        </div>
+        <div class="hero-card-text">æ¤å¥çº§å»çç¡è¶ï¼ç¬¦å USP Class VI / ISO 10993ï¼å¹¿æ³ç¨äºå¿èãç¥ç»åéª¨ç§å¨æ¢°</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div class="hero-card-icon" style="background:rgba(74,222,128,.2)">â¡</div>
+          <div class="hero-card-title">AI æºè½éæå©æ</div>
+        </div>
+        <div class="hero-card-text">åºäºå®æ´ NuSil ææ¯ææ¡£åºï¼å®æ¶åç­æææ§è½ãéæ¹å·¥èºãæ³è§åè§ç­ä¸ä¸é®é¢</div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">500+</div>
+          <div class="hero-stat-label">äº§å SKU</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">ISO</div>
+          <div class="hero-stat-label">è®¤è¯ä½ç³»</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24h</div>
+          <div class="hero-stat-label">ææ¯ååº</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span>â</span> USP Class VI</div>
+    <div class="trust-item"><span>ð¥</span> ISO 10993 çç©ç¸å®¹æ§</div>
+    <div class="trust-item"><span>ð¬</span> NuSil ææåé</div>
+    <div class="trust-item"><span>ð¨ð³</span> æ¬åææ¯æ¯æå¢é</div>
+    <div class="trust-item"><span>ð</span> FDA åè§æ°æ®æ¯æ</div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-split">
+      <div>
+        <div class="section-label">å³äº BIO Corporation</div>
+        <h2 class="section-title">è¿æ¥å¨çé¡¶çº§<br/>ææä¸æ¬åå¶é </h2>
+        <p class="section-subtitle" style="margin-bottom:32px">
+          æä»¬æ¯ NuSilï¼å®ä¸ç¹æä¸ï¼å¨ä¸­å½å¤§éçä¸ä¸ä»£çåï¼æ·±èå»çç¡è¶é¢åå¤å¹´ï¼ä¸ºå½åå»çå¨æ¢°å¶é åæä¾ä»ææä¾åºå°ææ¯è½å°çå¨é¾è·¯æå¡ã
+        </p>
+        <a href="#contact" class="btn-primary" style="background:var(--navy);color:#fff;display:inline-flex">
+          äºè§£æ´å¤ â
+        </a>
+      </div>
+      <div class="about-visual">
+        <div class="about-bullet fade-up">
+          <div class="about-bullet-icon" style="background:#eff6ff">ð¯</div>
+          <div>
+            <div class="about-bullet-title">ä¸æ³¨å»çç¡è¶åç´é¢å</div>
+            <div class="about-bullet-desc">15 å¹´ä»¥ä¸ NuSil äº§åä»£çç»éªï¼çææ¯ä¸ä¸ªäº§åç³»åçæ§è½è¾¹ç</div>
+          </div>
+        </div>
+        <div class="about-bullet fade-up fade-up-delay-1">
+          <div class="about-bullet-icon" style="background:#f0fdf4">ð§ª</div>
+          <div>
+            <div class="about-bullet-title">ææ¯ææ¡£ä¸æ³è§æ¯æ</div>
+            <div class="about-bullet-desc">æä¾å®æ´ TDSãSDSãçç©ç¸å®¹æ§æµè¯æ¥åå FDA/CE æ³è§å¨è¯¢</div>
+          </div>
+        </div>
+        <div class="about-bullet fade-up fade-up-delay-2">
+          <div class="about-bullet-icon" style="background:#fff7ed">â¡</div>
+          <div>
+            <div class="about-bullet-title">AI èµè½ææ¯å¨è¯¢</div>
+            <div class="about-bullet-desc">èªç  RAG ç¥è¯åº AI å©æï¼7Ã24 å³æ¶åç­ææéåä¸å·¥èºé®é¢</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="features-grid" style="margin-top:72px">
+      <div class="feature-card fade-up">
+        <div class="feature-icon" style="background:#eff6ff">ð¬</div>
+        <div class="feature-title">æ¤å¥çº§ææè®¤è¯</div>
+        <div class="feature-text">NuSil MED ç³»åéè¿ USP Class VIãISO 10993 å¨å¥çç©ç¸å®¹æ§æµè¯ï¼æ»¡è¶³é¿ææ¤å¥å¨æ¢°æé«æ åã</div>
+      </div>
+      <div class="feature-card fade-up fade-up-delay-1">
+        <div class="feature-icon" style="background:#f0fdf4">ð¦</div>
+        <div class="feature-title">å®æ´äº§ååç±»</div>
+        <div class="feature-text">æ¶µçç¡è¶å¼¹æ§ä½ãç²ååãåè¶ãæ¶²ä½ç¡æ©¡è¶ãæ¶å±ç­ 500+ SKUï¼è¦çææä¸»æµå¨æ¢°åºç¨åºæ¯ã</div>
+      </div>
+      <div class="feature-card fade-up fade-up-delay-2">
+        <div class="feature-icon" style="background:#fff7ed">ð</div>
+        <div class="feature-title">å¿«éææ ·ä¸äº¤ä»</div>
+        <div class="feature-text">å½åç°è´§åºå­ï¼æ¯æå°æ¹éææ ·éæ±ï¼æ åäº§å 5â10 ä¸ªå·¥ä½æ¥åäº¤ä»ï¼ç¹è§äº§åååææã</div>
+      </div>
+      <div class="feature-card fade-up fade-up-delay-3">
+        <div class="feature-icon" style="background:#fdf4ff">ð¡ï¸</div>
+        <div class="feature-title">è´¨éå¯è¿½æº¯</div>
+        <div class="feature-text">æ¯æ¹æ¬¡äº§ååéåå CoAï¼æ£éªåæ ¼è¯ï¼ï¼æ¯ææææ¥æºè¿½æº¯ï¼æ»¡è¶³ QMS å®¡æ ¸è¦æ±ã</div>
+      </div>
+      <div class="feature-card fade-up fade-up-delay-4">
+        <div class="feature-icon" style="background:#ecfdf5">ð¤</div>
+        <div class="feature-title">å·¥ç¨èåå¼å</div>
+        <div class="feature-text">æä¾éæ¹è®¾è®¡ãæåå·¥èºä¼åãç²åå·¥èºæ¹è¯ç­èåå¼åæ¯æï¼å¸®å©å®¢æ·ç¼©ç­äº§åå¼åå¨æã</div>
+      </div>
+      <div class="feature-card fade-up fade-up-delay-5">
+        <div class="feature-icon" style="background:#eff6ff">ð</div>
+        <div class="feature-title">å¨çä¾åºé¾å¯¹æ¥</div>
+        <div class="feature-text">ä¸ Avantor / NuSil æ»é¨ç´è¿ï¼å¯è·åææ°éæ¹åçº§ä¿¡æ¯åå¨çåºå­æ¯æï¼ç¡®ä¿ä¾è´§ç¨³å®ã</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="products-bg" id="products">
+  <div class="section-inner">
+    <div class="section-header center">
+      <div class="section-label">äº§åç³»å</div>
+      <h2 class="section-title">NuSil å»ççº§ç¡è¶å¨ç³»å</h2>
+      <p class="section-subtitle">è¦çå»çå¨æ¢°ä»ç åå°éäº§çå¨é¨ç¡è¶ææéæ±ï¼ç¹å»å¡çäºè§£è¯¦ææå AI å©ææé®</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card fade-up" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+        <div class="product-icon-wrap">ð©º</div>
+        <div class="product-title">æ¤å¥çº§å¼¹æ§ä½</div>
+        <div class="product-text">é¿ææ¤å¥ç¨åºæç¡è¶ï¼ä¼å¼çæºæ¢°æ§è½ä¸çç©ç¸å®¹æ§ï¼éç¨äºéª¨ç§ãå¿èãç¥ç»å¨æ¢°ã</div>
+        <div class="product-tags">
+          <span class="product-tag">MED-4940</span>
+          <span class="product-tag">MED-4950</span>
+          <span class="product-tag">MED-4965</span>
+        </div>
+      </div>
+      <div class="product-card fade-up fade-up-delay-1" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+        <div class="product-icon-wrap">ð</div>
+        <div class="product-title">æ¶²ä½ç¡æ©¡è¶ LSR</div>
+        <div class="product-text">åç»åæ³¨å°æåæ¶²ç¡ï¼éåç²¾å¯å»çé¨ä»¶æ¹éçäº§ï¼æµå¨æ§å¥½ãæ¶ç¼©çä½ã</div>
+        <div class="product-tags">
+          <span class="product-tag">MED-6820</span>
+          <span class="product-tag">MED-6830</span>
+          <span class="product-tag">LSRç³»å</span>
+        </div>
+      </div>
+      <div class="product-card fade-up fade-up-delay-2" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+        <div class="product-icon-wrap">ð</div>
+        <div class="product-title">å»ç¨ç¡è¶ç²åå</div>
+        <div class="product-text">ç¨äºå¨æ¢°ç»è£ä¸å¯¼ç®¡å°ç«¯ï¼å¸¸æ¸©/å ç­åºåå¤ç§éæ©ï¼ä¸åç±»åºæç¸å®¹æ§ä¼ã</div>
+        <div class="product-tags">
+          <span class="product-tag">MED-1511</span>
+          <span class="product-tag">MED-1137</span>
+          <span class="product-tag">åç»åç³»å</span>
+        </div>
+      </div>
+      <div class="product-card fade-up fade-up-delay-3" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+        <div class="product-icon-wrap">ð§</div>
+        <div class="product-title">æ¤å¥çº§åè¶</div>
+        <div class="product-text">æè½¯çç¡åè¶ï¼ç¨äºç¼å²å¡«åä¸å¯¼çº¿åè¦ï¼å¨ä½åé¿æç»´æç¨³å®çæé¡ºæ§ã</div>
+        <div class="product-tags">
+          <span class="product-tag">MED-6345</span>
+          <span class="product-tag">MED-6382</span>
+          <span class="product-tag">åè¶ç³»å</span>
+        </div>
+      </div>
+      <div class="product-card fade-up fade-up-delay-4" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+        <div class="product-icon-wrap">ð¨</div>
+        <div class="product-title">ç¡è¶æ¶å±ä¸æµä½</div>
+        <div class="product-text">æ¶¦æ»æ¶å±ãçµç»ç¼æµä½ï¼æåå¯¼ç®¡æ»å¨æ§ä¸å¨æ¢°è¡¨é¢é²æ¤æ§ï¼æ»¡è¶³ IVD åææ¯å¨æ¢°éæ±ã</div>
+        <div class="product-tags">
+          <span class="product-tag">æ¶å±ç³»å</span>
+          <span class="product-tag">æµä½ç³»å</span>
+        </div>
+      </div>
+      <div class="product-card fade-up fade-up-delay-5" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
+        <div class="product-icon-wrap">ð§</div>
+        <div class="product-title">ç¹ç§åè½ç¡è¶</div>
+        <div class="product-text">è§åå¯è§åãX å°çº¿æ¾å½±ãå¯¼çµåç­ç¹æ®åè½æ¹æ§ç¡è¶ï¼æ»¡è¶³ç¹å®è¯æ­ä¸ä»å¥å¨æ¢°éæ±ã</div>
+        <div class="product-tags">
+          <span class="product-tag">æ¾å½±ç³»å</span>
+          <span class="product-tag">å¯¼çµç³»å</span>
+          <span class="product-tag">åè½æ¹æ§</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTIONS ===== -->
+<section id="solutions">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">åºç¨æ¹æ¡</div>
+      <h2 class="section-title">è¦çä¸»æµå»çå¨æ¢°<br/>åºç¨åºæ¯</h2>
+      <p class="section-subtitle">ä»å¿è¡ç®¡å°å¯ç©¿æ´ï¼æä»¬çææè§£å³æ¹æ¡å·²åºç¨äºå½åå¤ä¸»æµå»çå¨æ¢°äº§åçº¿ã</p>
+    </div>
+    <div class="solutions-grid fade-up">
+      <div class="solution-card solution-card-primary">
+        <div class="solution-number">01</div>
+        <div>
+          <div class="solution-label">æ ¸å¿ä¼å¿</div>
+          <div class="solution-title">ä»ææå°å¨æ¢°<br/>å¨å¨æææ¯æ¯æ</div>
+          <div class="solution-text">æä»¬ä¸åªæ¯ææä¾åºåââä»äº§åç«é¡¹æ¶çææé¢ç­éï¼å°æ³¨åç³æ¥é¶æ®µçæµè¯æ°æ®åå¤ï¼åå°éäº§åçæ¹æ¬¡ç®¡çï¼å¨ç¨æä¾ä¸ä¸æ¯æã</div>
+          <ul class="solution-list">
+            <li>ææéæ±åæä¸åéæ¨è</li>
+            <li>æ ·åå¿«éè·åä¸æµè¯æ¯æ</li>
+            <li>æ³¨åç³æ¥ææ¯æä»¶åå¤</li>
+            <li>éäº§ä¾åºé¾ä¿é</li>
+          </ul>
+        </div>
+        <a href="#contact" class="solution-cta">ç«å³å¨è¯¢ â</a>
+      </div>
+      <div class="solution-card solution-card-light fade-up fade-up-delay-1">
+        <div class="solution-label">åºç¨é¢å</div>
+        <div class="solution-title" style="color:var(--navy)">å¿è¡ç®¡å¨æ¢°</div>
+        <div class="solution-text" style="color:var(--muted)">çåå¯¼ç®¡ãå°å µå¨ãæ¯æ¶ç³»ç»ç­ï¼è¦æ±ææå¨ä½åé¿æç¨³å®ãæ æº¶åºãNuSil æ¤å¥çº§å¼¹æ§ä½æ¯è¡ä¸é¦éã</div>
+      </div>
+      <div class="solution-card solution-card-teal fade-up fade-up-delay-2">
+        <div class="solution-number">02</div>
+        <div class="solution-label">åºç¨é¢å</div>
+        <div class="solution-title">ç¥ç»ä¸èæ±å¨æ¢°</div>
+        <div class="solution-text">èèµ·æå¨å¯¼çº¿åè¦ãèæ±èåå¨ç¼å²å±ï¼éè¦é«å¼¹æ§ä¸ä¼å¼ççç©ç¨³å®æ§ï¼MED åè¶ç³»åè¡¨ç°çªåºã</div>
+      </div>
+      <div class="solution-card solution-card-green fade-up fade-up-delay-3">
+        <div class="solution-number">03</div>
+        <div class="solution-label">åºç¨é¢å</div>
+        <div class="solution-title">å¯ç©¿æ´ä¸ IVD</div>
+        <div class="solution-text">è´´èº«ä¼ æå¨åºåºãè¯åçå¯å°ä»¶ï¼è¦æ±ç®è¤å®å¨æ§ä¸åå­¦æ°æ§ï¼LSR åæ¶å±ç³»åæ¯çæ³éæ©ã</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI ASSISTANT ===== -->
+<section class="ai-section" id="ai">
+  <div class="ai-inner">
+    <div class="ai-header fade-up">
+      <div class="ai-label">ð¤ AI æºè½å©æ</div>
+      <h2 class="ai-title">ç«å³æé®ï¼ç§çº§è·å¾<br/>ä¸ä¸ææå»ºè®®</h2>
+      <p class="ai-subtitle">åºäºå®æ´ NuSil ææ¯ææ¡£æå»ºç RAG ç¥è¯åºï¼å¯åç­æææ§è½ãå·¥èºåæ°ãæ³è§åè§ç­ä¸ä¸é®é¢</p>
+    </div>
+    <div class="ai-features fade-up">
+      <div class="ai-feature">
+        <div class="ai-feature-icon">ð</div>
+        <div>
+          <div class="ai-feature-title">å®æ´ææ¯ææ¡£åº</div>
+          <div class="ai-feature-text">è¦ç 500+ NuSil äº§åç TDSãSDS ååºç¨æå</div>
+        </div>
+      </div>
+      <div class="ai-feature">
+        <div class="ai-feature-icon">â¡</div>
+        <div>
+          <div class="ai-feature-title">å®æ¶ç²¾åæ£ç´¢</div>
+          <div class="ai-feature-text">RAG è¯­ä¹æ£ç´¢ï¼å¼ç¨åå§æ°æ®ï¼é¿åç¼é </div>
+        </div>
+      </div>
+      <div class="ai-feature">
+        <div class="ai-feature-icon">ð</div>
+        <div>
+          <div class="ai-feature-title">ä¸­è±æåè¯­æ¯æ</div>
+          <div class="ai-feature-text">ä¸­ææé®ãä¸­è±æææ¡£æ£ç´¢ï¼æ è¯­è¨éç¢</div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-frame-wrap fade-up">
+      <div class="ai-frame-bar">
+        <div class="ai-frame-dot" style="background:#ff5f57"></div>
+        <div class="ai-frame-dot" style="background:#febc2e"></div>
+        <div class="ai-frame-dot" style="background:#28c840"></div>
+        <div class="ai-frame-title">BIO Corporation AI ä¸å®¶å©æ</div>
+        <div class="ai-frame-status">
+          <div class="ai-status-dot"></div>å¨çº¿
+        </div>
+      </div>
+      <iframe
+        class="ai-chat"
+        id="aiChatFrame"
+        src=""
+        allow="microphone"
+        title="BIO Corporation AI å©æ"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-split">
+      <div>
+        <div class="section-label">èç³»æä»¬</div>
+        <h2 class="section-title">è·åæææ¯æ<br/>ä¸æ¥ä»·</h2>
+        <p class="section-subtitle" style="margin-bottom:40px">
+          æ è®ºæ¯ææéåå¨è¯¢ãæ ·åç³è¯·è¿æ¯æ¹ééè´­ï¼æä»¬çææ¯å¢éå°å¨ 24 å°æ¶åååºã
+        </p>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">ð§</div>
+          <div>
+            <div class="contact-info-label">é®ä»¶</div>
+            <div class="contact-info-value">info@bio-corporation.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">ð¬</div>
+          <div>
+            <div class="contact-info-label">å¾®ä¿¡ / ä¼ä¸å¾®ä¿¡</div>
+            <div class="contact-info-value">æ«æææç´¢ï¼BIOCorporation</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">ð</div>
+          <div>
+            <div class="contact-info-label">æå¡èå´</div>
+            <div class="contact-info-value">ä¸­å½å¤§é Â· æ¸¯æ¾³å° Â· ä¸åäº</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">â±ï¸</div>
+          <div>
+            <div class="contact-info-label">ååºæ¶æ</div>
+            <div class="contact-info-value">å·¥ä½æ¥ 24h ååå¤ï¼ç´§æ¥éæ±ä¼å</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <h3 style="font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px">åéè¯¢ä»·/å¨è¯¢</h3>
+          <form id="contactForm" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">å§å *</label>
+                <input class="form-input" type="text" placeholder="æ¨çå§å" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">å¬å¸</label>
+                <input class="form-input" type="text" placeholder="æå¨å¬å¸" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">èç³»æ¹å¼ *</label>
+              <input class="form-input" type="text" placeholder="é®ç®±æææºå·" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">å¨è¯¢ç±»å</label>
+              <select class="form-select">
+                <option>äº§åéåå¨è¯¢</option>
+                <option>æ ·åç³è¯·</option>
+                <option>æ¹ééè´­æ¥ä»·</option>
+                <option>ææ¯æä»¶æ¯æ</option>
+                <option>æ³è§åè§å¨è¯¢</option>
+                <option>å¶ä»</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">è¯¦ç»éæ±</label>
+              <textarea class="form-textarea" placeholder="è¯·æè¿°æ¨çå·ä½éæ±ï¼å¦äº§åç±»åãåºç¨åºæ¯ãæ°éç­"></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              åéå¨è¯¢ â
+            </button>
+            <div class="form-success" id="formSuccess">
+              â æ¶æ¯å·²åéï¼æä»¬å°å¨ 24 å°æ¶ååå¤æ¨ã
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="color:#fff">
+          <div class="nav-logo-icon">ð¬</div>
+          BIO<span class="dot">.</span>Corporation
+        </div>
+        <p>ä¸æ³¨äº NuSil å»ççº§ç¡è¶ææçåéä¸ææ¯æå¡ï¼ä¸ºå½åå»çå¨æ¢°å¶é åæä¾ä»ææä¾åºå°å·¥ç¨è½å°çå¨é¾è·¯æ¯æã</p>
+      </div>
+      <div>
+        <div class="footer-col-title">äº§å</div>
+        <ul class="footer-links">
+          <li><a href="#products">æ¤å¥çº§å¼¹æ§ä½</a></li>
+          <li><a href="#products">æ¶²ä½ç¡æ©¡è¶ LSR</a></li>
+          <li><a href="#products">å»ç¨ç²åå</a></li>
+          <li><a href="#products">æ¤å¥çº§åè¶</a></li>
+          <li><a href="#products">ç¡è¶æ¶å±</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">æå¡</div>
+        <ul class="footer-links">
+          <li><a href="#solutions">ææéåå¨è¯¢</a></li>
+          <li><a href="#solutions">å·¥ç¨èåå¼å</a></li>
+          <li><a href="#solutions">æ³¨åæ³è§æ¯æ</a></li>
+          <li><a href="#ai">AI æºè½å©æ</a></li>
+          <li><a href="#contact">æ ·åç³è¯·</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">å¬å¸</div>
+        <ul class="footer-links">
+          <li><a href="#about">å³äºæä»¬</a></li>
+          <li><a href="#contact">èç³»æä»¬</a></li>
+          <li><a href="#">éç§æ¿ç­</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <div class="footer-bottom">
+      <div class="footer-copy">Â© 2026 BIO Corporation. ä¿çæææå©ã</div>
+      <div class="footer-icp">å»çç¡è¶ææä¸ä¸ä¾åºå</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== NAV scroll effect =====
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ===== Mobile menu =====
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ===== Scroll animations =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ===== Lazy load AI iframe from config =====
+  const CONFIG_URL = 'https://gist.githubusercontent.com/garyyangsh76/8c9fdf06aa1be7f146422df9d7af8f0a/raw/bio-chat-config.json';
+  const FALLBACK_URL = 'https://defensive-assignment-previously-seminars.trycloudflare.com/chat.html';
+
+  function loadChat(src) {
+    const frame = document.getElementById('aiChatFrame');
+    if (frame && !frame.src) frame.src = src;
+  }
+
+  // Load when AI section is in viewport
+  const aiSection = document.getElementById('ai');
+  const aiObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      fetch(CONFIG_URL + '?t=' + Date.now())
+        .then(r => r.json())
+        .then(cfg => loadChat((cfg.url || '').replace(/\/+$/, '') + '/chat.html'))
+        .catch(() => loadChat(FALLBACK_URL));
+      aiObserver.disconnect();
+    }
+  }, { threshold: 0.1 });
+  if (aiSection) aiObserver.observe(aiSection);
+
+  // ===== Contact form (demo) =====
+  function handleSubmit(e) {
+    e.preventDefault();
+    setTimeout(() => {
+      document.getElementById('formSuccess').style.display = 'block';
+      e.target.reset();
+    }, 300);
+  }
+
+  // ===== Smooth active nav highlight =====
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navAnchors.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--navy)' : '';
+      a.style.background = a.getAttribute('href') === '#' + current ? 'var(--light)' : '';
+    });
+  });
+</script>
+</body>
+</html>
