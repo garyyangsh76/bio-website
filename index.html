@@ -14,7 +14,7 @@
     html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      color: #0f172a;
+      color: #111111;
       background: #fff;
       line-height: 1.6;
       overflow-x: hidden;
@@ -22,30 +22,96 @@
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
 
-    /* ===== CSS VARIABLES ===== */
+    /* ===== DESIGN TOKENS ===== */
     :root {
-      --navy:    #0f2a5e;
-      --blue:    #1d4ed8;
-      --sky:     #0ea5e9;
-      --teal:    #0891b2;
-      --green:   #059669;
-      --light:   #f0f7ff;
-      --border:  #e2eaf4;
-      --muted:   #64748b;
-      --radius:  12px;
-      --shadow:  0 4px 24px rgba(15,42,94,.08);
-      --shadow-lg: 0 12px 48px rgba(15,42,94,.14);
+      --navy:   #0A1F44;
+      --blue:   #2E6BFF;
+      --text:   #111111;
+      --muted:  #666666;
+      --light:  #F5F7FA;
+      --border: #E4E8EF;
+      --white:  #FFFFFF;
+      --radius: 6px;
     }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 96px 24px; }
+    .bg-light { background: var(--light); }
+    .bg-dark  { background: var(--navy); }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--blue); color: #fff;
+      padding: 0 24px; height: 44px; border-radius: var(--radius);
+      font-weight: 600; font-size: 15px; font-family: inherit;
+      border: none; cursor: pointer;
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: #1a57f0; }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--blue);
+      padding: 0 24px; height: 44px; border-radius: var(--radius);
+      font-weight: 600; font-size: 15px;
+      border: 1.5px solid var(--blue);
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    .btn-secondary:hover { background: #eff4ff; }
+
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--navy);
+      padding: 0 24px; height: 44px; border-radius: var(--radius);
+      font-weight: 600; font-size: 15px;
+      transition: background .15s;
+      white-space: nowrap;
+    }
+    .btn-white:hover { background: #f0f4ff; }
+
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #fff;
+      padding: 0 24px; height: 44px; border-radius: var(--radius);
+      font-weight: 600; font-size: 15px;
+      border: 1.5px solid rgba(255,255,255,.3);
+      transition: border-color .15s;
+      white-space: nowrap;
+    }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,.65); }
+
+    /* ===== SECTION TYPOGRAPHY ===== */
+    .sec-eyebrow {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--blue); margin-bottom: 16px;
+    }
+    .sec-eyebrow-dim { color: rgba(255,255,255,.45); }
+    .sec-title {
+      font-size: 36px; font-weight: 700; color: var(--navy);
+      letter-spacing: -.3px; line-height: 1.2; margin-bottom: 16px;
+    }
+    .sec-title-white { color: #fff; }
+    .sec-subtitle {
+      font-size: 18px; color: var(--muted); max-width: 600px; line-height: 1.7;
+    }
+    .sec-subtitle-dim { color: rgba(255,255,255,.6); }
+    .sec-header { margin-bottom: 64px; }
+    .sec-header.center { text-align: center; }
+    .sec-header.center .sec-subtitle { margin: 0 auto; }
 
     /* ===== NAV ===== */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,0.94);
-      backdrop-filter: blur(16px);
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      transition: box-shadow .3s;
+      transition: box-shadow .2s;
     }
-    .nav.scrolled { box-shadow: 0 2px 20px rgba(15,42,94,.1); }
+    .nav.scrolled { box-shadow: 0 1px 16px rgba(0,0,0,.08); }
     .nav-inner {
       max-width: 1200px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
@@ -53,32 +119,32 @@
     }
     .nav-logo {
       display: flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 18px; color: var(--navy);
+      font-weight: 700; font-size: 17px; color: var(--navy);
       letter-spacing: -.3px;
     }
-    .nav-logo .dot { color: var(--sky); }
-    .nav-logo-icon {
-      width: 36px; height: 36px; background: var(--navy);
-      border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
+    .nav-logo-mark {
+      width: 32px; height: 32px; background: var(--navy);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
     .nav-links {
-      display: flex; align-items: center; gap: 4px;
+      display: flex; align-items: center; gap: 2px;
       list-style: none;
     }
     .nav-links a {
-      padding: 8px 14px; border-radius: 8px;
+      padding: 8px 14px; border-radius: var(--radius);
       font-size: 14px; font-weight: 500; color: var(--muted);
       transition: background .15s, color .15s;
     }
     .nav-links a:hover { background: var(--light); color: var(--navy); }
     .nav-cta {
-      background: var(--navy); color: #fff !important;
-      padding: 8px 18px !important; border-radius: 8px !important;
-      font-weight: 600 !important;
-      transition: background .15s !important;
+      background: var(--navy) !important; color: #fff !important;
+      height: 36px !important; padding: 0 18px !important;
+      display: inline-flex !important; align-items: center !important;
+      border-radius: var(--radius) !important; font-weight: 600 !important;
     }
-    .nav-cta:hover { background: var(--blue) !important; }
+    .nav-cta:hover { background: #152e5e !important; }
     .nav-menu-btn {
       display: none; background: none; border: none; cursor: pointer;
       padding: 8px; color: var(--navy);
@@ -98,278 +164,297 @@
     /* ===== HERO ===== */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #0a1f4e 0%, #0f2a5e 40%, #1a3c6e 70%, #1d4ed8 100%);
+      background: #fff;
       display: flex; align-items: center;
-      position: relative; overflow: hidden;
-      padding: 100px 24px 60px;
+      padding: 100px 24px 64px;
     }
-    .hero-bg {
-      position: absolute; inset: 0; overflow: hidden; pointer-events: none;
-    }
-    .hero-circle {
-      position: absolute; border-radius: 50%; opacity: .06;
-      background: radial-gradient(circle, #fff 0%, transparent 70%);
-    }
-    .hero-circle-1 { width: 600px; height: 600px; top: -200px; right: -100px; }
-    .hero-circle-2 { width: 400px; height: 400px; bottom: -100px; left: -50px; }
-    .hero-circle-3 { width: 300px; height: 300px; top: 30%; left: 40%; opacity: .04; }
-    /* Animated dots grid */
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1px);
-      background-size: 40px 40px;
-      opacity: .5;
-    }
-
     .hero-inner {
       max-width: 1200px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
     }
-    .hero-badge {
+    .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
-      border-radius: 20px; padding: 6px 14px;
-      font-size: 13px; color: rgba(255,255,255,.85);
-      margin-bottom: 20px;
+      font-size: 13px; font-weight: 600; color: var(--blue);
+      margin-bottom: 24px;
     }
-    .hero-badge-dot {
-      width: 7px; height: 7px; background: #4ade80;
-      border-radius: 50%; animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: .5; transform: scale(1.3); }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px; background: #22c55e; border-radius: 50%; flex-shrink: 0;
     }
     .hero-title {
-      font-size: clamp(36px, 5vw, 58px);
-      font-weight: 800; color: #fff;
-      line-height: 1.15; letter-spacing: -.5px;
-      margin-bottom: 20px;
+      font-size: 56px; font-weight: 700; color: var(--navy);
+      line-height: 1.1; letter-spacing: -.5px; margin-bottom: 24px;
     }
-    .hero-title .accent { color: #38bdf8; }
-    .hero-subtitle {
-      font-size: 18px; color: rgba(255,255,255,.7);
-      line-height: 1.7; margin-bottom: 36px;
+    .hero-title .accent { color: var(--blue); }
+    .hero-desc {
+      font-size: 18px; color: var(--muted);
+      line-height: 1.7; margin-bottom: 40px; max-width: 480px;
     }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #fff; color: var(--navy);
-      padding: 14px 28px; border-radius: 10px;
-      font-weight: 700; font-size: 15px;
-      transition: all .2s; box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    .hero-certs {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px;
     }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.1); color: #fff;
-      padding: 14px 28px; border-radius: 10px;
-      font-weight: 600; font-size: 15px;
-      border: 1px solid rgba(255,255,255,.25);
-      transition: all .2s;
+    .hero-cert {
+      font-size: 12px; font-weight: 500; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 4px 10px; background: var(--light); letter-spacing: .2px;
     }
-    .btn-ghost:hover { background: rgba(255,255,255,.18); }
 
-    .hero-right {
-      display: flex; flex-direction: column; gap: 16px;
+    /* Hero right panel */
+    .hero-panel {
+      background: var(--light); border: 1px solid var(--border);
+      border-radius: 10px; padding: 32px; margin-bottom: 16px;
     }
-    .hero-card {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(12px);
-      border-radius: 16px; padding: 22px 24px;
-      color: #fff;
-      transition: transform .2s;
+    .hero-panel-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--muted); margin-bottom: 24px;
     }
-    .hero-card:hover { transform: translateY(-3px); }
-    .hero-card-top {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+    .hero-panel-row {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid var(--border);
     }
-    .hero-card-icon {
-      width: 42px; height: 42px; border-radius: 10px;
+    .hero-panel-row:last-of-type { border-bottom: none; padding-bottom: 0; }
+    .hero-panel-check {
+      width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px;
+      background: var(--blue); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0;
     }
-    .hero-card-title { font-size: 15px; font-weight: 600; }
-    .hero-card-text { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.5; }
+    .hero-panel-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+    .hero-panel-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
     .hero-stats {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 12px; margin-top: 4px;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
     }
     .hero-stat {
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px; padding: 14px; text-align: center; color: #fff;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 16px; text-align: center;
     }
-    .hero-stat-num { font-size: 26px; font-weight: 800; color: #38bdf8; }
-    .hero-stat-label { font-size: 11px; color: rgba(255,255,255,.6); margin-top: 2px; }
+    .hero-stat-num { font-size: 22px; font-weight: 700; color: var(--navy); }
+    .hero-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-title { font-size: 40px; }
       .hero-right { display: none; }
     }
 
-    /* ===== SECTIONS ===== */
-    section { padding: 96px 24px; }
-    .section-inner { max-width: 1200px; margin: 0 auto; }
-    .section-label {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--blue); background: #eff6ff;
-      padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
+    /* ===== TRUST BAR ===== */
+    .trust-bar {
+      background: var(--light);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
     }
-    .section-title {
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 800; color: var(--navy);
-      letter-spacing: -.3px; line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .section-subtitle {
-      font-size: 18px; color: var(--muted);
-      max-width: 600px; line-height: 1.7;
-    }
-    .section-header { margin-bottom: 56px; }
-    .section-header.center { text-align: center; }
-    .section-header.center .section-subtitle { margin: 0 auto; }
-
-    /* ===== ABOUT / FEATURES ===== */
-    .features-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-      margin-top: 48px;
-    }
-    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
-    @media (min-width: 600px) and (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
-    .feature-card {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 16px; padding: 32px;
-      transition: box-shadow .25s, transform .25s;
-    }
-    .feature-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-    .feature-icon {
-      width: 52px; height: 52px; border-radius: 12px;
+    .trust-inner {
+      max-width: 1200px; margin: 0 auto; height: 64px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 18px;
+      gap: 48px; flex-wrap: wrap;
     }
-    .feature-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-    .feature-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .trust-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+    }
+    .trust-dot {
+      width: 4px; height: 4px; background: var(--blue);
+      border-radius: 50%; flex-shrink: 0;
+    }
+    @media (max-width: 768px) {
+      .trust-inner { height: auto; padding: 16px 0; gap: 16px; justify-content: flex-start; }
+    }
 
-    /* ===== ABOUT SPLIT ===== */
-    .about-split {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    /* ===== CAPABILITIES (no cards) ===== */
+    .caps-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 48px;
     }
-    @media (max-width: 900px) { .about-split { grid-template-columns: 1fr; gap: 40px; } }
-    .about-visual {
-      background: linear-gradient(135deg, var(--light) 0%, #e0f2fe 100%);
-      border-radius: 24px; padding: 40px; min-height: 360px;
-      display: flex; flex-direction: column; justify-content: center; gap: 16px;
-      border: 1px solid var(--border);
-      position: relative; overflow: hidden;
-    }
-    .about-visual::before {
-      content: ''; position: absolute;
-      width: 200px; height: 200px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(14,165,233,.12), transparent);
-      top: -40px; right: -40px;
-    }
-    .about-bullet {
-      display: flex; align-items: flex-start; gap: 14px;
-      background: #fff; border-radius: 12px; padding: 16px 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
-      transition: transform .2s;
-    }
-    .about-bullet:hover { transform: translateX(4px); }
-    .about-bullet-icon {
-      width: 36px; height: 36px; border-radius: 8px;
+    @media (max-width: 900px) { .caps-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    @media (max-width: 560px) { .caps-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .cap-item { }
+    .cap-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--light); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; flex-shrink: 0;
+      font-size: 18px; margin-bottom: 16px;
     }
-    .about-bullet-title { font-size: 14px; font-weight: 600; color: var(--navy); }
-    .about-bullet-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .cap-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .cap-text { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+    .cap-link {
+      font-size: 14px; font-weight: 600; color: var(--blue);
+      display: inline-flex; align-items: center; gap: 4px;
+      transition: gap .15s;
+    }
+    .cap-link:hover { gap: 8px; }
 
-    /* ===== PRODUCTS ===== */
-    .products-bg { background: var(--light); }
+    /* ===== SERVICE STEPS ===== */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 48px;
+      position: relative;
+    }
+    .steps-connector {
+      position: absolute; top: 19px;
+      left: calc(33.33% - 10px); right: calc(33.33% - 10px);
+      height: 1px; background: var(--border); z-index: 0;
+    }
+    @media (max-width: 768px) {
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+      .steps-connector { display: none; }
+    }
+    .step { position: relative; z-index: 1; }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--navy); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700; margin-bottom: 24px;
+    }
+    .step-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .step-text { font-size: 15px; color: var(--muted); line-height: 1.7; }
+
+    /* ===== PRODUCTS GRID ===== */
     .products-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      display: grid; grid-template-columns: repeat(3,1fr);
+      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
     }
     @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 560px) { .products-grid { grid-template-columns: 1fr; } }
-    .product-card {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 16px; padding: 28px;
-      cursor: pointer;
-      transition: all .25s;
-      position: relative; overflow: hidden;
+    .product-item {
+      background: #fff; padding: 32px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
     }
-    .product-card::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--navy), var(--blue));
-      opacity: 0; transition: opacity .25s;
+    .product-item:hover { background: var(--light); }
+    .product-item:nth-child(3n) { border-right: none; }
+    .product-item:nth-last-child(-n+3) { border-bottom: none; }
+    @media (max-width: 900px) {
+      .product-item:nth-child(3n) { border-right: 1px solid var(--border); }
+      .product-item:nth-child(2n) { border-right: none; }
+      .product-item:nth-last-child(-n+2) { border-bottom: none; }
     }
-    .product-card:hover::before { opacity: 1; }
-    .product-card:hover .product-title,
-    .product-card:hover .product-text,
-    .product-card:hover .product-tag { color: rgba(255,255,255,.9) !important; }
-    .product-card:hover .product-icon-wrap { background: rgba(255,255,255,.15); }
-    .product-card:hover .product-tags { border-top-color: rgba(255,255,255,.15); }
-    .product-card > * { position: relative; z-index: 1; }
-    .product-icon-wrap {
-      width: 52px; height: 52px; border-radius: 12px;
-      background: var(--light); display: flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 16px;
-      transition: background .25s;
+    @media (max-width: 560px) {
+      .product-item { border-right: none; }
+      .product-item:last-child { border-bottom: none; }
     }
-    .product-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; transition: color .25s; }
-    .product-text { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; transition: color .25s; }
-    .product-tags { border-top: 1px solid var(--border); padding-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; transition: border-color .25s; }
-    .product-tag { font-size: 11px; font-weight: 600; color: var(--blue); background: #eff6ff; padding: 3px 10px; border-radius: 20px; transition: color .25s, background .25s; }
-    .product-card:hover .product-tag { background: rgba(255,255,255,.15); }
+    .product-icon { font-size: 22px; margin-bottom: 16px; }
+    .product-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .product-text { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .product-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .product-tag {
+      font-size: 11px; font-weight: 600; color: var(--blue);
+      background: #eff4ff; padding: 3px 8px; border-radius: 4px;
+    }
+    .product-link {
+      font-size: 13px; font-weight: 600; color: var(--blue);
+      display: inline-flex; align-items: center; gap: 4px;
+      transition: gap .15s;
+    }
+    .product-link:hover { gap: 8px; }
 
-    /* ===== AI ASSISTANT ===== */
-    .ai-section { background: linear-gradient(160deg, #0a1f4e 0%, #0f2a5e 60%, #1d4ed8 100%); }
+    /* ===== ABOUT / COMPANY SPLIT ===== */
+    .about-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    @media (max-width: 900px) { .about-split { grid-template-columns: 1fr; gap: 48px; } }
+    .about-points { display: flex; flex-direction: column; gap: 24px; }
+    .about-point { display: flex; gap: 16px; align-items: flex-start; }
+    .about-point-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: var(--light); border: 1px solid var(--border);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; font-size: 18px;
+    }
+    .about-point-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .about-point-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ===== APPLICATIONS ===== */
+    .apps-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    @media (max-width: 768px) { .apps-grid { grid-template-columns: 1fr; } }
+    .app-card {
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--light); padding: 40px;
+      position: relative;
+    }
+    .app-card-primary {
+      background: var(--navy); border-color: transparent;
+      grid-row: span 2;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .app-card-num {
+      font-size: 64px; font-weight: 900;
+      color: rgba(255,255,255,.06);
+      position: absolute; right: 24px; top: 16px; line-height: 1;
+      pointer-events: none;
+    }
+    .app-eyebrow {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; margin-bottom: 12px;
+    }
+    .app-card-primary .app-eyebrow { color: rgba(255,255,255,.45); }
+    .app-card .app-eyebrow { color: var(--blue); }
+    .app-title { font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
+    .app-card-primary .app-title { color: #fff; }
+    .app-card .app-title { color: var(--navy); }
+    .app-text { font-size: 15px; line-height: 1.7; }
+    .app-card-primary .app-text { color: rgba(255,255,255,.7); }
+    .app-card .app-text { color: var(--muted); }
+    .app-list { list-style: none; margin-top: 24px; }
+    .app-list li {
+      font-size: 14px; padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.75);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .app-list li:last-child { border-bottom: none; }
+    .app-list li::before { content: '—'; color: rgba(255,255,255,.3); flex-shrink: 0; }
+
+    /* ===== AI SECTION ===== */
+    .ai-section { background: var(--navy); }
     .ai-inner { max-width: 1200px; margin: 0 auto; }
     .ai-header { text-align: center; margin-bottom: 48px; }
-    .ai-label {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
-      color: #38bdf8; background: rgba(56,189,248,.12);
-      padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
+    .ai-chips {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-bottom: 40px;
     }
-    .ai-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: #fff; letter-spacing: -.3px; margin-bottom: 16px; }
-    .ai-subtitle { font-size: 18px; color: rgba(255,255,255,.65); max-width: 560px; margin: 0 auto; }
-    .ai-features {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px;
+    .ai-chip {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+      color: rgba(255,255,255,.75); border-radius: var(--radius);
+      padding: 8px 16px; font-size: 13px; cursor: pointer;
+      transition: all .15s;
     }
-    @media (max-width: 768px) { .ai-features { grid-template-columns: 1fr; } }
-    .ai-feature {
-      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
-      border-radius: 12px; padding: 18px 20px;
-      display: flex; align-items: flex-start; gap: 12px; color: #fff;
+    .ai-chip:hover { background: rgba(255,255,255,.13); color: #fff; }
+    .ai-feats {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 48px;
     }
-    .ai-feature-icon { font-size: 22px; margin-top: 2px; flex-shrink: 0; }
-    .ai-feature-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .ai-feature-text { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.5; }
+    @media (max-width: 768px) { .ai-feats { grid-template-columns: 1fr; gap: 16px; } }
+    .ai-feat { display: flex; gap: 14px; align-items: flex-start; }
+    .ai-feat-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(255,255,255,.08); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .ai-feat-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .ai-feat-text { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.5; }
     .ai-frame-wrap {
-      border-radius: 20px; overflow: hidden;
-      box-shadow: 0 20px 80px rgba(0,0,0,.4);
-      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
       -webkit-transform: translateZ(0); transform: translateZ(0);
     }
     .ai-frame-bar {
-      background: rgba(255,255,255,.06); padding: 12px 20px;
+      background: rgba(255,255,255,.04); padding: 12px 20px;
       display: flex; align-items: center; gap: 8px;
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
     .ai-frame-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .ai-frame-title {
-      margin-left: 8px; font-size: 13px; color: rgba(255,255,255,.6); font-weight: 500;
-    }
+    .ai-frame-title { margin-left: 8px; font-size: 13px; color: rgba(255,255,255,.45); font-weight: 500; }
     .ai-frame-status {
       margin-left: auto; font-size: 12px; color: #4ade80;
       display: flex; align-items: center; gap: 6px;
     }
     .ai-status-dot {
-      width: 7px; height: 7px; background: #4ade80;
+      width: 6px; height: 6px; background: #4ade80;
       border-radius: 50%; animation: pulse 2s infinite;
     }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
     iframe.ai-chat {
       display: block; width: 100%; height: 600px; border: none;
       background: #fff;
@@ -377,205 +462,103 @@
       pointer-events: auto;
     }
 
-    /* ===== SOLUTIONS ===== */
-    .solutions-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
-    }
-    @media (max-width: 768px) { .solutions-grid { grid-template-columns: 1fr; } }
-    .solution-card {
-      border-radius: 20px; padding: 36px;
-      position: relative; overflow: hidden;
-    }
-    .solution-card-primary {
-      background: linear-gradient(135deg, var(--navy), var(--blue));
-      grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .solution-card-light { background: var(--light); border: 1px solid var(--border); }
-    .solution-card-teal { background: linear-gradient(135deg, #0c4a6e, #0891b2); }
-    .solution-card-green { background: linear-gradient(135deg, #064e3b, #059669); }
-    .solution-number {
-      font-size: 72px; font-weight: 900; opacity: .08; position: absolute;
-      right: 20px; top: 10px; line-height: 1; color: #fff;
-    }
-    .solution-label {
-      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-      margin-bottom: 16px;
-    }
-    .solution-card-primary .solution-label { color: rgba(255,255,255,.6); }
-    .solution-card-light .solution-label { color: var(--blue); }
-    .solution-card-teal .solution-label,
-    .solution-card-green .solution-label { color: rgba(255,255,255,.6); }
-    .solution-title { font-size: 22px; font-weight: 800; margin-bottom: 12px; line-height: 1.3; }
-    .solution-card-primary .solution-title,
-    .solution-card-teal .solution-title,
-    .solution-card-green .solution-title { color: #fff; }
-    .solution-card-light .solution-title { color: var(--navy); }
-    .solution-text { font-size: 14px; line-height: 1.7; }
-    .solution-card-primary .solution-text,
-    .solution-card-teal .solution-text,
-    .solution-card-green .solution-text { color: rgba(255,255,255,.7); }
-    .solution-card-light .solution-text { color: var(--muted); }
-    .solution-list { list-style: none; margin-top: 20px; }
-    .solution-list li {
-      font-size: 13px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.1);
-      color: rgba(255,255,255,.8); display: flex; align-items: center; gap: 8px;
-    }
-    .solution-list li::before { content: '→'; color: #38bdf8; font-weight: 700; }
-    .solution-card-primary .solution-cta {
-      margin-top: 32px;
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #fff; color: var(--navy);
-      padding: 12px 22px; border-radius: 10px;
-      font-weight: 700; font-size: 14px;
-      transition: all .2s; align-self: flex-start;
-    }
-    .solution-card-primary .solution-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.2); }
+    /* ===== CTA BAND ===== */
+    .cta-band { background: var(--navy); padding: 80px 24px; }
+    .cta-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .cta-title { font-size: 36px; font-weight: 700; color: #fff; letter-spacing: -.3px; margin-bottom: 16px; }
+    .cta-text { font-size: 18px; color: rgba(255,255,255,.65); margin-bottom: 40px; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
     /* ===== CONTACT ===== */
     .contact-split {
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start;
     }
-    @media (max-width: 900px) { .contact-split { grid-template-columns: 1fr; gap: 40px; } }
-    .contact-info-item {
-      display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px;
-    }
+    @media (max-width: 900px) { .contact-split { grid-template-columns: 1fr; gap: 48px; } }
+    .contact-info { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
+    .contact-info-item { display: flex; gap: 16px; align-items: flex-start; }
     .contact-info-icon {
-      width: 46px; height: 46px; border-radius: 12px;
-      background: var(--light); display: flex; align-items: center; justify-content: center;
-      font-size: 20px; flex-shrink: 0; border: 1px solid var(--border);
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--light); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
     }
-    .contact-info-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); margin-bottom: 4px; }
+    .contact-info-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .8px; color: var(--muted); margin-bottom: 4px;
+    }
     .contact-info-value { font-size: 15px; font-weight: 500; color: var(--navy); }
-    .contact-form { background: var(--light); border-radius: 20px; padding: 36px; border: 1px solid var(--border); }
+    .contact-form {
+      background: var(--light); border: 1px solid var(--border);
+      border-radius: 8px; padding: 40px;
+    }
+    .form-title { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
-    .form-group { margin-bottom: 18px; }
-    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 7px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
     .form-input, .form-textarea, .form-select {
       width: 100%; background: #fff; border: 1.5px solid var(--border);
-      border-radius: 10px; padding: 11px 14px;
+      border-radius: var(--radius); padding: 10px 14px;
       font-size: 14px; font-family: inherit; color: var(--navy);
-      transition: border-color .2s, box-shadow .2s; outline: none;
+      transition: border-color .15s; outline: none;
     }
     .form-input:focus, .form-textarea:focus, .form-select:focus {
-      border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,78,216,.1);
+      border-color: var(--blue);
     }
-    .form-textarea { min-height: 100px; resize: vertical; }
+    .form-textarea { min-height: 96px; resize: vertical; }
     .form-submit {
-      width: 100%; background: var(--navy); color: #fff;
-      border: none; border-radius: 10px; padding: 14px;
-      font-size: 15px; font-weight: 700; cursor: pointer;
-      transition: all .2s; font-family: inherit;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; background: var(--blue); color: #fff;
+      border: none; border-radius: var(--radius); height: 44px;
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: background .15s; font-family: inherit;
     }
-    .form-submit:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(29,78,216,.3); }
+    .form-submit:hover { background: #1a57f0; }
     .form-success {
-      display: none; background: #ecfdf5; border: 1px solid #a7f3d0;
-      border-radius: 10px; padding: 16px 18px; color: #065f46;
+      display: none; background: #f0fdf4; border: 1px solid #bbf7d0;
+      border-radius: var(--radius); padding: 14px 16px; color: #166534;
       font-size: 14px; font-weight: 500; text-align: center; margin-top: 12px;
     }
 
     /* ===== FOOTER ===== */
-    .footer { background: var(--navy); color: rgba(255,255,255,.7); padding: 64px 24px 32px; }
+    .footer { background: var(--navy); color: rgba(255,255,255,.55); padding: 64px 24px 32px; }
     .footer-inner { max-width: 1200px; margin: 0 auto; }
     .footer-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
     }
     @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
     @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
-    .footer-brand .nav-logo { margin-bottom: 14px; }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 16px; color: #fff; margin-bottom: 16px;
+    }
+    .footer-logo-mark {
+      width: 30px; height: 30px; background: rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+    }
     .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
-    .footer-col-title { font-size: 13px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 16px; }
+    .footer-col-title {
+      font-size: 11px; font-weight: 700; color: #fff;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+    }
     .footer-links { list-style: none; }
     .footer-links li { margin-bottom: 10px; }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,.6); transition: color .15s; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.5); transition: color .15s; }
     .footer-links a:hover { color: #fff; }
     .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin-bottom: 24px; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
     .footer-copy { font-size: 13px; }
-    .footer-icp { font-size: 13px; opacity: .5; }
-
-    /* ===== BAGDE / TRUST ===== */
-    .trust-bar { background: #f8faff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 24px; }
-    .trust-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
-    .trust-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); font-weight: 500; }
-    .trust-item span { font-size: 20px; }
-
-    /* ===== HERO TRUST TAGS ===== */
-    .hero-trust-tags {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
-    }
-    .hero-trust-tags span {
-      font-size: 12px; font-weight: 600;
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.85); border-radius: 20px;
-      padding: 5px 12px;
-    }
-
-    /* ===== SERVICE PATH ===== */
-    .service-path-bg { background: #f8faff; }
-    .service-path-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;
-      position: relative;
-    }
-    .service-path-connector {
-      position: absolute; top: 42px; left: calc(33.33% - 14px); right: calc(33.33% - 14px);
-      height: 2px; background: linear-gradient(90deg, var(--blue), var(--sky));
-      z-index: 0;
-    }
-    @media (max-width: 768px) {
-      .service-path-grid { grid-template-columns: 1fr; }
-      .service-path-connector { display: none; }
-    }
-    .service-step {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 20px; padding: 32px 28px;
-      position: relative; z-index: 1;
-      transition: box-shadow .25s, transform .25s;
-    }
-    .service-step:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-    .service-step-num {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--navy); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: 800; margin-bottom: 20px;
-    }
-    .service-step-icon { font-size: 24px; margin-bottom: 6px; }
-    .service-step-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
-    .service-step-text { font-size: 14px; color: var(--muted); line-height: 1.7; }
-    .service-path-cta { text-align: center; margin-top: 48px; }
-
-    /* ===== PRODUCT CARD CTA ===== */
-    .product-cta {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; font-weight: 600; color: var(--blue);
-      margin-top: 14px; border-top: 1px solid var(--border);
-      padding-top: 14px; width: 100%;
-      transition: color .25s, gap .2s;
-    }
-    .product-card:hover .product-cta { color: rgba(255,255,255,.9); border-top-color: rgba(255,255,255,.15); gap: 10px; }
-
-    /* ===== AI EXAMPLE CHIPS ===== */
-    .ai-examples {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      justify-content: center; margin-bottom: 32px;
-    }
-    .ai-example-chip {
-      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.85); border-radius: 20px;
-      padding: 8px 18px; font-size: 13px; cursor: pointer;
-      transition: all .2s;
-    }
-    .ai-example-chip:hover { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.4); transform: translateY(-1px); }
+    .footer-icp { font-size: 13px; opacity: .4; }
 
     /* ===== SCROLL ANIMATIONS ===== */
-    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .fade-up-delay-1 { transition-delay: .1s; }
     .fade-up-delay-2 { transition-delay: .2s; }
     .fade-up-delay-3 { transition-delay: .3s; }
-    .fade-up-delay-4 { transition-delay: .4s; }
-    .fade-up-delay-5 { transition-delay: .5s; }
   </style>
 </head>
 <body>
@@ -584,15 +567,20 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-icon">🔬</div>
-      BIO<span class="dot">.</span>Corporation
+      <div class="nav-logo-mark">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="4.5" stroke="white" stroke-width="1.5"/>
+          <circle cx="8" cy="8" r="1.5" fill="white"/>
+        </svg>
+      </div>
+      BIO Corporation
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#products">产品选型</a></li>
       <li><a href="#solutions">应用方案</a></li>
       <li><a href="#ai">AI 选材助手</a></li>
       <li><a href="#contact">样品·询价</a></li>
-      <li><a href="#contact" class="nav-cta">💬 加微信咨询</a></li>
+      <li><a href="#contact" class="nav-cta">加微信咨询</a></li>
     </ul>
     <button class="nav-menu-btn" id="menuBtn" aria-label="菜单">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -604,57 +592,80 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <div class="hero-bg">
-    <div class="hero-grid"></div>
-    <div class="hero-circle hero-circle-1"></div>
-    <div class="hero-circle hero-circle-2"></div>
-    <div class="hero-circle hero-circle-3"></div>
-  </div>
   <div class="hero-inner">
     <!-- Left -->
     <div class="hero-left">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
         NuSil 中国授权代理 · 医疗级认证
       </div>
       <h1 class="hero-title">
         NuSil 医疗级硅胶<br/>
         <span class="accent">选型与技术支持</span>
       </h1>
-      <p class="hero-subtitle">
+      <p class="hero-desc">
         专为医疗器械研发、采购与法规团队提供 NuSil 全系硅胶材料的选型指导、样品支持与注册配合，帮助产品更快从立项走到量产。
       </p>
       <div class="hero-actions">
-        <a href="#products" class="btn-primary">
-          ⚡ 3 分钟匹配材料
-        </a>
-        <a href="#contact" class="btn-ghost">
-          💬 加微信咨询工程师
-        </a>
+        <a href="#products" class="btn-primary">3 分钟匹配材料 →</a>
+        <a href="#contact" class="btn-secondary">加微信咨询工程师</a>
       </div>
-      <div class="hero-trust-tags">
-        <span>✅ NuSil 授权代理</span>
-        <span>🧬 USP Class VI</span>
-        <span>📋 ISO 10993</span>
-        <span>🔍 CoA 可追溯</span>
-        <span>⚡ 24h 技术响应</span>
+      <div class="hero-certs">
+        <span class="hero-cert">NuSil 授权代理</span>
+        <span class="hero-cert">USP Class VI</span>
+        <span class="hero-cert">ISO 10993</span>
+        <span class="hero-cert">CoA 可追溯</span>
+        <span class="hero-cert">24h 技术响应</span>
       </div>
     </div>
     <!-- Right -->
     <div class="hero-right">
-      <div class="hero-card">
-        <div class="hero-card-top">
-          <div class="hero-card-icon" style="background:rgba(56,189,248,.2)">🧬</div>
-          <div class="hero-card-title">NuSil MED 系列</div>
+      <div class="hero-panel">
+        <div class="hero-panel-label">核心服务能力</div>
+        <div class="hero-panel-row">
+          <div class="hero-panel-check">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-panel-title">植入级材料供应</div>
+            <div class="hero-panel-desc">NuSil MED 全系列，500+ SKU 现货，小批量打样支持</div>
+          </div>
         </div>
-        <div class="hero-card-text">植入级医疗硅胶，符合 USP Class VI / ISO 10993，广泛用于心脏、神经及骨科器械</div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-top">
-          <div class="hero-card-icon" style="background:rgba(74,222,128,.2)">⚡</div>
-          <div class="hero-card-title">AI 智能选材助手</div>
+        <div class="hero-panel-row">
+          <div class="hero-panel-check">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-panel-title">法规文件配套</div>
+            <div class="hero-panel-desc">TDS / SDS / CoA / ISO 10993 生物相容性合规包</div>
+          </div>
         </div>
-        <div class="hero-card-text">基于完整 NuSil 技术文档库，实时回答材料性能、配方工艺、法规合规等专业问题</div>
+        <div class="hero-panel-row">
+          <div class="hero-panel-check">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-panel-title">AI 智能选材助手</div>
+            <div class="hero-panel-desc">基于完整技术文档库，7×24 实时响应材料与工艺问题</div>
+          </div>
+        </div>
+        <div class="hero-panel-row">
+          <div class="hero-panel-check">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-panel-title">注册与量产协同</div>
+            <div class="hero-panel-desc">配合技术文件与法规审查，注册通过后无缝切换量产</div>
+          </div>
+        </div>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -662,8 +673,8 @@
           <div class="hero-stat-label">产品 SKU</div>
         </div>
         <div class="hero-stat">
-          <div class="hero-stat-num">ISO</div>
-          <div class="hero-stat-label">认证体系</div>
+          <div class="hero-stat-num">USP VI</div>
+          <div class="hero-stat-label">认证标准</div>
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num">24h</div>
@@ -677,244 +688,322 @@
 <!-- ===== TRUST BAR ===== -->
 <div class="trust-bar">
   <div class="trust-inner">
-    <div class="trust-item"><span>✅</span> USP Class VI</div>
-    <div class="trust-item"><span>🏥</span> ISO 10993 生物相容性</div>
-    <div class="trust-item"><span>🔬</span> NuSil 授权分销</div>
-    <div class="trust-item"><span>🇨🇳</span> 本土技术支持团队</div>
-    <div class="trust-item"><span>📋</span> FDA 合规数据支持</div>
+    <div class="trust-item"><span class="trust-dot"></span>USP Class VI</div>
+    <div class="trust-item"><span class="trust-dot"></span>ISO 10993 生物相容性</div>
+    <div class="trust-item"><span class="trust-dot"></span>NuSil 授权分销商</div>
+    <div class="trust-item"><span class="trust-dot"></span>本土技术支持团队</div>
+    <div class="trust-item"><span class="trust-dot"></span>FDA 合规数据支持</div>
   </div>
 </div>
 
-<!-- ===== SERVICE PATH ===== -->
-<section class="service-path-bg" id="service-path">
-  <div class="section-inner">
-    <div class="section-header center fade-up">
-      <div class="section-label">合作流程</div>
-      <h2 class="section-title">三步完成从需求到交付</h2>
-      <p class="section-subtitle">无论你处于哪个项目阶段，我们都能在对的节点提供专业支持</p>
+<!-- ===== CAPABILITIES ===== -->
+<section id="about">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-eyebrow">核心能力</div>
+      <h2 class="sec-title">专业的医用硅胶全链路服务</h2>
+      <p class="sec-subtitle">从材料预筛选到注册量产，在每个关键节点提供专业支持</p>
     </div>
-    <div class="service-path-grid">
-      <div class="service-path-connector"></div>
-      <div class="service-step fade-up">
-        <div class="service-step-num">1</div>
-        <div class="service-step-icon">🎯</div>
-        <div class="service-step-title">材料预筛选</div>
-        <div class="service-step-text">告诉我们应用场景与技术要求，24 小时内给出 3–5 个候选型号及对比分析，帮助团队快速锁定方向。</div>
+    <div class="caps-grid">
+      <div class="cap-item fade-up">
+        <div class="cap-icon">🔬</div>
+        <div class="cap-title">植入级材料认证</div>
+        <div class="cap-text">NuSil MED 系列通过 USP Class VI、ISO 10993 全套生物相容性测试，满足长期植入器械最高标准。</div>
+        <a href="#products" class="cap-link">了解产品系列 →</a>
       </div>
-      <div class="service-step fade-up fade-up-delay-1">
-        <div class="service-step-num">2</div>
-        <div class="service-step-icon">🧪</div>
-        <div class="service-step-title">样品与测试支持</div>
-        <div class="service-step-text">提供原厂样品及完整 TDS / SDS / 生物相容性资料，协调测试机构，确保数据满足注册要求。</div>
+      <div class="cap-item fade-up fade-up-delay-1">
+        <div class="cap-icon">📦</div>
+        <div class="cap-title">完整产品品类</div>
+        <div class="cap-text">涵盖硅胶弹性体、粘合剂、凝胶、液体硅橡胶、涂层等 500+ SKU，覆盖所有主流器械应用场景。</div>
+        <a href="#products" class="cap-link">查看全系列 →</a>
       </div>
-      <div class="service-step fade-up fade-up-delay-2">
-        <div class="service-step-num">3</div>
-        <div class="service-step-icon">🚀</div>
-        <div class="service-step-title">注册与量产协同</div>
-        <div class="service-step-text">配合技术文件与法规审查，注册通过后无缝切换量产供应，持续提供批次 CoA 及变更管理支持。</div>
+      <div class="cap-item fade-up fade-up-delay-2">
+        <div class="cap-icon">🚀</div>
+        <div class="cap-title">快速打样与交付</div>
+        <div class="cap-text">国内现货库存，支持小批量打样需求；标准产品 5–10 个工作日内交付，特规产品协商排期。</div>
+        <a href="#contact" class="cap-link">申请样品 →</a>
       </div>
-    </div>
-    <div class="service-path-cta fade-up">
-      <a href="#contact" class="btn-primary" style="background:var(--navy);color:#fff;display:inline-flex">
-        提交项目需求 →
-      </a>
+      <div class="cap-item fade-up">
+        <div class="cap-icon">🛡️</div>
+        <div class="cap-title">质量可追溯</div>
+        <div class="cap-text">每批次产品均附原厂 CoA（检验合格证），支持材料来源追溯，满足 QMS 审核要求。</div>
+        <a href="#contact" class="cap-link">了解质量体系 →</a>
+      </div>
+      <div class="cap-item fade-up fade-up-delay-1">
+        <div class="cap-icon">🤝</div>
+        <div class="cap-title">工程联合开发</div>
+        <div class="cap-text">提供配方设计、成型工艺优化、粘合工艺改良等联合开发支持，帮助客户缩短产品开发周期。</div>
+        <a href="#contact" class="cap-link">咨询工程师 →</a>
+      </div>
+      <div class="cap-item fade-up fade-up-delay-2">
+        <div class="cap-icon">🌏</div>
+        <div class="cap-title">全球供应链对接</div>
+        <div class="cap-text">与 Avantor / NuSil 总部直连，可获取最新配方升级信息及全球库存支持，确保供货稳定。</div>
+        <a href="#contact" class="cap-link">了解更多 →</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
-<section id="about">
-  <div class="section-inner">
-    <div class="about-split">
-      <div>
-        <div class="section-label">关于 BIO Corporation</div>
-        <h2 class="section-title">连接全球顶级<br/>材料与本土制造</h2>
-        <p class="section-subtitle" style="margin-bottom:32px">
-          我们是 NuSil（安万特旗下）在中国大陆的专业代理商，深耕医疗硅胶领域多年，为国内医疗器械制造商提供从材料供应到技术落地的全链路服务。
-        </p>
-        <a href="#contact" class="btn-primary" style="background:var(--navy);color:#fff;display:inline-flex">
-          了解更多 →
-        </a>
+<!-- ===== SERVICE PATH ===== -->
+<section class="bg-light" id="service-path">
+  <div class="container">
+    <div class="sec-header center fade-up">
+      <div class="sec-eyebrow">合作流程</div>
+      <h2 class="sec-title">三步完成从需求到交付</h2>
+      <p class="sec-subtitle">无论你处于哪个项目阶段，我们都能在对的节点提供专业支持</p>
+    </div>
+    <div class="steps-grid">
+      <div class="steps-connector"></div>
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-title">材料预筛选</div>
+        <div class="step-text">告诉我们应用场景与技术要求，24 小时内给        <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-panel-title">AI 智能选材助手</div>
+            <div class="hero-panel-desc">基于完整技术文档库，7×24 实时响应材料与工艺问题</div>
+          </div>
+        </div>
+        <div class="hero-panel-row">
+          <div class="hero-panel-check">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-panel-title">注册与量产协同</div>
+            <div class="hero-panel-desc">配合技术文件与法规审查，注册通过后无缝切换量产</div>
+          </div>
+        </div>
       </div>
-      <div class="about-visual">
-        <div class="about-bullet fade-up">
-          <div class="about-bullet-icon" style="background:#eff6ff">🎯</div>
-          <div>
-            <div class="about-bullet-title">专注医疗硅胶垂直领域</div>
-            <div class="about-bullet-desc">15 年以上 NuSil 产品代理经验，熟悉每一个产品系列的性能边界</div>
-          </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">500+</div>
+          <div class="hero-stat-label">产品 SKU</div>
         </div>
-        <div class="about-bullet fade-up fade-up-delay-1">
-          <div class="about-bullet-icon" style="background:#f0fdf4">🧪</div>
-          <div>
-            <div class="about-bullet-title">技术文档与法规支持</div>
-            <div class="about-bullet-desc">提供完整 TDS, SDS 插生物相容性测试报告及 FDA/CE 法规咨询</div>
-          </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">USP VI</div>
+          <div class="hero-stat-label">认证标准</div>
         </div>
-        <div class="about-bullet fade-up fade-up-delay-2">
-          <div class="about-bullet-icon" style="background:#fff7ed">⚡</div>
-          <div>
-            <div class="about-bullet-title">AI 赋能技术咨询</div>
-            <div class="about-bullet-desc">自研 RAG 知识库 AI 助手，7×24 即时回答材料选型与工艺问题</div>
-          </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24h</div>
+          <div class="hero-stat-label">技术响应</div>
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Feature cards -->
-    <div class="features-grid" style="margin-top:72px">
-      <div class="feature-card fade-up">
-        <div class="feature-icon" style="background:#eff6ff">🔬</div>
-        <div class="feature-title">植入级材料认证</div>
-        <div class="feature-text">NuSil MED 系列通过 USP Class VI、ISO 10993 全套生物相容性测试，满足长期植入器械最高标准。</div>
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-dot"></span>USP Class VI</div>
+    <div class="trust-item"><span class="trust-dot"></span>ISO 10993 生物相容性</div>
+    <div class="trust-item"><span class="trust-dot"></span>NuSil 授权分销商</div>
+    <div class="trust-item"><span class="trust-dot"></span>本土技术支持团队</div>
+    <div class="trust-item"><span class="trust-dot"></span>FDA 合规数据支持</div>
+  </div>
+</div>
+
+<!-- ===== CAPABILITIES ===== -->
+<section id="about">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-eyebrow">核心能力</div>
+      <h2 class="sec-title">专业的医用硅胶全链路服务</h2>
+      <p class="sec-subtitle">从材料预筛选到注册量产，在每个关键节点提供专业支持</p>
+    </div>
+    <div class="caps-grid">
+      <div class="cap-item fade-up">
+        <div class="cap-icon">🔬</div>
+        <div class="cap-title">植入级材料认证</div>
+        <div class="cap-text">NuSil MED 系列通过 USP Class VI、ISO 10993 全套生物相容性测试，满足长期植入器械最高标准。</div>
+        <a href="#products" class="cap-link">了解产品系列 →</a>
       </div>
-      <div class="feature-card fade-up fade-up-delay-1">
-        <div class="feature-icon" style="background:#f0fdf4">📦</div>
-        <div class="feature-title">完整产品品类</div>
-        <div class="feature-text">涵盖硅胶弹性体、粘合剂、凝胶、液体硅橡胶、涂层等 500+ SKU，覆盖所有主流器械应用场景。</div>
+      <div class="cap-item fade-up fade-up-delay-1">
+        <div class="cap-icon">📦</div>
+        <div class="cap-title">完整产品品类</div>
+        <div class="cap-text">涵盖硅胶弹性体、粘合剂、凝胶、液体硅橡胶、涂层等 500+ SKU，覆盖所有主流器械应用场景。</div>
+        <a href="#products" class="cap-link">查看全系列 →</a>
       </div>
-      <div class="feature-card fade-up fade-up-delay-2">
-        <div class="feature-icon" style="background:#fff7ed">🚀</div>
-        <div class="feature-title">快速打样与交付</div>
-        <div class="feature-text">国内现货库存，支持小批量打样需求；标准产品 5–10 个工作日内交付，特规产品协商排期。</div>
+      <div class="cap-item fade-up fade-up-delay-2">
+        <div class="cap-icon">🚀</div>
+        <div class="cap-title">快速打样与交付</div>
+        <div class="cap-text">国内现货库存，支持小批量打样需求；标准产品 5–10 个工作日内交付，特规产品协商排期。</div>
+        <a href="#contact" class="cap-link">申请样品 →</a>
       </div>
-      <div class="feature-card fade-up fade-up-delay-3">
-        <div class="feature-icon" style="background:#fdf4ff">🛡️</div>
-        <div class="feature-title">质量可追溯</div>
-        <div class="feature-text">每批次产品均附原厂 CoA（检验合格证），支持材料来源追溯，满足 QMS 审核要求。</div>
+      <div class="cap-item fade-up">
+        <div class="cap-icon">🛡️</div>
+        <div class="cap-title">质量可追溯</div>
+        <div class="cap-text">每批次产品均附原厂 CoA（检验合格证），支持材料来源追溯，满足 QMS 审核要求。</div>
+        <a href="#contact" class="cap-link">了解质量体系 →</a>
       </div>
-      <div class="feature-card fade-up fade-up-delay-4">
-        <div class="feature-icon" style="background:#ecfdf5">🤝</div>
-        <div class="feature-title">工程联合开发</div>
-        <div class="feature-text">提供配方设计、成型工艺优化、粘合工艺改良等联合开发支持，帮助客户缩短产品开发周期。</div>
+      <div class="cap-item fade-up fade-up-delay-1">
+        <div class="cap-icon">🤝</div>
+        <div class="cap-title">工程联合开发</div>
+        <div class="cap-text">提供配方设计、成型工艺优化、粘合工艺改良等联合开发支持，帮助客户缩短产品开发周期。</div>
+        <a href="#contact" class="cap-link">咨询工程师 →</a>
       </div>
-      <div class="feature-card fade-up fade-up-delay-5">
-        <div class="feature-icon" style="background:#eff6ff">🌏</div>
-        <div class="feature-title">全球供应链对接</div>
-        <div class="feature-text">与 Avantor / NuSil 总部直连，可获取最新配方升级信息及全球库存支持，确保供货稳定。</div>
+      <div class="cap-item fade-up fade-up-delay-2">
+        <div class="cap-icon">🌏</div>
+        <div class="cap-title">全球供应链对接</div>
+        <div class="cap-text">与 Avantor / NuSil 总部直连，可获取最新配方升级信息及全球库存支持，确保供货稳定。</div>
+        <a href="#contact" class="cap-link">了解更多 →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICE PATH ===== -->
+<section class="bg-light" id="service-path">
+  <div class="container">
+    <div class="sec-header center fade-up">
+      <div class="sec-eyebrow">合作流程</div>
+      <h2 class="sec-title">三步完成从需求到交付</h2>
+      <p class="sec-subtitle">无论你处于哪个项目阶段，我们都能在对的节点提供专业支持</p>
+    </div>
+    <div class="steps-grid">
+      <div class="steps-connector"></div>
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-title">材料预筛选</div>
+        <div class="step-text">告诉我们应用场景与技术要求，24 小时内给出 3–5 个候选型号及对比分析，帮助团队快速锁定方向。</div>
+      </div>
+      <div class="step fade-up fade-up-delay-1">
+        <div class="step-num">2</div>
+        <div class="step-title">样品与测试支持</div>
+        <div class="step-text">提供原厂样品及完整 TDS / SDS / 生物相容性资料，协调测试机构，确保数据满足注册要求。</div>
+      </div>
+      <div class="step fade-up fade-up-delay-2">
+        <div class="step-num">3</div>
+        <div class="step-title">注册与量产协同</div>
+        <div class="step-text">配合技术文件与法规审查，注册通过后无缝切换量产供应，持续提供批次 CoA 及变更管理支持。</div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:48px" class="fade-up">
+      <a href="#contact" class="btn-primary">提交项目需求 →</a>
     </div>
   </div>
 </section>
 
 <!-- ===== PRODUCTS ===== -->
-<section class="products-bg" id="products">
-  <div class="section-inner">
-    <div class="section-header center">
-      <div class="section-label">产品系列</div>
-      <h2 class="section-title">NuSil 医疗级硅胶全系列</h2>
-      <p class="section-subtitle">覆盖医疗器械从研发到量产的全部硅胶材料需求，点击卡片了解详情或向 AI 助手提问</p>
+<section id="products">
+  <div class="container">
+    <div class="sec-header center fade-up">
+      <div class="sec-eyebrow">产品系列</div>
+      <h2 class="sec-title">NuSil 医疗级硅胶全系列</h2>
+      <p class="sec-subtitle">覆盖医疗器械从研发到量产的全部硅胶材料需求</p>
     </div>
-    <div class="products-grid">
-      <div class="product-card fade-up">
-        <div class="product-icon-wrap">🩺</div>
+    <div class="products-grid fade-up">
+      <div class="product-item">
+        <div class="product-icon">🩺</div>
         <div class="product-title">植入级弹性体</div>
-        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>骨科、心脏、神经等长期植入器械，要求材料在体内长期稳定、无溶出。</div>
+        <div class="product-text">骨科、心脏、神经等长期植入器械，要求材料在体内长期稳定、无溶出。</div>
         <div class="product-tags">
           <span class="product-tag">MED-4940</span>
           <span class="product-tag">MED-4950</span>
           <span class="product-tag">MED-4965</span>
         </div>
-        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
+        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-1">
-        <div class="product-icon-wrap">💉</div>
+      <div class="product-item">
+        <div class="product-icon">💉</div>
         <div class="product-title">液体硅橡胶 LSR</div>
-        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>可穿戴、手术器械精密部件，注射成型批量生产，流动性好、收缩率低。</div>
+        <div class="product-text">可穿戴、手术器械精密部件，注射成型批量生产，流动性好、收缩率低。</div>
         <div class="product-tags">
           <span class="product-tag">MED-6820</span>
           <span class="product-tag">MED-6830</span>
-          <span class="product-tag">LSR系列</span>
+          <span class="product-tag">LSR 系列</span>
         </div>
-        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
+        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-2">
-        <div class="product-icon-wrap">🔗</div>
+      <div class="product-item">
+        <div class="product-icon">🔗</div>
         <div class="product-title">医用硅胶粘合剂</div>
-        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>器械组装、导管封端与基材粘接，常温/加热固化多种选择，与金属、塑料相容性优。</div>
+        <div class="product-text">器械组装、导管封端与基材粘接，常温/加热固化多种选择，与金属、塑料相容性优。</div>
         <div class="product-tags">
           <span class="product-tag">MED-1511</span>
           <span class="product-tag">MED-1137</span>
           <span class="product-tag">单组分系列</span>
         </div>
-        <a href="#contact" class="product-cta">申请样品 →</a>
+        <a href="#contact" class="product-link">申请样品 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-3">
-        <div class="product-icon-wrap">💧</div>
+      <div class="product-item">
+        <div class="product-icon">💧</div>
         <div class="product-title">植入级凝胶</div>
-        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>脑起搏器导线包覆、脊柱融合器缓冲填充，需长期植入且维持柔顺性。</div>
+        <div class="product-text">脑起搏器导线包覆、脊柱融合器缓冲填充，需长期植入且维持柔顺性。</div>
         <div class="product-tags">
           <span class="product-tag">MED-6345</span>
           <span class="product-tag">MED-6382</span>
           <span class="product-tag">凝胶系列</span>
         </div>
-        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
+        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-4">
-        <div class="product-icon-wrap">🎨</div>
+      <div class="product-item">
+        <div class="product-icon">🎨</div>
         <div class="product-title">硅胶涂层与流体</div>
-        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>导管润滑、IVD 试剂盒密封件、手术器械表面防护，要求化学惰性与皮肤安全。</div>
+        <div class="product-text">导管润滑、IVD 试剂盒密封件、手术器械表面防护，要求化学惰性与皮肤安全。</div>
         <div class="product-tags">
           <span class="product-tag">涂层系列</span>
           <span class="product-tag">流体系列</span>
         </div>
-        <a href="#contact" class="product-cta">申请样品 →</a>
+        <a href="#contact" class="product-link">申请样品 →</a>
       </div>
-      <div class="product-card fade-up fade-up-delay-5">
-        <div class="product-icon-wrap">🔧</div>
+      <div class="product-item">
+        <div class="product-icon">🔧</div>
         <div class="product-title">特种功能硅胶</div>
-        <div class="product-text"><strong style="font-size:11px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px">适用场景</strong><br/>介入器械显影、神经刺激电极等特殊场景，提供荧光、X 光显影、导电改性方案。</div>
+        <div class="product-text">介入器械显影、神经刺激电极等特殊场景，提供荧光、X 光显影、导电改性方案。</div>
         <div class="product-tags">
           <span class="product-tag">显影系列</span>
           <span class="product-tag">导电系列</span>
           <span class="product-tag">功能改性</span>
         </div>
-        <a href="#ai" class="product-cta">向 AI 助手提问 →</a>
+        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== SOLUTIONS ===== -->
-<section id="solutions">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-label">应用方案</div>
-      <h2 class="section-title">覆盖主流医疗器械<br/>应用场景</h2>
-      <p class="section-subtitle">从心血管到可穿戴，我们的材料解决方案已应用于国内外主流医疗器械产品线。</p>
+<!-- ===== APPLICATIONS ===== -->
+<section class="bg-light" id="solutions">
+  <div class="container">
+    <div class="sec-header fade-up">
+      <div class="sec-eyebrow">应用方案</div>
+      <h2 class="sec-title">覆盖主流医疗器械<br/>应用场景</h2>
+      <p class="sec-subtitle">从心血管到可穿戴，我们的材料解决方案已应用于国内外主流医疗器械产品线。</p>
     </div>
-    <div class="solutions-grid fade-up">
-      <div class="solution-card solution-card-primary">
-        <div class="solution-number">01</div>
+    <div class="apps-grid fade-up">
+      <div class="app-card app-card-primary">
         <div>
-          <div class="solution-label">核心优势</div>
-          <div class="solution-title">从材料到器械<br/>全周期技术支持</div>
-          <div class="solution-text">我们不只是材料供应商——从产品立项时的材料预筛选，到注册申报阶段的测试数据准备，再到量产后的批次管理，全程提供专业支持。</div>
-          <ul class="solution-list">
+          <div class="app-card-num">01</div>
+          <div class="app-eyebrow">核心优势</div>
+          <div class="app-title">从材料到器械<br/>全周期技术支持</div>
+          <div class="app-text">我们不只是材料供应商——从产品立项时的材料预筛选，到注册申报阶段的测试数据准备，再到量产后的批次管理，全程提供专业支持。</div>
+          <ul class="app-list">
             <li>材料需求分析与候选推荐</li>
             <li>样品快速获取与测试支持</li>
             <li>注册申报技术文件准备</li>
             <li>量产供应链保障</li>
           </ul>
         </div>
-        <a href="#contact" class="solution-cta">立即咨询 →</a>
+        <a href="#contact" class="btn-white" style="margin-top:32px; align-self:flex-start">立即咨询 →</a>
       </div>
-      <div class="solution-card solution-card-light fade-up fade-up-delay-1">
-        <div class="solution-label">应用领域</div>
-        <div class="solution-title" style="color:var(--navy)">心血管器械</div>
-        <div class="solution-text" style="color:var(--muted)">球囊导管、封堵器、支架系统等，要求材料在体内长期稳定、无溶出。NuSil 植入级弹性体是行业首选。</div>
+      <div class="app-card fade-up fade-up-delay-1">
+        <div class="app-eyebrow">应用领域</div>
+        <div class="app-title">心血管器械</div>
+        <div class="app-text">球囊导管、封堵器、支架系统等，要求材料在体内长期稳定、无溶出。NuSil 植入级弹性体是行业首选。</div>
       </div>
-      <div class="solution-card solution-card-teal fade-up fade-up-delay-2">
-        <div class="solution-number">02</div>
-        <div class="solution-label">应用领域</div>
-        <div class="solution-title">神经与脊柱器械</div>
-        <div class="solution-text">脑起搏器导线包覆、脊柱融合器缓冲层，需要高弹性与优异的生物稳定性，MED 凝胶系列表现突出。</div>
+      <div class="app-card fade-up fade-up-delay-2">
+        <div class="app-eyebrow">应用领域</div>
+        <div class="app-title">神经与脊柱器械</div>
+        <div class="app-text">脑起搏器导线包覆、脊柱融合器缓冲层，需要高弹性与优异的生物稳定性，MED 凝胶系列表现突出。</div>
       </div>
-      <div class="solution-card solution-card-green fade-up fade-up-delay-3">
-        <div class="solution-number">03</div>
-        <div class="solution-label">应用领域</div>
-        <div class="solution-title">可穿戴与 IVD</div>
-        <div class="solution-text">贴身传感器基底、试剂盒密封件，要求皮肤安全性与化学惰性，LSR 及涂层系列是理想选择。</div>
+      <div class="app-card fade-up fade-up-delay-3">
+        <div class="app-eyebrow">应用领域</div>
+        <div class="app-title">可穿戴与 IVD</div>
+        <div class="app-text">贴身传感器基底、试剂盒密封件，要求皮肤安全性与化学惰性，LSR 及涂层系列是理想选择。</div>
       </div>
     </div>
   </div>
@@ -922,39 +1011,39 @@
 
 <!-- ===== AI ASSISTANT ===== -->
 <section class="ai-section" id="ai">
-  <div class="ai-inner">
+  <div class="ai-inner" style="padding:0 24px">
     <div class="ai-header fade-up">
-      <div class="ai-label">🤖 AI 选材助手</div>
-      <h2 class="ai-title">不确定该选哪款？<br/>先问 AI 选材助手</h2>
-      <p class="ai-subtitle">基于完整 NuSil 技术文档库，中英文均可提问，可转人工工程师跟进</p>
+      <div class="sec-eyebrow sec-eyebrow-dim">AI 选材助手</div>
+      <h2 class="sec-title sec-title-white">不确定该选哪款？<br/>先问 AI 选材助手</h2>
+      <p class="sec-subtitle sec-subtitle-dim">基于完整 NuSil 技术文档库，中英文均可提问，可转人工工程师跟进</p>
     </div>
-    <div class="ai-examples fade-up">
-      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">植入级硅胶有哪几类，我该怎么选？</div>
-      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">MED-4940 和 MED-4950 有什么区别？</div>
-      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">心脏导管用哪款硅胶粘合剂更合适？</div>
-      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">LSR 注射成型时需要注意哪些工艺参数？</div>
-      <div class="ai-example-chip" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">NuSil 的 ISO 10993 测试报告可以提供吗？</div>
+    <div class="ai-chips fade-up">
+      <div class="ai-chip">植入级硅胶有哪几类，我该怎么选？</div>
+      <div class="ai-chip">MED-4940 和 MED-4950 有什么区别？</div>
+      <div class="ai-chip">心脏导管用哪款硅胶粘合剂更合适？</div>
+      <div class="ai-chip">LSR 注射成型时需要注意哪些工艺参数？</div>
+      <div class="ai-chip">NuSil 的 ISO 10993 测试报告可以提供吗？</div>
     </div>
-    <div class="ai-features fade-up">
-      <div class="ai-feature">
-        <div class="ai-feature-icon">📚</div>
+    <div class="ai-feats fade-up">
+      <div class="ai-feat">
+        <div class="ai-feat-icon">📚</div>
         <div>
-          <div class="ai-feature-title">完整技术文档库</div>
-          <div class="ai-feature-text">覆盖 500+ NuSil 产品的 TDS、SDS 及应用指南</div>
+          <div class="ai-feat-title">完整技术文档库</div>
+          <div class="ai-feat-text">覆盖 500+ NuSil 产品的 TDS、SDS 及应用指南</div>
         </div>
       </div>
-      <div class="ai-feature">
-        <div class="ai-feature-icon">⚡</div>
+      <div class="ai-feat">
+        <div class="ai-feat-icon">⚡</div>
         <div>
-          <div class="ai-feature-title">实时精准检索</div>
-          <div class="ai-feature-text">RAG 语义检索，引用原始数据，避免编造</div>
+          <div class="ai-feat-title">实时精准检索</div>
+          <div class="ai-feat-text">RAG 语义检索，引用原始数据，避免编造</div>
         </div>
       </div>
-      <div class="ai-feature">
-        <div class="ai-feature-icon">🌐</div>
+      <div class="ai-feat">
+        <div class="ai-feat-icon">🌐</div>
         <div>
-          <div class="ai-feature-title">中英文双语支持</div>
-          <div class="ai-feature-text">中文提问、中英文文档检索，无语言障碍</div>
+          <div class="ai-feat-title">中英文双语支持</div>
+          <div class="ai-feat-text">中文提问、中英文文档检索，无语言障碍</div>
         </div>
       </div>
     </div>
@@ -981,190 +1070,68 @@
   </div>
 </section>
 
+<!-- ===== CTA BAND ===== -->
+<div class="cta-band">
+  <div class="cta-inner fade-up">
+    <h2 class="cta-title">与硅胶材料工程师直接对话</h2>
+    <p class="cta-text">无论是材料选型、样品申请还是法规文件准备，我们的专业团队将在 24 小时内响应。</p>
+    <div class="cta-actions">
+      <a href="#contact" class="btn-white">发送询价 →</a>
+      <a href="#ai" class="btn-outline-white">先问 AI 助手</a>
+    </div>
+  </div>
+</div>
+
 <!-- ===== CONTACT ===== -->
 <section id="contact">
-  <div class="section-inner">
+  <div class="container">
     <div class="contact-split">
       <div>
-        <div class="section-label">联系我们</div>
-        <h2 class="section-title">获取材料f��持<br/>与报价</h2>
-        <p class="section-subtitle" style="margin-bottom:40px">
-          无论是材料选型咨询、样品申请还是批量采购，我们的技术团队将在 24 h时内响应。
+        <div class="sec-eyebrow fade-up">联系我们</div>
+        <h2 class="sec-title fade-up">获取材料支持<br/>与报价</h2>
+        <p class="sec-subtitle fade-up">
+          无论是材料选型咨询、样品申请还是批量采购，我们的技术团队将在 24 小时内响应。
         </p>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📧</div>
-          <div>
-            <div class="contact-info-label">邮件</div>
-            <div class="contact-info-value">info@bio-corporation.com</div>
+        <div class="contact-info fade-up">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📧</div>
+            <div>
+              <div class="contact-info-label">邮件</div>
+              <div class="contact-info-value">info@bio-corporation.com</div>
+            </div>
           </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">💬</div>
-          <div>
-            <div class="contact-info-label">微信 / 弁业微信</div>
-            <div class="contact-info-value">扫描或搜索：BIOCorporation</div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">💬</div>
+            <div>
+              <div class="contact-info-label">微信 / 企业微信</div>
+              <div class="contact-info-value">扫描或搜索：BIOCorporation</div>
+            </div>
           </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">🌍</div>
-          <div>
-            <div class="contact-info-label">服务范围</div>
-            <div class="contact-info-value">中国大陆 · 每深台 · 圜南亚</div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🌍</div>
+            <div>
+              <div class="contact-info-label">服务范围</div>
+              <div class="contact-info-value">中国大陆 · 港澳台 · 东南亚</div>
+            </div>
           </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">⏱️</div>
-          <div>
-            <div class="contact-info-label">响应时效</div>
-            <div class="contact-info-value">工作日 24h 内回复，紧急最求优先</div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">⏱️</div>
+            <div>
+              <div class="contact-info-label">响应时效</div>
+              <div class="contact-info-value">工作日 24h 内回复，紧急需求优先</div>
+            </div>
           </div>
         </div>
       </div>
-      <div>
+      <div class="fade-up">
         <div class="contact-form">
-          <h3 style="font-size:20px;font-weight:700;color:var(--navy);margin-bottom:24px">发送询价/咨询</h3>
+          <h3 class="form-title">发送询价 / 咨询</h3>
           <form id="contactForm" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="form-group">
-                <label class="form-label">好名 *</label>
-                <input class="form-input" type="text" placeholder="您的好名" required />
+                <label class="form-label">姓名 *</label>
+                <input class="form-input" type="text" placeholder="您的姓名" required />
               </div>
-              <div class="form-group">
-                <label class="form-label">公司</label>
-                <input class="form-input" type="text" placeholder="所圩公司" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">联系推选 *</label>
-              <input class="form-input" type="text" placeholder="邮篱或手机号" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label">咨询类垆</label>
-              <select class="form-select">
-                <option>产品选型咨询</option>
-                <option>样品申请</option>
-                <option>批秏采购报价</option>
-                <option>技术文档料支持</option>
-                <option>法规合规咪询8�/option>
-                <option>其他</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">详建需求</label>
-              <textarea class="form-textarea" placeholder="请描述您的具体最求，妜产品类型、应用场景、数量缉"></textarea>
-            </div>
-            <button type="submit" class="form-submit">
-              发送咨询 →
-            </button>
-            <div class="form-success" id="formSuccess">
-              ✅ 言是扠已全包！我们将在 24 h紧急沆怦您。
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="nav-logo" style="color:#fff">
-          <div class="nav-logo-icon">🔬</div>
-          BIO<span class="dot">.</span>Corporation
-        </div>
-        <p>专注于 NuSil 医疗级硅胶材料的分销与技术服务，为国内医疗器械制造商提供从材料供应到工程落地的全链路支持。</p>
-      </div>
-      <div>
-        <div class="footer-col-title">产品</div>
-        <ul class="footer-links">
-          <li><a href="#products">植入级弹性体</a></li>
-          <li><a href="#products">液体硅橡胶 LSR</a></li>
-          <li><a href="#products">医用粘合剂</a></li>
-          <li><a href="#products">植入级凝胶</a></li>
-          <li><a href="#products">硅胶涂层</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">服务</div>
-        <ul class="footer-links">
-          <li><a href="#solutions">材料选型咨询</a></li>
-          <li><a href="#solutions">工程联合开发</a></li>
-          <li><a href="#solutions">注册法规支持</a></li>
-          <li><a href="#ai">AI 智能助手</a></li>
-          <li><a href="#contact">样品申请</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">公司</div>
-        <ul class="footer-links">
-          <li><a href="#about">关于我们</a></li>
-          <li><a href="#contact">联系我们</a></li>
-          <li><a href="#">隐私政策</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr class="footer-divider" />
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2026 BIO Corporation. 保留所有权利。</div>
-      <div class="footer-icp">医疗硅胶材料专业供应商</div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // ===== NAV scroll effect =====
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  });
-
-  // ===== Mobile menu =====
-  const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
-  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  // ===== Scroll animations =====
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // ===== Lazy load AI iframe from config =====
-  const CONFIG_URL = 'https://gist.githubusercontent.com/garyyangsh76/8c9fdf06aa1be7f146422df9d7af8f0a/raw/bio-chat-config.json';
-  const FALLBACK_URL = 'https://defensive-assignment-previously-seminars.trycloudflare.com/chat.html';
-
-  function loadChat(src) {
-    const frame = document.getElementById('aiChatFrame');
-    if (frame && !frame.src) frame.src = src;
-  }
-
-  // Load when AI section is in viewport
-  const aiSection = document.getElementById('ai');
-  const aiObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      fetch(CONFIG_URL + '?t=' + Date.now())
-        .then(r => r.json())
-        .then(cfg => loadChat((cfg.url || '').replace(/\/+$/, '') + '/chat.html'))
-        .catch(() => loadChat(FALLBACK_URL));
-      aiObserver.disconnect();
-    }
-  }, { threshold: 0.1 });
-  if (aiSection) aiObserver.observe(aiSection);
-
-  // ===== Contact form (demo) =====
-  function handleSubmit(e) {
-    e.preventDefault();
-    setTimeout(() => {
-      document.getElementById('formSuccess').style.display = 'block';
-      e.target.reset();
-    }, 300);
-  }
-
-  // ==
               <div class="form-group">
                 <label class="form-label">公司</label>
                 <input class="form-input" type="text" placeholder="所在公司" />
@@ -1189,11 +1156,9 @@
               <label class="form-label">详细需求</label>
               <textarea class="form-textarea" placeholder="请描述您的具体需求，如产品类型、应用场景、数量等"></textarea>
             </div>
-            <button type="submit" class="form-submit">
-              发送咨询 →
-            </button>
+            <button type="submit" class="form-submit">发送咨询 →</button>
             <div class="form-success" id="formSuccess">
-              ✅ 消息已发送！我们将在 24 小时内回复您。
+              消息已发送！我们将在 24 小时内回复您。
             </div>
           </form>
         </div>
@@ -1207,9 +1172,14 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo" style="color:#fff">
-          <div class="nav-logo-icon">🔬</div>
-          BIO<span class="dot">.</span>Corporation
+        <div class="footer-logo">
+          <div class="footer-logo-mark">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="4.5" stroke="white" stroke-width="1.5"/>
+              <circle cx="8" cy="8" r="1.5" fill="white"/>
+            </svg>
+          </div>
+          BIO Corporation
         </div>
         <p>专注于 NuSil 医疗级硅胶材料的分销与技术服务，为国内医疗器械制造商提供从材料供应到工程落地的全链路支持。</p>
       </div>
@@ -1278,7 +1248,6 @@
     if (frame && !frame.src) frame.src = src;
   }
 
-  // Load when AI section is in viewport
   const aiSection = document.getElementById('ai');
   const aiObserver = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
@@ -1300,7 +1269,7 @@
     }, 300);
   }
 
-  //=== Smooth active nav highlight =====
+  // ===== Smooth active nav highlight =====
   const sections = document.querySelectorAll('section[id], div[id]');
   const navAnchors = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
