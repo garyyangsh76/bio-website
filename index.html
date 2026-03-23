@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BIO Corporation — Advanced Medical Silicone Materials</title>
-  <meta name="description" content="BIO Corporation is an authorized distributor of NuSil by Avantor — supplying implant-grade silicone materials, medical adhesives, LSR/HCR elastomers, and fluorosilicone systems to medical device manufacturers across China and APAC.">
+  <title>BIO Corporation — 高端医疗硅胶材料</title>
+  <meta name="description" content="BIO Corporation 是 NuSil by Avantor 的授权区域经销商，为中国及亚太医疗器械制造商提供植入级硅胶、医疗粘合剂、LSR/HCR弹性体及含氟硅橡胶系统。">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -26,8 +26,12 @@
       .mobile-menu { display: none; }
       .mobile-menu.open { display: flex; }
     }
+    .lang-btn { cursor: pointer; transition: all 0.2s; }
+    .lang-btn.active { color: #fff; background: rgba(255,255,255,0.18); }
+    .lang-btn:not(.active) { color: rgba(255,255,255,0.5); }
+    .lang-btn:hover { color: rgba(255,255,255,0.85); }
   </style>
-<!-- build --></head>
+</head>
 <body class="min-h-screen bg-white text-slate-900 antialiased">
 
 <!-- NAV -->
@@ -38,20 +42,20 @@
     </a>
 
     <nav class="hidden items-center gap-8 text-sm text-slate-600 md:flex">
-      <a href="#platforms" class="transition hover:text-slate-900">Products</a>
-      <a href="#why-bio" class="transition hover:text-slate-900">Why BIO</a>
-      <a href="#applications" class="transition hover:text-slate-900">Applications</a>
-      <a href="#contact" class="transition hover:text-slate-900">Contact</a>
+      <a href="#platforms" class="transition hover:text-slate-900" data-i18n="nav_products">产品</a>
+      <a href="#why-bio" class="transition hover:text-slate-900" data-i18n="nav_why">为何选择 BIO</a>
+      <a href="#applications" class="transition hover:text-slate-900" data-i18n="nav_applications">应用领域</a>
+      <a href="#contact" class="transition hover:text-slate-900" data-i18n="nav_contact">联系我们</a>
     </nav>
 
     <div class="flex items-center gap-3">
       <a href="https://ai.bio-corporation.com" target="_blank"
-         class="hidden rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-900 md:inline-flex">
-        AI Technical Q&amp;A
+         class="hidden rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-900 md:inline-flex" data-i18n="nav_ai">
+        AI 技术问答
       </a>
       <a href="#contact"
-         class="inline-flex rounded-xl bg-[#2563EB] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90">
-        Request Sample
+         class="inline-flex rounded-xl bg-[#2563EB] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90" data-i18n="nav_sample">
+        申请样品
       </a>
       <button onclick="toggleMenu()" class="flex items-center justify-center rounded-lg p-2 text-slate-600 hover:bg-slate-100 md:hidden">
         <svg id="menu-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -63,11 +67,11 @@
 
   <!-- Mobile menu -->
   <div id="mobile-menu" class="mobile-menu flex-col gap-1 border-t border-slate-100 bg-white px-6 pb-4 pt-3 md:hidden">
-    <a href="#platforms" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Products</a>
-    <a href="#why-bio" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Why BIO</a>
-    <a href="#applications" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Applications</a>
-    <a href="#contact" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Contact</a>
-    <a href="https://ai.bio-corporation.com" target="_blank" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">AI Technical Q&amp;A</a>
+    <a href="#platforms" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50" data-i18n="nav_products">产品</a>
+    <a href="#why-bio" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50" data-i18n="nav_why">为何选择 BIO</a>
+    <a href="#applications" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50" data-i18n="nav_applications">应用领域</a>
+    <a href="#contact" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50" data-i18n="nav_contact">联系我们</a>
+    <a href="https://ai.bio-corporation.com" target="_blank" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50" data-i18n="nav_ai">AI 技术问答</a>
   </div>
 </header>
 
@@ -76,41 +80,41 @@
   <div class="absolute inset-0" style="background: radial-gradient(circle at top right, rgba(37,99,235,0.28), transparent 28%), radial-gradient(circle at bottom left, rgba(255,255,255,0.06), transparent 26%)"></div>
   <div class="relative mx-auto grid max-w-7xl gap-14 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-32">
     <div class="max-w-3xl">
-      <div class="mb-6 inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs tracking-[0.2em] text-white/80" style="background:rgba(255,255,255,0.08)">
-        ADVANCED MEDICAL SILICONE PLATFORM
+      <div class="mb-6 inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs tracking-[0.2em] text-white/80" style="background:rgba(255,255,255,0.08)" data-i18n="hero_badge">
+        高端医疗硅胶材料平台
       </div>
-      <h1 class="max-w-3xl text-5xl font-semibold leading-tight tracking-tight md:text-6xl">
-        Advanced Silicone Materials for Medical &amp; Healthcare Applications
+      <h1 class="max-w-3xl text-5xl font-semibold leading-tight tracking-tight md:text-6xl" data-i18n="hero_h1">
+        医疗与健康领域的高性能硅胶材料
       </h1>
-      <p class="mt-6 max-w-2xl text-lg leading-8 text-white/75">
-        Authorized distributor of NuSil by Avantor — supplying implant-grade silicone, medical adhesives, LSR/HCR elastomers, and fluorosilicone systems to medical device manufacturers.
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-white/75" data-i18n="hero_sub">
+        BIO Corporation 是 NuSil by Avantor 的授权区域经销商——为医疗器械制造商提供植入级硅胶、医疗粘合剂、LSR/HCR 弹性体及含氟硅橡胶系统。
       </p>
       <div class="mt-10 flex flex-wrap gap-4">
         <a href="#contact"
-           class="rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-[#0B1F3A] shadow-lg transition hover:opacity-90">
-          Talk to Expert
+           class="rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-[#0B1F3A] shadow-lg transition hover:opacity-90" data-i18n="hero_cta1">
+          咨询专家
         </a>
         <a href="#platforms"
-           class="rounded-2xl border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
-          Explore Platforms
+           class="rounded-2xl border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10" data-i18n="hero_cta2">
+          了解产品平台
         </a>
       </div>
       <div class="mt-12 grid grid-cols-2 gap-5 border-t border-white/15 pt-8 md:grid-cols-4">
         <div>
-          <div class="text-base font-semibold">NuSil Authorized</div>
-          <div class="mt-1 text-sm text-white/65">Official regional distributor</div>
+          <div class="text-base font-semibold" data-i18n="stat1_title">NuSil 授权</div>
+          <div class="mt-1 text-sm text-white/65" data-i18n="stat1_sub">官方区域经销商</div>
         </div>
         <div>
-          <div class="text-base font-semibold">200+ Products</div>
-          <div class="mt-1 text-sm text-white/65">Full NuSil catalog coverage</div>
+          <div class="text-base font-semibold" data-i18n="stat2_title">200+ 产品</div>
+          <div class="mt-1 text-sm text-white/65" data-i18n="stat2_sub">全线 NuSil 产品覆盖</div>
         </div>
         <div>
           <div class="text-base font-semibold">ISO 10993 / USP VI</div>
-          <div class="mt-1 text-sm text-white/65">Regulatory-ready materials</div>
+          <div class="mt-1 text-sm text-white/65" data-i18n="stat3_sub">合规认证材料</div>
         </div>
         <div>
-          <div class="text-base font-semibold">AI Technical Q&amp;A</div>
-          <div class="mt-1 text-sm text-white/65">Dedicated knowledge portal</div>
+          <div class="text-base font-semibold" data-i18n="stat4_title">AI 技术问答</div>
+          <div class="mt-1 text-sm text-white/65" data-i18n="stat4_sub">专属知识问答平台</div>
         </div>
       </div>
     </div>
@@ -120,30 +124,30 @@
         <div class="rounded-[24px] border border-white/10 bg-white/95 p-6 text-slate-900">
           <div class="flex items-center justify-between border-b border-slate-200 pb-4">
             <div>
-              <div class="text-xs tracking-[0.18em] text-slate-500">PRODUCT PLATFORM</div>
-              <div class="mt-1 text-xl font-semibold">BIO Material Matrix</div>
+              <div class="text-xs tracking-[0.18em] text-slate-500" data-i18n="card_badge">产品平台</div>
+              <div class="mt-1 text-xl font-semibold" data-i18n="card_title">BIO 材料矩阵</div>
             </div>
             <div class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">NuSil</div>
           </div>
           <div class="mt-5 space-y-4">
             <div class="rounded-2xl border border-slate-200 p-4">
-              <div class="text-sm font-semibold text-slate-900">Implant-Grade Silicone</div>
-              <div class="mt-1 text-sm leading-6 text-slate-600">ISO 10993 &amp; USP Class VI — for cardiac, neural, and soft-tissue applications</div>
+              <div class="text-sm font-semibold text-slate-900" data-i18n="card_p1_title">植入级硅胶</div>
+              <div class="mt-1 text-sm leading-6 text-slate-600" data-i18n="card_p1_desc">ISO 10993 &amp; USP VI 认证——适用于心脏、神经及软组织植入应用</div>
             </div>
             <div class="rounded-2xl border border-slate-200 p-4">
-              <div class="text-sm font-semibold text-slate-900">Medical Adhesives</div>
-              <div class="mt-1 text-sm leading-6 text-slate-600">RTV bonding systems for device assembly, encapsulation, and catheter tipping</div>
+              <div class="text-sm font-semibold text-slate-900" data-i18n="card_p2_title">医疗粘合剂</div>
+              <div class="mt-1 text-sm leading-6 text-slate-600" data-i18n="card_p2_desc">RTV 粘合系统，适用于器械装配、封装及导管顶端处理</div>
             </div>
             <div class="rounded-2xl border border-slate-200 p-4">
-              <div class="text-sm font-semibold text-slate-900">LSR / HCR Elastomers</div>
-              <div class="mt-1 text-sm leading-6 text-slate-600">Precision rubber platforms for injection molding and custom compounding</div>
+              <div class="text-sm font-semibold text-slate-900" data-i18n="card_p3_title">LSR / HCR 弹性体</div>
+              <div class="mt-1 text-sm leading-6 text-slate-600" data-i18n="card_p3_desc">精密橡胶平台，适用于注射成型及定制配方</div>
             </div>
           </div>
           <div class="mt-5 rounded-2xl bg-slate-50 p-4">
-            <div class="text-xs tracking-[0.18em] text-slate-500">AI ENTRY</div>
-            <div class="mt-2 text-lg font-semibold">Technical Q&amp;A Portal</div>
-            <div class="mt-1 text-sm leading-6 text-slate-600">
-              Deep product knowledge, datasheet Q&amp;A, and material selection — available 24 / 7 at a dedicated AI interface.
+            <div class="text-xs tracking-[0.18em] text-slate-500" data-i18n="card_ai_badge">AI 入口</div>
+            <div class="mt-2 text-lg font-semibold" data-i18n="card_ai_title">技术问答平台</div>
+            <div class="mt-1 text-sm leading-6 text-slate-600" data-i18n="card_ai_desc">
+              深度产品知识库、数据表问答和材料选型——每天 24 小时专属 AI 界面随时为您解答。
             </div>
           </div>
         </div>
@@ -155,12 +159,12 @@
 <!-- WHAT WE DO -->
 <section class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
   <div class="max-w-3xl">
-    <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">What We Do</div>
-    <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
-      A medical-grade silicone platform built for demanding applications.
+    <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]" data-i18n="wwd_label">我们的业务</div>
+    <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900" data-i18n="wwd_h2">
+      为高要求应用场景量身打造的医疗级硅胶平台。
     </h2>
-    <p class="mt-5 text-lg leading-8 text-slate-600">
-      BIO Corporation is the authorized regional distributor of NuSil by Avantor — the global standard for implantable and medical-grade silicone. We supply materials, provide formulation support, and connect engineering teams with the technical depth they need to qualify and scale.
+    <p class="mt-5 text-lg leading-8 text-slate-600" data-i18n="wwd_desc">
+      BIO Corporation 是 NuSil by Avantor 的授权区域经销商——全球植入级与医疗级硅胶的行业标杆。我们供应材料、提供配方支持，并为工程团队提供认证与量产所需的技术深度。
     </p>
   </div>
 </section>
@@ -170,40 +174,40 @@
   <div class="mx-auto max-w-7xl px-6 lg:px-10">
     <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
       <div class="max-w-2xl">
-        <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">Product Platform</div>
-        <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
-          Structured for clarity, engineered for expansion.
+        <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]" data-i18n="prod_label">产品平台</div>
+        <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900" data-i18n="prod_h2">
+          清晰架构，持续扩展。
         </h2>
       </div>
-      <p class="max-w-xl text-base leading-7 text-slate-600">
-        Four core material families covering the full spectrum of medical silicone requirements — from long-term implants to precision device assembly.
+      <p class="max-w-xl text-base leading-7 text-slate-600" data-i18n="prod_sub">
+        四大核心材料系列，覆盖医疗硅胶的全部应用需求——从长期植入到精密器械装配。
       </p>
     </div>
 
     <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
       <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
         <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900">Implant-Grade Silicone</h3>
-        <p class="mt-3 text-sm leading-7 text-slate-600">High-purity elastomers, gels, and adhesives for long-term in-vivo performance. Qualified to ISO 10993 and USP Class VI for cardiac, neural, orthopedic, and soft-tissue implants.</p>
-        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900" data-i18n="p1_title">植入级硅胶</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="p1_desc">高纯弹性体、凝胶及粘合剂，适用于长期体内植入。通过 ISO 10993 和 USP VI 认证，覆盖心脏、神经、骨科及软组织植入物。</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]" data-i18n="prod_cta">申请样品 →</a>
       </div>
       <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
         <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900">Medical Adhesives</h3>
-        <p class="mt-3 text-sm leading-7 text-slate-600">One- and two-component RTV systems for device bonding, PCB encapsulation, skin-contact interfaces, and catheter tipping. Flexible cure schedules and substrate compatibility.</p>
-        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900" data-i18n="p2_title">医疗粘合剂</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="p2_desc">单组分和双组分 RTV 系统，适用于器械粘接、PCB 封装、皮肤接触界面及导管顶端处理。灵活的固化方案，宽泛的基材兼容性。</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]" data-i18n="prod_cta">申请样品 →</a>
       </div>
       <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
         <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900">LSR / HCR Elastomers</h3>
-        <p class="mt-3 text-sm leading-7 text-slate-600">Liquid silicone rubber and high-consistency rubber for injection molding, transfer molding, and extrusion. Broad durometer range with custom compounding options.</p>
-        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900" data-i18n="p3_title">LSR / HCR 弹性体</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="p3_desc">液态硅橡胶与高稠度硅橡胶，适用于注射成型、传递成型和挤出成型。宽邵氏硬度范围，支持定制配方。</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]" data-i18n="prod_cta">申请样品 →</a>
       </div>
       <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
         <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
-        <h3 class="text-xl font-semibold tracking-tight text-slate-900">Fluorosilicone Systems</h3>
-        <p class="mt-3 text-sm leading-7 text-slate-600">Specialty silicones with outstanding resistance to fuels, solvents, and aggressive media. For applications where standard silicone performance is insufficient.</p>
-        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900" data-i18n="p4_title">含氟硅橡胶系统</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="p4_desc">特种硅胶，对燃料、溶剂和腐蚀性介质具有卓越抵抗性。适用于标准硅胶性能不足的场合。</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]" data-i18n="prod_cta">申请样品 →</a>
       </div>
     </div>
   </div>
@@ -213,35 +217,35 @@
 <section id="why-bio" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
   <div class="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
     <div>
-      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">Why BIO</div>
-      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
-        A technical partner, not just a supplier.
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]" data-i18n="why_label">为何选择 BIO</div>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900" data-i18n="why_h2">
+        技术合作伙伴，而不仅仅是供应商。
       </h2>
-      <p class="mt-5 text-lg leading-8 text-slate-600">
-        Serious medical device engineers choose BIO because we combine the material quality of a global standard with the responsiveness and cost structure of a regional specialist.
+      <p class="mt-5 text-lg leading-8 text-slate-600" data-i18n="why_desc">
+        专业医疗器械工程师选择 BIO，因为我们将全球标准的材料品质与区域专家的快速响应和成本优势完美结合。
       </p>
     </div>
 
     <div class="grid gap-5 sm:grid-cols-2">
       <div class="rounded-[24px] border border-slate-200 p-6">
         <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">01</div>
-        <div class="text-lg font-semibold text-slate-900">Medical-Focused Platform</div>
-        <p class="mt-2 text-sm leading-7 text-slate-600">Our entire portfolio is built around NuSil by Avantor — the global benchmark for implantable silicone. No industrial compromises.</p>
+        <div class="text-lg font-semibold text-slate-900" data-i18n="why1_title">医疗专注平台</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600" data-i18n="why1_desc">我们的全线产品均基于 NuSil by Avantor——植入级硅胶的全球标准。不做任何工业妥协。</p>
       </div>
       <div class="rounded-[24px] border border-slate-200 p-6">
         <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">02</div>
-        <div class="text-lg font-semibold text-slate-900">Custom Formulation &amp; Sampling</div>
-        <p class="mt-2 text-sm leading-7 text-slate-600">From material selection to formulation customization, we provide fast sample turnaround and full documentation to support your qualification timeline.</p>
+        <div class="text-lg font-semibold text-slate-900" data-i18n="why2_title">定制配方与样品服务</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600" data-i18n="why2_desc">从材料选型到配方定制，我们提供快速打样周期和完整技术文档，全力支持您的认证时间表。</p>
       </div>
       <div class="rounded-[24px] border border-slate-200 p-6">
         <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">03</div>
-        <div class="text-lg font-semibold text-slate-900">Direct Technical Support</div>
-        <p class="mt-2 text-sm leading-7 text-slate-600">Application engineers with hands-on silicone formulation experience. Typical 48-hour technical response — no tier-1 supplier wait times.</p>
+        <div class="text-lg font-semibold text-slate-900" data-i18n="why3_title">直接技术支持</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600" data-i18n="why3_desc">拥有硅胶配方实操经验的应用工程师。48 小时内技术响应——无需等待一级供应商漫长的回复周期。</p>
       </div>
       <div class="rounded-[24px] border border-slate-200 p-6">
         <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">04</div>
-        <div class="text-lg font-semibold text-slate-900">Regional Cost Advantage</div>
-        <p class="mt-2 text-sm leading-7 text-slate-600">Local inventory, RMB-denominated pricing, and duty-optimized logistics — without compromising material origin or compliance documentation.</p>
+        <div class="text-lg font-semibold text-slate-900" data-i18n="why4_title">区域成本优势</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600" data-i18n="why4_desc">本地库存、人民币报价及关税优化物流——在不影响材料原产地和合规文件的前提下实现成本最优。</p>
       </div>
     </div>
   </div>
@@ -251,32 +255,32 @@
 <section id="applications" class="bg-[#0F172A] py-24 text-white">
   <div class="mx-auto max-w-7xl px-6 lg:px-10">
     <div class="max-w-3xl">
-      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#60A5FA]">Applications</div>
-      <h2 class="mt-4 text-4xl font-semibold tracking-tight">
-        Precision materials across the medical device spectrum.
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#60A5FA]" data-i18n="app_label">应用领域</div>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight" data-i18n="app_h2">
+        贯穿医疗器械全谱系的精密材料。
       </h2>
     </div>
 
     <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
       <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
         <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
-        <h3 class="text-xl font-semibold">Medical Devices</h3>
-        <p class="mt-3 text-sm leading-7 text-white/70">Implantable components, catheter bodies, drug delivery coatings, wound care interfaces, and surgical instrument grips requiring long-term biocompatibility.</p>
+        <h3 class="text-xl font-semibold" data-i18n="app1_title">医疗器械</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70" data-i18n="app1_desc">植入式元件、导管体、药物输送涂层、伤口护理界面及手术器械握持部件，对长期生物相容性要求严苛。</p>
       </div>
       <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
         <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
-        <h3 class="text-xl font-semibold">Wearables &amp; Sensing</h3>
-        <p class="mt-3 text-sm leading-7 text-white/70">Skin-contact enclosures, hearable devices, CGM patches, and flexible sensor substrates demanding durability, biocompatibility, and process consistency.</p>
+        <h3 class="text-xl font-semibold" data-i18n="app2_title">可穿戴与传感</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70" data-i18n="app2_desc">皮肤接触外壳、耳戴式设备、CGM 贴片及柔性传感器基板，对耐用性、生物相容性和工艺一致性要求极高。</p>
       </div>
       <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
         <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
-        <h3 class="text-xl font-semibold">Aesthetic &amp; Reconstructive</h3>
-        <p class="mt-3 text-sm leading-7 text-white/70">Breast implant shells and fill gels, facial reconstruction, and injectable-grade systems requiring the highest purity and complete regulatory documentation.</p>
+        <h3 class="text-xl font-semibold" data-i18n="app3_title">美容与修复重建</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70" data-i18n="app3_desc">乳房植入物外壳及填充凝胶、面部修复重建及注射级系统，要求最高纯度和完整监管文件。</p>
       </div>
       <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
         <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
-        <h3 class="text-xl font-semibold">Optical &amp; Precision</h3>
-        <p class="mt-3 text-sm leading-7 text-white/70">Intraocular lens materials, ophthalmic bonding adhesives, and precision optical encapsulants with defined refractive and clarity properties.</p>
+        <h3 class="text-xl font-semibold" data-i18n="app4_title">光学与精密应用</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70" data-i18n="app4_desc">人工晶体材料、眼科粘合剂及精密光学封装材料，具有确定的折射率和透明度性能。</p>
       </div>
     </div>
   </div>
@@ -286,17 +290,17 @@
 <section class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
   <div class="grid gap-10 rounded-[32px] border border-slate-200 bg-slate-50 p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12">
     <div>
-      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">AI Technical Q&amp;A</div>
-      <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900">
-        In-depth product knowledge, available around the clock.
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]" data-i18n="ai_label">AI 技术问答</div>
+      <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900" data-i18n="ai_h2">
+        深度产品知识，全天候在线。
       </h2>
-      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-        Our dedicated AI portal is trained on the full NuSil technical library — datasheets, formulation guides, compliance data, and application notes. Ask anything from viscosity specs to ISO 10993 classifications.
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600" data-i18n="ai_desc">
+        我们专属的 AI 问答平台基于完整的 NuSil 技术库进行训练——包含数据表、配方指南、合规数据和应用手册。从粘度参数到 ISO 10993 分类，欢迎随时提问。
       </p>
     </div>
     <a href="https://ai.bio-corporation.com" target="_blank"
-       class="inline-flex items-center justify-center rounded-2xl bg-[#0B1F3A] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 whitespace-nowrap">
-      Open AI Technical Q&amp;A →
+       class="inline-flex items-center justify-center rounded-2xl bg-[#0B1F3A] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 whitespace-nowrap" data-i18n="ai_cta">
+      进入 AI 技术问答 →
     </a>
   </div>
 </section>
@@ -305,36 +309,36 @@
 <section id="contact" class="border-t border-slate-200 bg-white">
   <div class="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1fr_0.85fr] lg:px-10">
     <div>
-      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">Contact</div>
-      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
-        Start your next medical silicone project with BIO.
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]" data-i18n="contact_label">联系我们</div>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900" data-i18n="contact_h2">
+        与 BIO 携手开启您的下一个医疗硅胶项目。
       </h2>
-      <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-        Whether you need a material recommendation, a custom sample, or regulatory documentation — our team typically responds within 48 hours.
+      <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600" data-i18n="contact_desc">
+        无论是材料推荐、定制样品，还是监管文件——我们的团队通常在 48 小时内回复。
       </p>
     </div>
 
     <div class="rounded-[28px] border border-slate-200 p-8 shadow-sm">
       <div class="space-y-5">
         <div>
-          <div class="text-sm text-slate-500">Email</div>
+          <div class="text-sm text-slate-500" data-i18n="contact_email_label">邮箱</div>
           <a href="mailto:sales@bio-corporation.com" class="mt-1 block text-base font-semibold text-slate-900 hover:text-[#2563EB] transition">sales@bio-corporation.com</a>
         </div>
         <div>
-          <div class="text-sm text-slate-500">WeChat</div>
-          <div class="mt-1 text-base font-semibold text-slate-900">搜索 BIOCorporation</div>
+          <div class="text-sm text-slate-500" data-i18n="contact_wechat_label">微信</div>
+          <div class="mt-1 text-base font-semibold text-slate-900" data-i18n="contact_wechat_val">搜索 BIOCorporation</div>
         </div>
         <div>
-          <div class="text-sm text-slate-500">Service Region</div>
+          <div class="text-sm text-slate-500" data-i18n="contact_region_label">服务区域</div>
           <div class="mt-1 text-base font-semibold text-slate-900">中国大陆及港澳地区</div>
         </div>
       </div>
       <div class="mt-8 flex flex-wrap gap-4">
-        <a href="mailto:sales@bio-corporation.com" class="rounded-2xl bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90">
-          Request Sample
+        <a href="mailto:sales@bio-corporation.com" class="rounded-2xl bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90" data-i18n="contact_cta1">
+          申请样品
         </a>
-        <a href="https://ai.bio-corporation.com" target="_blank" class="rounded-2xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400">
-          AI Technical Q&amp;A
+        <a href="https://ai.bio-corporation.com" target="_blank" class="rounded-2xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400" data-i18n="contact_cta2">
+          AI 技术问答
         </a>
       </div>
     </div>
@@ -347,52 +351,314 @@
     <div class="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
       <div>
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjM0MCAyMDAgNjIwIDIzMiI+PGcgZmlsbD0iI2ZmZmZmZiI+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzYwLjY2LDQyOC43NCkgc2NhbGUoMC4xNjExLC0wLjE2MTEpIiBkPSJNMTM4NiA0MDJRMTM4NiAyMTAgMTI0Mi4wIDEwNS4wUTEwOTggMCA4NDIgMEgxMzdWMTQwOUg3ODJRMTA0MCAxNDA5IDExNzIuNSAxMzE5LjVRMTMwNSAxMjMwIDEzMDUgMTA1NVExMzA1IDkzNSAxMjM4LjUgODUyLjVRMTE3MiA3NzAgMTAzNiA3NDFRMTIwNyA3MjEgMTI5Ni41IDYzMy41UTEzODYgNTQ2IDEzODYgNDAyWk0xMDA4IDEwMTVRMTAwOCAxMTEwIDk0Ny41IDExNTAuMFE4ODcgMTE5MCA3NjggMTE5MEg0MzJWODQxSDc3MFE4OTUgODQxIDk1MS41IDg4NC41UTEwMDggOTI4IDEwMDggMTAxNVpNMTA5MCA0MjVRMTA5MCA2MjMgODA2IDYyM0g0MzJWMjE5SDgxN1E5NTkgMjE5IDEwMjQuNSAyNzAuNVExMDkwIDMyMiAxMDkwIDQyNVoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MDQuOTcsNDI4Ljc0KSBzY2FsZSgwLjE2MTEsLTAuMTYxMSkiIGQ9Ik0xMzcgMFYxNDA5SDQzMlYwWiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcwMi42Niw0MjguNzQpIHNjYWxlKDAuMTYxMSwtMC4xNjExKSIgZD0iTTE1MDcgNzExUTE1MDcgNDkxIDE0MjAuMCAzMjQuMFExMzMzIDE1NyAxMTcxLjAgNjguNVExMDA5IC0yMCA3OTMgLTIwUTQ2MSAtMjAgMjcyLjUgMTc1LjVRODQgMzcxIDg0IDcxMVE4NCAxMDUwIDI3Mi4wIDEyNDAuMFE0NjAgMTQzMCA3OTUgMTQzMFExMTMwIDE0MzAgMTMxOC41IDEyMzguMFExNTA3IDEwNDYgMTUwNyA3MTFaTTEyMDYgNzExUTEyMDYgOTM5IDEwOTguMCAxMDY4LjVROTkwIDExOTggNzk1IDExOThRNTk3IDExOTggNDg5LjAgMTA2OS41UTM4MSA5NDEgMzgxIDcxMVEzODEgNDc5IDQ5MS41IDM0NS41UTYwMiAyMTIgNzkzIDIxMlE5OTEgMjEyIDEwOTguNSAzNDIuMFExMjA2IDQ3MiAxMjA2IDcxMVoiLz48L2c+PC9zdmc+" style="height:30px;width:auto;display:block" alt="BIO Corporation">
-        <p class="mt-5 text-sm leading-7 text-white/60">Authorized regional distributor of NuSil by Avantor. Supplying medical-grade silicone materials to device manufacturers across China and the Greater Bay Area.</p>
-        <p class="mt-4 text-sm text-white/40">© 2026 BIO Corporation. All rights reserved.</p>
+        <p class="mt-5 text-sm leading-7 text-white/60" data-i18n="footer_desc">BIO Corporation 是 NuSil by Avantor 的授权区域经销商，为大中华区的器械制造商提供医疗级硅胶材料。</p>
+        <p class="mt-4 text-sm text-white/40" data-i18n="footer_copy">© 2026 BIO Corporation. 版权所有</p>
       </div>
       <div>
-        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5">Products</div>
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5" data-i18n="footer_col1">产品</div>
         <ul class="space-y-3 text-sm text-white/70">
-          <li><a href="#platforms" class="hover:text-white transition">Implant-Grade Silicone</a></li>
-          <li><a href="#platforms" class="hover:text-white transition">Medical Adhesives</a></li>
-          <li><a href="#platforms" class="hover:text-white transition">LSR / HCR Elastomers</a></li>
-          <li><a href="#platforms" class="hover:text-white transition">Fluorosilicone Systems</a></li>
+          <li><a href="#platforms" class="hover:text-white transition" data-i18n="p1_title">植入级硅胶</a></li>
+          <li><a href="#platforms" class="hover:text-white transition" data-i18n="p2_title">医疗粘合剂</a></li>
+          <li><a href="#platforms" class="hover:text-white transition" data-i18n="p3_title">LSR / HCR 弹性体</a></li>
+          <li><a href="#platforms" class="hover:text-white transition" data-i18n="p4_title">含氟硅橡胶系统</a></li>
         </ul>
       </div>
       <div>
-        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5">Applications</div>
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5" data-i18n="footer_col2">应用领域</div>
         <ul class="space-y-3 text-sm text-white/70">
-          <li><a href="#applications" class="hover:text-white transition">Medical Devices</a></li>
-          <li><a href="#applications" class="hover:text-white transition">Wearables &amp; Sensing</a></li>
-          <li><a href="#applications" class="hover:text-white transition">Aesthetic &amp; Reconstructive</a></li>
-          <li><a href="#applications" class="hover:text-white transition">Optical &amp; Precision</a></li>
+          <li><a href="#applications" class="hover:text-white transition" data-i18n="app1_title">医疗器械</a></li>
+          <li><a href="#applications" class="hover:text-white transition" data-i18n="app2_title">可穿戴与传感</a></li>
+          <li><a href="#applications" class="hover:text-white transition" data-i18n="app3_title">美容与修复重建</a></li>
+          <li><a href="#applications" class="hover:text-white transition" data-i18n="app4_title">光学与精密应用</a></li>
         </ul>
       </div>
       <div>
-        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5">Contact</div>
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5" data-i18n="footer_col3">联系我们</div>
         <ul class="space-y-3 text-sm text-white/70">
           <li><a href="mailto:sales@bio-corporation.com" class="hover:text-white transition">sales@bio-corporation.com</a></li>
-          <li>WeChat: BIOCorporation</li>
-          <li><a href="https://ai.bio-corporation.com" target="_blank" class="hover:text-white transition">AI Technical Q&amp;A →</a></li>
+          <li data-i18n="footer_wechat">WeChat: BIOCorporation</li>
+          <li><a href="https://ai.bio-corporation.com" target="_blank" class="hover:text-white transition" data-i18n="ai_cta">进入 AI 技术问答 →</a></li>
         </ul>
       </div>
+    </div>
+
+    <!-- LANGUAGE SWITCHER -->
+    <div class="mt-12 flex items-center justify-center gap-2 border-t border-white/10 pt-8">
+      <span class="text-xs text-white/40 mr-2">🌐</span>
+      <button id="btn-zh" onclick="setLang('zh')" class="lang-btn active rounded-full px-4 py-1.5 text-xs font-medium border border-white/20">
+        中文
+      </button>
+      <button id="btn-en" onclick="setLang('en')" class="lang-btn rounded-full px-4 py-1.5 text-xs font-medium border border-white/20">
+        English
+      </button>
     </div>
   </div>
 </footer>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById(mobile-menu);
-    menu.classList.toggle(open);
+  // ─── Translations ───────────────────────────────────────────────────
+  const T = {
+    zh: {
+      // page meta
+      page_title: "BIO Corporation — 高端医疗硅胶材料",
+      // nav
+      nav_products: "产品",
+      nav_why: "为何选择 BIO",
+      nav_applications: "应用领域",
+      nav_contact: "联系我们",
+      nav_ai: "AI 技术问答",
+      nav_sample: "申请样品",
+      // hero
+      hero_badge: "高端医疗硅胶材料平台",
+      hero_h1: "医疗与健康领域的高性能硅胶材料",
+      hero_sub: "BIO Corporation 是 NuSil by Avantor 的授权区域经销商——为医疗器械制造商提供植入级硅胶、医疗粘合剂、LSR/HCR 弹性体及含氟硅橡胶系统。",
+      hero_cta1: "咨询专家",
+      hero_cta2: "了解产品平台",
+      stat1_title: "NuSil 授权",
+      stat1_sub: "官方区域经销商",
+      stat2_title: "200+ 产品",
+      stat2_sub: "全线 NuSil 产品覆盖",
+      stat3_sub: "合规认证材料",
+      stat4_title: "AI 技术问答",
+      stat4_sub: "专属知识问答平台",
+      // hero card
+      card_badge: "产品平台",
+      card_title: "BIO 材料矩阵",
+      card_p1_title: "植入级硅胶",
+      card_p1_desc: "ISO 10993 &amp; USP VI 认证——适用于心脏、神经及软组织植入应用",
+      card_p2_title: "医疗粘合剂",
+      card_p2_desc: "RTV 粘合系统，适用于器械装配、封装及导管顶端处理",
+      card_p3_title: "LSR / HCR 弹性体",
+      card_p3_desc: "精密橡胶平台，适用于注射成型及定制配方",
+      card_ai_badge: "AI 入口",
+      card_ai_title: "技术问答平台",
+      card_ai_desc: "深度产品知识库、数据表问答和材料选型——每天 24 小时专属 AI 界面随时为您解答。",
+      // what we do
+      wwd_label: "我们的业务",
+      wwd_h2: "为高要求应用场景量身打造的医疗级硅胶平台。",
+      wwd_desc: "BIO Corporation 是 NuSil by Avantor 的授权区域经销商——全球植入级与医疗级硅胶的行业标杆。我们供应材料、提供配方支持，并为工程团队提供认证与量产所需的技术深度。",
+      // products
+      prod_label: "产品平台",
+      prod_h2: "清晰架构，持续扩展。",
+      prod_sub: "四大核心材料系列，覆盖医疗硅胶的全部应用需求——从长期植入到精密器械装配。",
+      p1_title: "植入级硅胶",
+      p1_desc: "高纯弹性体、凝胶及粘合剂，适用于长期体内植入。通过 ISO 10993 和 USP VI 认证，覆盖心脏、神经、骨科及软组织植入物。",
+      p2_title: "医疗粘合剂",
+      p2_desc: "单组分和双组分 RTV 系统，适用于器械粘接、PCB 封装、皮肤接触界面及导管顶端处理。灵活的固化方案，宽泛的基材兼容性。",
+      p3_title: "LSR / HCR 弹性体",
+      p3_desc: "液态硅橡胶与高稠度硅橡胶，适用于注射成型、传递成型和挤出成型。宽邵氏硬度范围，支持定制配方。",
+      p4_title: "含氟硅橡胶系统",
+      p4_desc: "特种硅胶，对燃料、溶剂和腐蚀性介质具有卓越抵抗性。适用于标准硅胶性能不足的场合。",
+      prod_cta: "申请样品 →",
+      // why bio
+      why_label: "为何选择 BIO",
+      why_h2: "技术合作伙伴，而不仅仅是供应商。",
+      why_desc: "专业医疗器械工程师选择 BIO，因为我们将全球标准的材料品质与区域专家的快速响应和成本优势完美结合。",
+      why1_title: "医疗专注平台",
+      why1_desc: "我们的全线产品均基于 NuSil by Avantor——植入级硅胶的全球标准。不做任何工业妥协。",
+      why2_title: "定制配方与样品服务",
+      why2_desc: "从材料选型到配方定制，我们提供快速打样周期和完整技术文档，全力支持您的认证时间表。",
+      why3_title: "直接技术支持",
+      why3_desc: "拥有硅胶配方实操经验的应用工程师。48 小时内技术响应——无需等待一级供应商漫长的回复周期。",
+      why4_title: "区域成本优势",
+      why4_desc: "本地库存、人民币报价及关税优化物流——在不影响材料原产地和合规文件的前提下实现成本最优。",
+      // applications
+      app_label: "应用领域",
+      app_h2: "贯穿医疗器械全谱系的精密材料。",
+      app1_title: "医疗器械",
+      app1_desc: "植入式元件、导管体、药物输送涂层、伤口护理界面及手术器械握持部件，对长期生物相容性要求严苛。",
+      app2_title: "可穿戴与传感",
+      app2_desc: "皮肤接触外壳、耳戴式设备、CGM 贴片及柔性传感器基板，对耐用性、生物相容性和工艺一致性要求极高。",
+      app3_title: "美容与修复重建",
+      app3_desc: "乳房植入物外壳及填充凝胶、面部修复重建及注射级系统，要求最高纯度和完整监管文件。",
+      app4_title: "光学与精密应用",
+      app4_desc: "人工晶体材料、眼科粘合剂及精密光学封装材料，具有确定的折射率和透明度性能。",
+      // ai
+      ai_label: "AI 技术问答",
+      ai_h2: "深度产品知识，全天候在线。",
+      ai_desc: "我们专属的 AI 问答平台基于完整的 NuSil 技术库进行训练——包含数据表、配方指南、合规数据和应用手册。从粘度参数到 ISO 10993 分类，欢迎随时提问。",
+      ai_cta: "进入 AI 技术问答 →",
+      // contact
+      contact_label: "联系我们",
+      contact_h2: "与 BIO 携手开启您的下一个医疗硅胶项目。",
+      contact_desc: "无论是材料推荐、定制样品，还是监管文件——我们的团队通常在 48 小时内回复。",
+      contact_email_label: "邮箱",
+      contact_wechat_label: "微信",
+      contact_wechat_val: "搜索 BIOCorporation",
+      contact_region_label: "服务区域",
+      contact_cta1: "申请样品",
+      contact_cta2: "AI 技术问答",
+      // footer
+      footer_desc: "BIO Corporation 是 NuSil by Avantor 的授权区域经销商，为大中华区的器械制造商提供医疗级硅胶材料。",
+      footer_copy: "© 2026 BIO Corporation. 版权所有",
+      footer_col1: "产品",
+      footer_col2: "应用领域",
+      footer_col3: "联系我们",
+      footer_wechat: "WeChat: BIOCorporation",
+    },
+    en: {
+      page_title: "BIO Corporation — Advanced Medical Silicone Materials",
+      nav_products: "Products",
+      nav_why: "Why BIO",
+      nav_applications: "Applications",
+      nav_contact: "Contact",
+      nav_ai: "AI Technical Q&A",
+      nav_sample: "Request Sample",
+      hero_badge: "ADVANCED MEDICAL SILICONE PLATFORM",
+      hero_h1: "Advanced Silicone Materials for Medical &amp; Healthcare Applications",
+      hero_sub: "Authorized distributor of NuSil by Avantor — supplying implant-grade silicone, medical adhesives, LSR/HCR elastomers, and fluorosilicone systems to medical device manufacturers.",
+      hero_cta1: "Talk to Expert",
+      hero_cta2: "Explore Platforms",
+      stat1_title: "NuSil Authorized",
+      stat1_sub: "Official regional distributor",
+      stat2_title: "200+ Products",
+      stat2_sub: "Full NuSil catalog coverage",
+      stat3_sub: "Regulatory-ready materials",
+      stat4_title: "AI Technical Q&A",
+      stat4_sub: "Dedicated knowledge portal",
+      card_badge: "PRODUCT PLATFORM",
+      card_title: "BIO Material Matrix",
+      card_p1_title: "Implant-Grade Silicone",
+      card_p1_desc: "ISO 10993 &amp; USP Class VI — for cardiac, neural, and soft-tissue applications",
+      card_p2_title: "Medical Adhesives",
+      card_p2_desc: "RTV bonding systems for device assembly, encapsulation, and catheter tipping",
+      card_p3_title: "LSR / HCR Elastomers",
+      card_p3_desc: "Precision rubber platforms for injection molding and custom compounding",
+      card_ai_badge: "AI ENTRY",
+      card_ai_title: "Technical Q&amp;A Portal",
+      card_ai_desc: "Deep product knowledge, datasheet Q&amp;A, and material selection — available 24/7 at a dedicated AI interface.",
+      wwd_label: "What We Do",
+      wwd_h2: "A medical-grade silicone platform built for demanding applications.",
+      wwd_desc: "BIO Corporation is the authorized regional distributor of NuSil by Avantor — the global standard for implantable and medical-grade silicone. We supply materials, provide formulation support, and connect engineering teams with the technical depth they need to qualify and scale.",
+      prod_label: "Product Platform",
+      prod_h2: "Structured for clarity, engineered for expansion.",
+      prod_sub: "Four core material families covering the full spectrum of medical silicone requirements — from long-term implants to precision device assembly.",
+      p1_title: "Implant-Grade Silicone",
+      p1_desc: "High-purity elastomers, gels, and adhesives for long-term in-vivo performance. Qualified to ISO 10993 and USP Class VI for cardiac, neural, orthopedic, and soft-tissue implants.",
+      p2_title: "Medical Adhesives",
+      p2_desc: "One- and two-component RTV systems for device bonding, PCB encapsulation, skin-contact interfaces, and catheter tipping. Flexible cure schedules and substrate compatibility.",
+      p3_title: "LSR / HCR Elastomers",
+      p3_desc: "Liquid silicone rubber and high-consistency rubber for injection molding, transfer molding, and extrusion. Broad durometer range with custom compounding options.",
+      p4_title: "Fluorosilicone Systems",
+      p4_desc: "Specialty silicones with outstanding resistance to fuels, solvents, and aggressive media. For applications where standard silicone performance is insufficient.",
+      prod_cta: "Request Sample →",
+      why_label: "Why BIO",
+      why_h2: "A technical partner, not just a supplier.",
+      why_desc: "Serious medical device engineers choose BIO because we combine the material quality of a global standard with the responsiveness and cost structure of a regional specialist.",
+      why1_title: "Medical-Focused Platform",
+      why1_desc: "Our entire portfolio is built around NuSil by Avantor — the global benchmark for implantable silicone. No industrial compromises.",
+      why2_title: "Custom Formulation &amp; Sampling",
+      why2_desc: "From material selection to formulation customization, we provide fast sample turnaround and full documentation to support your qualification timeline.",
+      why3_title: "Direct Technical Support",
+      why3_desc: "Application engineers with hands-on silicone formulation experience. Typical 48-hour technical response — no tier-1 supplier wait times.",
+      why4_title: "Regional Cost Advantage",
+      why4_desc: "Local inventory, RMB-denominated pricing, and duty-optimized logistics — without compromising material origin or compliance documentation.",
+      app_label: "Applications",
+      app_h2: "Precision materials across the medical device spectrum.",
+      app1_title: "Medical Devices",
+      app1_desc: "Implantable components, catheter bodies, drug delivery coatings, wound care interfaces, and surgical instrument grips requiring long-term biocompatibility.",
+      app2_title: "Wearables &amp; Sensing",
+      app2_desc: "Skin-contact enclosures, hearable devices, CGM patches, and flexible sensor substrates demanding durability, biocompatibility, and process consistency.",
+      app3_title: "Aesthetic &amp; Reconstructive",
+      app3_desc: "Breast implant shells and fill gels, facial reconstruction, and injectable-grade systems requiring the highest purity and complete regulatory documentation.",
+      app4_title: "Optical &amp; Precision",
+      app4_desc: "Intraocular lens materials, ophthalmic bonding adhesives, and precision optical encapsulants with defined refractive and clarity properties.",
+      ai_label: "AI Technical Q&amp;A",
+      ai_h2: "In-depth product knowledge, available around the clock.",
+      ai_desc: "Our dedicated AI portal is trained on the full NuSil technical library — datasheets, formulation guides, compliance data, and application notes. Ask anything from viscosity specs to ISO 10993 classifications.",
+      ai_cta: "Open AI Technical Q&amp;A →",
+      contact_label: "Contact",
+      contact_h2: "Start your next medical silicone project with BIO.",
+      contact_desc: "Whether you need a material recommendation, a custom sample, or regulatory documentation — our team typically responds within 48 hours.",
+      contact_email_label: "Email",
+      contact_wechat_label: "WeChat",
+      contact_wechat_val: "Search BIOCorporation",
+      contact_region_label: "Service Region",
+      contact_cta1: "Request Sample",
+      contact_cta2: "AI Technical Q&A",
+      footer_desc: "Authorized regional distributor of NuSil by Avantor. Supplying medical-grade silicone materials to device manufacturers across China and the Greater Bay Area.",
+      footer_copy: "© 2026 BIO Corporation. All rights reserved.",
+      footer_col1: "Products",
+      footer_col2: "Applications",
+      footer_col3: "Contact",
+      footer_wechat: "WeChat: BIOCorporation",
+    }
+  };
+
+  let currentLang = 'zh';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = T[lang];
+
+    // Update all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) {
+        el.innerHTML = t[key];
+      }
+    });
+
+    // Update page title & html lang
+    document.title = t.page_title;
+    document.documentElement.lang = lang;
+
+    // Update lang buttons
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // Save preference
+    try { localStorage.setItem('bio_lang', lang); } catch(e) {}
   }
-  window.addEventListener(scroll, function() {
-    const nav = document.getElementById(nav);
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open');
+  }
+
+  window.addEventListener('scroll', function() {
+    const nav = document.getElementById('nav');
     if (window.scrollY > 10) {
-      nav.classList.add(nav-scrolled);
+      nav.classList.add('nav-scrolled');
     } else {
-      nav.classList.remove(nav-scrolled);
+      nav.classList.remove('nav-scrolled');
     }
   });
+
+  // ─── Auto-detect language on load ───────────────────────────────────
+  (function detectLang() {
+    // 1. Check saved preference first
+    try {
+      const saved = localStorage.getItem('bio_lang');
+      if (saved === 'en' || saved === 'zh') {
+        setLang(saved);
+        return;
+      }
+    } catch(e) {}
+
+    // 2. Check browser language as fast fallback
+    const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (browserLang.startsWith('zh')) {
+      setLang('zh');
+    } else {
+      // 3. Try IP geolocation — if CN set Chinese, otherwise English
+      fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(3000) })
+        .then(r => r.json())
+        .then(data => {
+          if (data && data.country_code === 'CN') {
+            setLang('zh');
+          } else {
+            setLang('en');
+          }
+        })
+        .catch(() => {
+          // Fallback: use browser language result already applied above
+          setLang(browserLang.startsWith('zh') ? 'zh' : 'en');
+        });
+      // Apply browser lang immediately while waiting for IP API
+      setLang(browserLang.startsWith('zh') ? 'zh' : 'en');
+    }
+  })();
 </script>
 </body>
 </html>
