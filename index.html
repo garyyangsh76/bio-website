@@ -455,12 +455,71 @@
       border-radius: 50%; animation: pulse 2s infinite;
     }
     @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
-    iframe.ai-chat {
-      display: block; width: 100%; height: 600px; border: none;
-      background: #fff;
-      -webkit-overflow-scrolling: touch;
-      pointer-events: auto;
+
+    /* ===== NATIVE CHAT WIDGET ===== */
+    .native-chat {
+      background: #fff; display: flex; flex-direction: column; height: 560px;
     }
+    .chat-msgs {
+      flex: 1; overflow-y: auto; padding: 24px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .chat-msgs::-webkit-scrollbar { width: 4px; }
+    .chat-msgs::-webkit-scrollbar-track { background: transparent; }
+    .chat-msgs::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
+    .chat-msg { display: flex; }
+    .chat-msg-bot { justify-content: flex-start; }
+    .chat-msg-user { justify-content: flex-end; }
+    .chat-bubble {
+      max-width: 78%; padding: 11px 15px;
+      font-size: 14px; line-height: 1.65; white-space: pre-wrap;
+    }
+    .chat-msg-bot .chat-bubble {
+      background: var(--light); color: #111;
+      border-radius: 4px 12px 12px 12px;
+      border: 1px solid var(--border);
+    }
+    .chat-msg-user .chat-bubble {
+      background: var(--blue); color: #fff;
+      border-radius: 12px 4px 12px 12px;
+    }
+    .chat-suggestions {
+      padding: 0 24px 14px; display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .chat-sugg {
+      background: transparent; border: 1px solid rgba(255,255,255,.25);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 13px; color: rgba(255,255,255,.75);
+      cursor: pointer; font-family: inherit; transition: all .15s;
+    }
+    .chat-sugg:hover { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.5); }
+    .chat-input-row {
+      display: flex; gap: 8px; padding: 14px 20px;
+      border-top: 1px solid #E4E8EF; background: #fff;
+    }
+    .chat-input {
+      flex: 1; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 10px 14px; font-size: 14px; font-family: inherit;
+      outline: none; color: #111; background: #fff;
+      transition: border-color .15s;
+    }
+    .chat-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(46,107,255,.1); }
+    .chat-send {
+      background: var(--blue); color: #fff; border: none;
+      border-radius: var(--radius); padding: 0 20px; height: 42px;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      font-family: inherit; white-space: nowrap; transition: background .15s;
+    }
+    .chat-send:hover { background: #1a56f0; }
+    .chat-send:disabled { background: #555; cursor: not-allowed; }
+    .chat-typing { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+    .chat-typing-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #aaa;
+      animation: chatdot 1.2s infinite;
+    }
+    .chat-typing-dot:nth-child(2) { animation-delay: .2s; }
+    .chat-typing-dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes chatdot { 0%,80%,100% { opacity:.3; transform:scale(.8); } 40% { opacity:1; transform:scale(1); } }
 
     /* ===== CTA BAND ===== */
     .cta-band { background: var(--navy); padding: 80px 24px; }
@@ -751,125 +810,14 @@
     <div class="sec-header center fade-up">
       <div class="sec-eyebrow">合作流程</div>
       <h2 class="sec-title">三步完成从需求到交付</h2>
-      <p class="sec-subtitle">无论你处于哪个项目阶段，我们都能在对的节点提供专业支持</p>
+      <p class="sec-subtitle">无论你处$��哪个项目阶段，我们都能在对的节点提供专业支持</p>
     </div>
     <div class="steps-grid">
       <div class="steps-connector"></div>
       <div class="step fade-up">
         <div class="step-num">1</div>
         <div class="step-title">材料预筛选</div>
-        <div class="step-text">告诉我们应用场景与技术要求，24 小时内给        <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="hero-panel-title">AI 智能选材助手</div>
-            <div class="hero-panel-desc">基于完整技术文档库，7×24 实时响应材料与工艺问题</div>
-          </div>
-        </div>
-        <div class="hero-panel-row">
-          <div class="hero-panel-check">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="hero-panel-title">注册与量产协同</div>
-            <div class="hero-panel-desc">配合技术文件与法规审查，注册通过后无缝切换量产</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num">500+</div>
-          <div class="hero-stat-label">产品 SKU</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">USP VI</div>
-          <div class="hero-stat-label">认证标准</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">24h</div>
-          <div class="hero-stat-label">技术响应</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== TRUST BAR ===== -->
-<div class="trust-bar">
-  <div class="trust-inner">
-    <div class="trust-item"><span class="trust-dot"></span>USP Class VI</div>
-    <div class="trust-item"><span class="trust-dot"></span>ISO 10993 生物相容性</div>
-    <div class="trust-item"><span class="trust-dot"></span>NuSil 授权分销商</div>
-    <div class="trust-item"><span class="trust-dot"></span>本土技术支持团队</div>
-    <div class="trust-item"><span class="trust-dot"></span>FDA 合规数据支持</div>
-  </div>
-</div>
-
-<!-- ===== CAPABILITIES ===== -->
-<section id="about">
-  <div class="container">
-    <div class="sec-header fade-up">
-      <div class="sec-eyebrow">核心能力</div>
-      <h2 class="sec-title">专业的医用硅胶全链路服务</h2>
-      <p class="sec-subtitle">从材料预筛选到注册量产，在每个关键节点提供专业支持</p>
-    </div>
-    <div class="caps-grid">
-      <div class="cap-item fade-up">
-        <div class="cap-icon">🔬</div>
-        <div class="cap-title">植入级材料认证</div>
-        <div class="cap-text">NuSil MED 系列通过 USP Class VI、ISO 10993 全套生物相容性测试，满足长期植入器械最高标准。</div>
-        <a href="#products" class="cap-link">了解产品系列 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-1">
-        <div class="cap-icon">📦</div>
-        <div class="cap-title">完整产品品类</div>
-        <div class="cap-text">涵盖硅胶弹性体、粘合剂、凝胶、液体硅橡胶、涂层等 500+ SKU，覆盖所有主流器械应用场景。</div>
-        <a href="#products" class="cap-link">查看全系列 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-2">
-        <div class="cap-icon">🚀</div>
-        <div class="cap-title">快速打样与交付</div>
-        <div class="cap-text">国内现货库存，支持小批量打样需求；标准产品 5–10 个工作日内交付，特规产品协商排期。</div>
-        <a href="#contact" class="cap-link">申请样品 →</a>
-      </div>
-      <div class="cap-item fade-up">
-        <div class="cap-icon">🛡️</div>
-        <div class="cap-title">质量可追溯</div>
-        <div class="cap-text">每批次产品均附原厂 CoA（检验合格证），支持材料来源追溯，满足 QMS 审核要求。</div>
-        <a href="#contact" class="cap-link">了解质量体系 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-1">
-        <div class="cap-icon">🤝</div>
-        <div class="cap-title">工程联合开发</div>
-        <div class="cap-text">提供配方设计、成型工艺优化、粘合工艺改良等联合开发支持，帮助客户缩短产品开发周期。</div>
-        <a href="#contact" class="cap-link">咨询工程师 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-2">
-        <div class="cap-icon">🌏</div>
-        <div class="cap-title">全球供应链对接</div>
-        <div class="cap-text">与 Avantor / NuSil 总部直连，可获取最新配方升级信息及全球库存支持，确保供货稳定。</div>
-        <a href="#contact" class="cap-link">了解更多 →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SERVICE PATH ===== -->
-<section class="bg-light" id="service-path">
-  <div class="container">
-    <div class="sec-header center fade-up">
-      <div class="sec-eyebrow">合作流程</div>
-      <h2 class="sec-title">三步完成从需求到交付</h2>
-      <p class="sec-subtitle">无论你处于哪个项目阶段，我们都能在对的节点提供专业支持</p>
-    </div>
-    <div class="steps-grid">
-      <div class="steps-connector"></div>
-      <div class="step fade-up">
-        <div class="step-num">1</div>
-        <div class="step-title">材料预筛选</div>
-        <div class="step-text">告诉我们应用场景与技术要求，24 小时内给出 3–5 个候选型号及对比分析，帮助团队快速锁定方向。</div>
+        <div class="step-text">告诉我们应用场景与技术要求，24 小时内给出 3–5 个候选冋号及对比分析，帮助团队快速锁定方向。</div>
       </div>
       <div class="step fade-up fade-up-delay-1">
         <div class="step-num">2</div>
@@ -1057,15 +1005,22 @@
           <div class="ai-status-dot"></div>在线
         </div>
       </div>
-      <iframe
-        class="ai-chat"
-        id="aiChatFrame"
-        src=""
-        allow="microphone"
-        title="BIO Corporation AI 助手"
-        scrolling="yes"
-        allowfullscreen
-      ></iframe>
+      <div class="native-chat" id="nativeChat">
+        <div class="chat-msgs" id="chatMsgs">
+          <div class="chat-msg chat-msg-bot">
+            <div class="chat-bubble">你好！我是 BIO Corporation AI 选材助手，基于完整 NuSil 技术文档库。请问有什么可以帮你？</div>
+          </div>
+        </div>
+        <div class="chat-suggestions" id="chatSuggs">
+          <button class="chat-sugg" onclick="bioSendSugg(this)">植入级硅胶有哪几类？</button>
+          <button class="chat-sugg" onclick="bioSendSugg(this)">MED-4940 和 MED-4950 区别？</button>
+          <button class="chat-sugg" onclick="bioSendSugg(this)">心脏导管用哪款粘合剂？</button>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" class="chat-input" placeholder="输入问题，按 Enter 发送…" autocomplete="off" />
+          <button class="chat-send" id="chatSend" onclick="bioChatSend()">发送</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1239,26 +1194,88 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // ===== Lazy load AI iframe from config =====
-  const CONFIG_URL = 'https://gist.githubusercontent.com/garyyangsh76/8c9fdf06aa1be7f146422df9d7af8f0a/raw/bio-chat-config.json';
-  const FALLBACK_URL = 'https://defensive-assignment-previously-seminars.trycloudflare.com/chat.html';
+  // ===== Native AI Chat Widget =====
+  const BIO_CONFIG_URL = 'https://gist.githubusercontent.com/garyyangsh76/8c9fdf06aa1be7f146422df9d7af8f0a/raw/bio-chat-config.json';
+  const BIO_FALLBACK   = 'https://defensive-assignment-previously-seminars.trycloudflare.com';
+  const BIO_API_KEY    = 'tbr--OTWCrB6x7TjcsBtAoO5caeKcJn-2BOPc5l9A3U';
+  let bioApiBase = '';
+  let bioChatHistory = [];
+  let bioBusy = false;
 
-  function loadChat(src) {
-    const frame = document.getElementById('aiChatFrame');
-    if (frame && !frame.src) frame.src = src;
+  async function bioInitChat() {
+    if (bioApiBase) return;
+    try {
+      const cfg = await fetch(BIO_CONFIG_URL + '?t=' + Date.now()).then(r => r.json());
+      bioApiBase = (cfg.url || BIO_FALLBACK).replace(/\/+$/, '');
+    } catch { bioApiBase = BIO_FALLBACK; }
   }
 
-  const aiSection = document.getElementById('ai');
-  const aiObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      fetch(CONFIG_URL + '?t=' + Date.now())
-        .then(r => r.json())
-        .then(cfg => loadChat((cfg.url || '').replace(/\/+$/, '') + '/chat.html'))
-        .catch(() => loadChat(FALLBACK_URL));
-      aiObserver.disconnect();
-    }
-  }, { threshold: 0.1 });
-  if (aiSection) aiObserver.observe(aiSection);
+  function bioAppendMsg(role, html) {
+    const msgs = document.getElementById('chatMsgs');
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-msg chat-msg-' + (role === 'user' ? 'user' : 'bot');
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble';
+    bubble.innerHTML = html;
+    wrap.appendChild(bubble);
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+    return bubble;
+  }
+
+  function bioSendSugg(btn) {
+    document.getElementById('chatInput').value = btn.textContent.trim();
+    document.getElementById('chatSuggs').style.display = 'none';
+    bioChatSend();
+  }
+
+  async function bioChatSend() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text || bioBusy) return;
+    await bioInitChat();
+    bioBusy = true;
+    input.value = '';
+    document.getElementById('chatSend').disabled = true;
+    document.getElementById('chatSuggs').style.display = 'none';
+    bioAppendMsg('user', text);
+    bioChatHistory.push({ role: 'user', content: text });
+    const bubble = bioAppendMsg('bot', '<span class="chat-typing"><span class="chat-typing-dot"></span><span class="chat-typing-dot"></span><span class="chat-typing-dot"></span></span>');
+    let full = '';
+    try {
+      const res = await fetch(bioApiBase + '/api/ask_stream', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-API-Key': BIO_API_KEY },
+        body: JSON.stringify({ question: text, chat_history: bioChatHistory.slice(0, -1) })
+      });
+      const reader = res.body.getReader();
+      const dec = new TextDecoder();
+      bubble.innerHTML = '';
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        for (const line of dec.decode(value).split('\n')) {
+          if (!line.startsWith('data: ')) continue;
+          try {
+            const ev = JSON.parse(line.slice(6));
+            if (ev.type === 'delta') { full += ev.content; bubble.textContent = full; document.getElementById('chatMsgs').scrollTop = 99999; }
+          } catch {}
+        }
+      }
+      bioChatHistory.push({ role: 'assistant', content: full });
+      if (bioChatHistory.length > 16) bioChatHistory = bioChatHistory.slice(-16);
+    } catch { bubble.textContent = '连接出错，请稍后再试。'; }
+    bioBusy = false;
+    document.getElementById('chatSend').disabled = false;
+    input.focus();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const inp = document.getElementById('chatInput');
+    if (inp) inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); bioChatSend(); } });
+    const aiSec = document.getElementById('ai');
+    if (aiSec) new IntersectionObserver((es, ob) => { if (es[0].isIntersecting) { bioInitChat(); ob.disconnect(); } }, { threshold: 0.1 }).observe(aiSec);
+  });
 
   // ===== Contact form (demo) =====
   function handleSubmit(e) {
