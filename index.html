@@ -1,1133 +1,397 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BIO Corporation — 医疗级硅胶材料专家</title>
-  <meta name="description" content="BIO Corporation 是专注于医疗级硅胶材料的专业供应商，代理 NuSil 全系产品，为医疗器械制造商提供材料选型、技术咨询及 AI 智能助手服务。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    /* ===== RESET & BASE ===== */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      color: #111111;
-      background: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-
-    /* ===== DESIGN TOKENS ===== */
-    :root {
-      --navy:   #0A1F44;
-      --blue:   #2E6BFF;
-      --text:   #111111;
-      --muted:  #666666;
-      --light:  #F5F7FA;
-      --border: #E4E8EF;
-      --white:  #FFFFFF;
-      --radius: 6px;
-    }
-
-    /* ===== LAYOUT ===== */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 96px 24px; }
-    .bg-light { background: var(--light); }
-    .bg-dark  { background: var(--navy); }
-
-    /* ===== BUTTONS ===== */
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--blue); color: #fff;
-      padding: 0 24px; height: 44px; border-radius: var(--radius);
-      font-weight: 600; font-size: 15px; font-family: inherit;
-      border: none; cursor: pointer;
-      transition: background .15s;
-      white-space: nowrap;
-    }
-    .btn-primary:hover { background: #1a57f0; }
-
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: var(--blue);
-      padding: 0 24px; height: 44px; border-radius: var(--radius);
-      font-weight: 600; font-size: 15px;
-      border: 1.5px solid var(--blue);
-      transition: background .15s;
-      white-space: nowrap;
-    }
-    .btn-secondary:hover { background: #eff4ff; }
-
-    .btn-white {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #fff; color: var(--navy);
-      padding: 0 24px; height: 44px; border-radius: var(--radius);
-      font-weight: 600; font-size: 15px;
-      transition: background .15s;
-      white-space: nowrap;
-    }
-    .btn-white:hover { background: #f0f4ff; }
-
-    .btn-outline-white {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: #fff;
-      padding: 0 24px; height: 44px; border-radius: var(--radius);
-      font-weight: 600; font-size: 15px;
-      border: 1.5px solid rgba(255,255,255,.3);
-      transition: border-color .15s;
-      white-space: nowrap;
-    }
-    .btn-outline-white:hover { border-color: rgba(255,255,255,.65); }
-
-    /* ===== SECTION TYPOGRAPHY ===== */
-    .sec-eyebrow {
-      font-size: 12px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--blue); margin-bottom: 16px;
-    }
-    .sec-eyebrow-dim { color: rgba(255,255,255,.45); }
-    .sec-title {
-      font-size: 36px; font-weight: 700; color: var(--navy);
-      letter-spacing: -.3px; line-height: 1.2; margin-bottom: 16px;
-    }
-    .sec-title-white { color: #fff; }
-    .sec-subtitle {
-      font-size: 18px; color: var(--muted); max-width: 600px; line-height: 1.7;
-    }
-    .sec-subtitle-dim { color: rgba(255,255,255,.6); }
-    .sec-header { margin-bottom: 64px; }
-    .sec-header.center { text-align: center; }
-    .sec-header.center .sec-subtitle { margin: 0 auto; }
-
-    /* ===== NAV ===== */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255,255,255,.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: box-shadow .2s;
-    }
-    .nav.scrolled { box-shadow: 0 1px 16px rgba(0,0,0,.08); }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px; height: 64px;
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
-    }
-    .nav-logo-mark {
-      width: 32px; height: 32px; background: var(--navy);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .nav-links {
-      display: flex; align-items: center; gap: 2px;
-      list-style: none;
-    }
-    .nav-links a {
-      padding: 8px 14px; border-radius: var(--radius);
-      font-size: 14px; font-weight: 500; color: var(--muted);
-      transition: background .15s, color .15s;
-    }
-    .nav-links a:hover { background: var(--light); color: var(--navy); }
-    .nav-cta {
-      background: var(--navy) !important; color: #fff !important;
-      height: 36px !important; padding: 0 18px !important;
-      display: inline-flex !important; align-items: center !important;
-      border-radius: var(--radius) !important; font-weight: 600 !important;
-    }
-    .nav-cta:hover { background: #152e5e !important; }
-    .nav-menu-btn {
-      display: none; background: none; border: none; cursor: pointer;
-      padding: 8px; color: var(--navy);
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column; align-items: flex-start;
-        position: absolute; top: 64px; left: 0; right: 0;
-        background: #fff; border-bottom: 1px solid var(--border);
-        padding: 12px 24px 20px; gap: 2px;
-        box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIO Corporation — Advanced Medical Silicone Materials</title>
+  <meta name="description" content="BIO Corporation is an authorized distributor of NuSil by Avantor — supplying implant-grade silicone materials, medical adhesives, LSR/HCR elastomers, and fluorosilicone systems to medical device manufacturers across China and APAC.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          borderRadius: {
+            '2xl': '1rem',
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          }
+        }
       }
-      .nav-menu-btn { display: flex; }
     }
-
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      background: #fff;
-      display: flex; align-items: center;
-      padding: 100px 24px 64px;
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .nav-scrolled { box-shadow: 0 2px 20px rgba(11,31,58,.08); }
+    @media (max-width: 767px) {
+      .mobile-menu { display: none; }
+      .mobile-menu.open { display: flex; }
     }
-    .hero-inner {
-      max-width: 1200px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 600; color: var(--blue);
-      margin-bottom: 24px;
-    }
-    .hero-eyebrow-dot {
-      width: 6px; height: 6px; background: #22c55e; border-radius: 50%; flex-shrink: 0;
-    }
-    .hero-title {
-      font-size: 56px; font-weight: 700; color: var(--navy);
-      line-height: 1.1; letter-spacing: -.5px; margin-bottom: 24px;
-    }
-    .hero-title .accent { color: var(--blue); }
-    .hero-desc {
-      font-size: 18px; color: var(--muted);
-      line-height: 1.7; margin-bottom: 40px; max-width: 480px;
-    }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .hero-certs {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px;
-    }
-    .hero-cert {
-      font-size: 12px; font-weight: 500; color: var(--muted);
-      border: 1px solid var(--border); border-radius: 4px;
-      padding: 4px 10px; background: var(--light); letter-spacing: .2px;
-    }
-
-    /* Hero right panel */
-    .hero-panel {
-      background: var(--light); border: 1px solid var(--border);
-      border-radius: 10px; padding: 32px; margin-bottom: 16px;
-    }
-    .hero-panel-label {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--muted); margin-bottom: 24px;
-    }
-    .hero-panel-row {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 16px 0; border-bottom: 1px solid var(--border);
-    }
-    .hero-panel-row:last-of-type { border-bottom: none; padding-bottom: 0; }
-    .hero-panel-check {
-      width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px;
-      background: var(--blue); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .hero-panel-title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
-    .hero-panel-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-    .hero-stats {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
-    }
-    .hero-stat {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 16px; text-align: center;
-    }
-    .hero-stat-num { font-size: 22px; font-weight: 700; color: var(--navy); }
-    .hero-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
-
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero-title { font-size: 40px; }
-      .hero-right { display: none; }
-    }
-
-    /* ===== TRUST BAR ===== */
-    .trust-bar {
-      background: var(--light);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-    }
-    .trust-inner {
-      max-width: 1200px; margin: 0 auto; height: 64px;
-      display: flex; align-items: center; justify-content: center;
-      gap: 48px; flex-wrap: wrap;
-    }
-    .trust-item {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 500; color: var(--muted);
-    }
-    .trust-dot {
-      width: 4px; height: 4px; background: var(--blue);
-      border-radius: 50%; flex-shrink: 0;
-    }
-    @media (max-width: 768px) {
-      .trust-inner { height: auto; padding: 16px 0; gap: 16px; justify-content: flex-start; }
-    }
-
-    /* ===== CAPABILITIES (no cards) ===== */
-    .caps-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 48px;
-    }
-    @media (max-width: 900px) { .caps-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
-    @media (max-width: 560px) { .caps-grid { grid-template-columns: 1fr; gap: 32px; } }
-    .cap-item { }
-    .cap-icon {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: var(--light); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; margin-bottom: 16px;
-    }
-    .cap-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-    .cap-text { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
-    .cap-link {
-      font-size: 14px; font-weight: 600; color: var(--blue);
-      display: inline-flex; align-items: center; gap: 4px;
-      transition: gap .15s;
-    }
-    .cap-link:hover { gap: 8px; }
-
-    /* ===== SERVICE STEPS ===== */
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 48px;
-      position: relative;
-    }
-    .steps-connector {
-      position: absolute; top: 19px;
-      left: calc(33.33% - 10px); right: calc(33.33% - 10px);
-      height: 1px; background: var(--border); z-index: 0;
-    }
-    @media (max-width: 768px) {
-      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
-      .steps-connector { display: none; }
-    }
-    .step { position: relative; z-index: 1; }
-    .step-num {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: var(--navy); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 15px; font-weight: 700; margin-bottom: 24px;
-    }
-    .step-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-    .step-text { font-size: 15px; color: var(--muted); line-height: 1.7; }
-
-    /* ===== PRODUCTS GRID ===== */
-    .products-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-    }
-    @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 560px) { .products-grid { grid-template-columns: 1fr; } }
-    .product-item {
-      background: #fff; padding: 32px;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      transition: background .15s;
-    }
-    .product-item:hover { background: var(--light); }
-    .product-item:nth-child(3n) { border-right: none; }
-    .product-item:nth-last-child(-n+3) { border-bottom: none; }
-    @media (max-width: 900px) {
-      .product-item:nth-child(3n) { border-right: 1px solid var(--border); }
-      .product-item:nth-child(2n) { border-right: none; }
-      .product-item:nth-last-child(-n+2) { border-bottom: none; }
-    }
-    @media (max-width: 560px) {
-      .product-item { border-right: none; }
-      .product-item:last-child { border-bottom: none; }
-    }
-    .product-icon { font-size: 22px; margin-bottom: 16px; }
-    .product-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
-    .product-text { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
-    .product-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .product-tag {
-      font-size: 11px; font-weight: 600; color: var(--blue);
-      background: #eff4ff; padding: 3px 8px; border-radius: 4px;
-    }
-    .product-link {
-      font-size: 13px; font-weight: 600; color: var(--blue);
-      display: inline-flex; align-items: center; gap: 4px;
-      transition: gap .15s;
-    }
-    .product-link:hover { gap: 8px; }
-
-    /* ===== ABOUT / COMPANY SPLIT ===== */
-    .about-split {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
-    @media (max-width: 900px) { .about-split { grid-template-columns: 1fr; gap: 48px; } }
-    .about-points { display: flex; flex-direction: column; gap: 24px; }
-    .about-point { display: flex; gap: 16px; align-items: flex-start; }
-    .about-point-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
-      background: var(--light); border: 1px solid var(--border);
-      border-radius: 8px; display: flex; align-items: center;
-      justify-content: center; font-size: 18px;
-    }
-    .about-point-title { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
-    .about-point-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* ===== APPLICATIONS ===== */
-    .apps-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    }
-    @media (max-width: 768px) { .apps-grid { grid-template-columns: 1fr; } }
-    .app-card {
-      border-radius: 8px; overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--light); padding: 40px;
-      position: relative;
-    }
-    .app-card-primary {
-      background: var(--navy); border-color: transparent;
-      grid-row: span 2;
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .app-card-num {
-      font-size: 64px; font-weight: 900;
-      color: rgba(255,255,255,.06);
-      position: absolute; right: 24px; top: 16px; line-height: 1;
-      pointer-events: none;
-    }
-    .app-eyebrow {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1px; margin-bottom: 12px;
-    }
-    .app-card-primary .app-eyebrow { color: rgba(255,255,255,.45); }
-    .app-card .app-eyebrow { color: var(--blue); }
-    .app-title { font-size: 24px; font-weight: 700; line-height: 1.3; margin-bottom: 12px; }
-    .app-card-primary .app-title { color: #fff; }
-    .app-card .app-title { color: var(--navy); }
-    .app-text { font-size: 15px; line-height: 1.7; }
-    .app-card-primary .app-text { color: rgba(255,255,255,.7); }
-    .app-card .app-text { color: var(--muted); }
-    .app-list { list-style: none; margin-top: 24px; }
-    .app-list li {
-      font-size: 14px; padding: 8px 0;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      color: rgba(255,255,255,.75);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .app-list li:last-child { border-bottom: none; }
-    .app-list li::before { content: '—'; color: rgba(255,255,255,.3); flex-shrink: 0; }
-
-    /* ===== AI SECTION ===== */
-    .ai-section { background: var(--navy); }
-    .ai-inner { max-width: 1200px; margin: 0 auto; }
-    .ai-header { text-align: center; margin-bottom: 48px; }
-    .ai-chips {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      justify-content: center; margin-bottom: 40px;
-    }
-    .ai-chip {
-      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
-      color: rgba(255,255,255,.75); border-radius: var(--radius);
-      padding: 8px 16px; font-size: 13px; cursor: pointer;
-      transition: all .15s;
-    }
-    .ai-chip:hover { background: rgba(255,255,255,.13); color: #fff; }
-    .ai-feats {
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 48px;
-    }
-    @media (max-width: 768px) { .ai-feats { grid-template-columns: 1fr; gap: 16px; } }
-    .ai-feat { display: flex; gap: 14px; align-items: flex-start; }
-    .ai-feat-icon {
-      width: 36px; height: 36px; flex-shrink: 0;
-      background: rgba(255,255,255,.08); border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center; font-size: 16px;
-    }
-    .ai-feat-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-    .ai-feat-text { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.5; }
-    /* ===== AI CTA CARD ===== */
-    .ai-cta-card {
-      border-radius: 12px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 48px 40px; text-align: center;
-    }
-    @media (max-width: 768px) { .ai-cta-card { padding: 36px 24px; } }
-    .ai-cta-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(74,222,128,.12); border: 1px solid rgba(74,222,128,.3);
-      border-radius: 20px; padding: 6px 16px; margin-bottom: 24px;
-      font-size: 13px; color: #4ade80;
-    }
-    .ai-cta-badge-dot {
-      width: 7px; height: 7px; background: #4ade80;
-      border-radius: 50%; animation: pulse 2s infinite; flex-shrink: 0;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
-    .ai-cta-title { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -.2px; }
-    @media (max-width: 768px) { .ai-cta-title { font-size: 22px; } }
-    .ai-cta-desc { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.7; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
-    .ai-cta-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--blue); color: #fff;
-      border-radius: var(--radius); padding: 14px 32px;
-      font-size: 16px; font-weight: 600; text-decoration: none;
-      transition: background .15s, transform .15s; font-family: inherit;
-    }
-    .ai-cta-btn:hover { background: #1a56f0; transform: translateY(-1px); }
-    .ai-cta-note { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,.35); }    /* ===== CTA BAND ===== */
-    .cta-band { background: var(--navy); padding: 80px 24px; }
-    .cta-inner { max-width: 680px; margin: 0 auto; text-align: center; }
-    .cta-title { font-size: 36px; font-weight: 700; color: #fff; letter-spacing: -.3px; margin-bottom: 16px; }
-    .cta-text { font-size: 18px; color: rgba(255,255,255,.65); margin-bottom: 40px; line-height: 1.7; }
-    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-    /* ===== CONTACT ===== */
-    .contact-split {
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start;
-    }
-    @media (max-width: 900px) { .contact-split { grid-template-columns: 1fr; gap: 48px; } }
-    .contact-info { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
-    .contact-info-item { display: flex; gap: 16px; align-items: flex-start; }
-    .contact-info-icon {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: var(--light); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; flex-shrink: 0;
-    }
-    .contact-info-label {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .8px; color: var(--muted); margin-bottom: 4px;
-    }
-    .contact-info-value { font-size: 15px; font-weight: 500; color: var(--navy); }
-    .contact-form {
-      background: var(--light); border: 1px solid var(--border);
-      border-radius: 8px; padding: 40px;
-    }
-    .form-title { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 24px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
-    .form-group { margin-bottom: 16px; }
-    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
-    .form-input, .form-textarea, .form-select {
-      width: 100%; background: #fff; border: 1.5px solid var(--border);
-      border-radius: var(--radius); padding: 10px 14px;
-      font-size: 14px; font-family: inherit; color: var(--navy);
-      transition: border-color .15s; outline: none;
-    }
-    .form-input:focus, .form-textarea:focus, .form-select:focus {
-      border-color: var(--blue);
-    }
-    .form-textarea { min-height: 96px; resize: vertical; }
-    .form-submit {
-      width: 100%; background: var(--blue); color: #fff;
-      border: none; border-radius: var(--radius); height: 44px;
-      font-size: 15px; font-weight: 600; cursor: pointer;
-      transition: background .15s; font-family: inherit;
-    }
-    .form-submit:hover { background: #1a57f0; }
-    .form-success {
-      display: none; background: #f0fdf4; border: 1px solid #bbf7d0;
-      border-radius: var(--radius); padding: 14px 16px; color: #166534;
-      font-size: 14px; font-weight: 500; text-align: center; margin-top: 12px;
-    }
-
-    /* ===== FOOTER ===== */
-    .footer { background: var(--navy); color: rgba(255,255,255,.55); padding: 64px 24px 32px; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px;
-    }
-    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; } }
-    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
-    .footer-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 700; font-size: 16px; color: #fff; margin-bottom: 16px;
-    }
-    .footer-logo-mark {
-      width: 30px; height: 30px; background: rgba(255,255,255,.12);
-      border-radius: var(--radius);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 280px; }
-    .footer-col-title {
-      font-size: 11px; font-weight: 700; color: #fff;
-      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
-    }
-    .footer-links { list-style: none; }
-    .footer-links li { margin-bottom: 10px; }
-    .footer-links a { font-size: 14px; color: rgba(255,255,255,.5); transition: color .15s; }
-    .footer-links a:hover { color: #fff; }
-    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin-bottom: 24px; }
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .footer-copy { font-size: 13px; }
-    .footer-icp { font-size: 13px; opacity: .4; }
-
-    /* ===== SCROLL ANIMATIONS ===== */
-    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .fade-up-delay-1 { transition-delay: .1s; }
-    .fade-up-delay-2 { transition-delay: .2s; }
-    .fade-up-delay-3 { transition-delay: .3s; }
   </style>
 </head>
-<body>
+<body class="min-h-screen bg-white text-slate-900 antialiased">
 
-<!-- ===== NAV ===== -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjI0MCAxOTUgODQwIDI2MCI+PGcgZmlsbD0iIzFBNTJCMyI+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzM4LjY2LDQyOC43NCkgc2NhbGUoMC4xNjExLC0wLjE2MTEpIiBkPSJNMTM4NiA0MDJRMTM4NiAyMTAgMTI0Mi4wIDEwNS4wUTEwOTggMCA4NDIgMEgxMzdWMTQwOUg3ODJRMTA0MCAxNDA5IDExNzIuNSAxMzE5LjVRMTMwNSAxMjMwIDEzMDUgMTA1NVExMzA1IDkzNSAxMjM4LjUgODUyLjVRMTE3MiA3NzAgMTAzNiA3NDFRMTIwNyA3MjEgMTI5Ni41IDYzMy41UTEzODYgNTQ2IDEzODYgNDAyWk0xMDA4IDEwMTVRMTAwOCAxMTEwIDk0Ny41IDExNTAuMFE4ODcgMTE5MCA3NjggMTE5MEg0MzJWODQxSDc3MFE4OTUgODQxIDk1MS41IDg4NC41UTEwMDggOTI4IDEwMDggMTAxNVpNMTA5MCA0MjVRMTA5MCA2MjMgODA2IDYyM0g0MzJWMjE5SDgxN1E5NTkgMjE5IDEwMjQuNSAyNzAuNVExMDkwIDMyMiAxMDkwIDQyNVoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MDQuOTcsNDI4Ljc0KSBzY2FsZSgwLjE2MTEsLTAuMTYxMSkiIGQ9Ik0xMzcgMFYxNDA5SDQzMlYwWiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcyNC42Niw0MjguNzQpIHNjYWxlKDAuMTYxMSwtMC4xNjExKSIgZD0iTTE1MDcgNzExUTE1MDcgNDkxIDE0MjAuMCAzMjQuMFExMzMzIDE1NyAxMTcxLjAgNjguNVExMDA5IC0yMCA3OTMgLTIwUTQ2MSAtMjAgMjcyLjUgMTc1LjVRODQgMzcxIDg0IDcxMVE4NCAxMDUwIDI3Mi4wIDEyNDAuMFE0NjAgMTQzMCA3OTUgMTQzMFExMTMwIDE0MzAgMTMxOC41IDEyMzguMFExNTA3IDEwNDYgMTUwNyA3MTFaTTEyMDYgNzExUTEyMDYgOTM5IDEwOTguMCAxMDY4LjVROTkwIDExOTggNzk1IDExOThRNTk3IDExOTggNDg5LjAgMTA2OS41UTM4MSA5NDEgMzgxIDcxMVEzODEgNDc5IDQ5MS41IDM0NS41UTYwMiAyMTIgNzkzIDIxMlE5OTEgMjEyIDEwOTguNSAzNDIuMFExMjA2IDQ3MiAxMjA2IDcxMVoiLz48L2c+PC9zdmc+" style="height:36px;width:auto;display:block" alt="BIO">
+<!-- NAV -->
+<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-md" id="nav">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+    <a href="#" class="flex items-center gap-3">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjM0MCAyMDAgNjIwIDIzMiI+PGcgZmlsbD0iIzFBNTJCMyI+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzYwLjY2LDQyOC43NCkgc2NhbGUoMC4xNjExLC0wLjE2MTEpIiBkPSJNMTM4NiA0MDJRMTM4NiAyMTAgMTI0Mi4wIDEwNS4wUTEwOTggMCA4NDIgMEgxMzdWMTQwOUg3ODJRMTA0MCAxNDA5IDExNzIuNSAxMzE5LjVRMTMwNSAxMjMwIDEzMDUgMTA1NVExMzA1IDkzNSAxMjM4LjUgODUyLjVRMTE3MiA3NzAgMTAzNiA3NDFRMTIwNyA3MjEgMTI5Ni41IDYzMy41UTEzODYgNTQ2IDEzODYgNDAyWk0xMDA4IDEwMTVRMTAwOCAxMTEwIDk0Ny41IDExNTAuMFE4ODcgMTE5MCA3NjggMTE5MEg0MzJWODQxSDc3MFE4OTUgODQxIDk1MS41IDg4NC41UTEwMDggOTI4IDEwMDggMTAxNVpNMTA5MCA0MjVRMTA5MCA2MjMgODA2IDYyM0g0MzJWMjE5SDgxN1E5NTkgMjE5IDEwMjQuNSAyNzAuNVExMDkwIDMyMiAxMDkwIDQyNVoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MDQuOTcsNDI4Ljc0KSBzY2FsZSgwLjE2MTEsLTAuMTYxMSkiIGQ9Ik0xMzcgMFYxNDA5SDQzMlYwWiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcwMi42Niw0MjguNzQpIHNjYWxlKDAuMTYxMSwtMC4xNjExKSIgZD0iTTE1MDcgNzExUTE1MDcgNDkxIDE0MjAuMCAzMjQuMFExMzMzIDE1NyAxMTcxLjAgNjguNVExMDA5IC0yMCA3OTMgLTIwUTQ2MSAtMjAgMjcyLjUgMTc1LjVRODQgMzcxIDg0IDcxMVE4NCAxMDUwIDI3Mi4wIDEyNDAuMFE0NjAgMTQzMCA3OTUgMTQzMFExMTMwIDE0MzAgMTMxOC41IDEyMzguMFExNTA3IDEwNDYgMTUwNyA3MTFaTTEyMDYgNzExUTEyMDYgOTM5IDEwOTguMCAxMDY4LjVROTkwIDExOTggNzk1IDExOThRNTk3IDExOTggNDg5LjAgMTA2OS41UTM4MSA5NDEgMzgxIDcxMVEzODEgNDc5IDQ5MS41IDM0NS41UTYwMiAyMTIgNzkzIDIxMlE5OTEgMjEyIDEwOTguNSAzNDIuMFExMjA2IDQ3MiAxMjA2IDcxMVoiLz48L2c+PC9zdmc+" style="height:34px;width:auto;display:block" alt="BIO Corporation">
     </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#products">产品选型</a></li>
-      <li><a href="#solutions">应用方案</a></li>
-      <li><a href="#ai">AI 选材助手</a></li>
-      <li><a href="#contact">样品·询价</a></li>
-      <li><a href="#contact" class="nav-cta">加微信咨询</a></li>
-    </ul>
-    <button class="nav-menu-btn" id="menuBtn" aria-label="菜单">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M3 6h18M3 12h18M3 18h18"/>
-      </svg>
-    </button>
-  </div>
-</nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <!-- Left -->
-    <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-dot"></span>
-        NuSil 中国授权代理 · 医疗级认证
-      </div>
-      <h1 class="hero-title">
-        NuSil 医疗级硅胶<br/>
-        <span class="accent">选型与技术支持</span>
-      </h1>
-      <p class="hero-desc">
-        专为医疗器械研发、采购与法规团队提供 NuSil 全系硅胶材料的选型指导、样品支持与注册配合，帮助产品更快从立项走到量产。
-      </p>
-      <div class="hero-actions">
-        <a href="#products" class="btn-primary">3 分钟匹配材料 →</a>
-        <a href="#contact" class="btn-secondary">加微信咨询工程师</a>
-      </div>
-      <div class="hero-certs">
-        <span class="hero-cert">NuSil 授权代理</span>
-        <span class="hero-cert">USP Class VI</span>
-        <span class="hero-cert">ISO 10993</span>
-        <span class="hero-cert">CoA 可追溯</span>
-        <span class="hero-cert">24h 技术响应</span>
-      </div>
-    </div>
-    <!-- Right -->
-    <div class="hero-right">
-      <div class="hero-panel">
-        <div class="hero-panel-label">核心服务能力</div>
-        <div class="hero-panel-row">
-          <div class="hero-panel-check">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="hero-panel-title">植入级材料供应</div>
-            <div class="hero-panel-desc">NuSil MED 全系列，500+ SKU 现货，小批量打样支持</div>
-          </div>
-        </div>
-        <div class="hero-panel-row">
-          <div class="hero-panel-check">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="hero-panel-title">法规文件配套</div>
-            <div class="hero-panel-desc">TDS / SDS / CoA / ISO 10993 生物相容性合规包</div>
-          </div>
-        </div>
-        <div class="hero-panel-row">
-          <div class="hero-panel-check">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="hero-panel-title">AI 智能选材助手</div>
-            <div class="hero-panel-desc">基于完整技术文档库，7×24 实时响应材料与工艺问题</div>
-          </div>
-        </div>
-        <div class="hero-panel-row">
-          <div class="hero-panel-check">
-            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div>
-            <div class="hero-panel-title">注册与量产协同</div>
-            <div class="hero-panel-desc">配合技术文件与法规审查，注册通过后无缝切换量产</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num">500+</div>
-          <div class="hero-stat-label">产品 SKU</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">USP VI</div>
-          <div class="hero-stat-label">认证标准</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">24h</div>
-          <div class="hero-stat-label">技术响应</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <nav class="hidden items-center gap-8 text-sm text-slate-600 md:flex">
+      <a href="#platforms" class="transition hover:text-slate-900">Products</a>
+      <a href="#why-bio" class="transition hover:text-slate-900">Why BIO</a>
+      <a href="#applications" class="transition hover:text-slate-900">Applications</a>
+      <a href="#contact" class="transition hover:text-slate-900">Contact</a>
+    </nav>
 
-<!-- ===== TRUST BAR ===== -->
-<div class="trust-bar">
-  <div class="trust-inner">
-    <div class="trust-item"><span class="trust-dot"></span>USP Class VI</div>
-    <div class="trust-item"><span class="trust-dot"></span>ISO 10993 生物相容性</div>
-    <div class="trust-item"><span class="trust-dot"></span>NuSil 授权分销商</div>
-    <div class="trust-item"><span class="trust-dot"></span>本土技术支持团队</div>
-    <div class="trust-item"><span class="trust-dot"></span>FDA 合规数据支持</div>
-  </div>
-</div>
-
-<!-- ===== CAPABILITIES ===== -->
-<section id="about">
-  <div class="container">
-    <div class="sec-header fade-up">
-      <div class="sec-eyebrow">核心能力</div>
-      <h2 class="sec-title">专业的医用硅胶全链路服务</h2>
-      <p class="sec-subtitle">从材料预筛选到注册量产，在每个关键节点提供专业支持</p>
-    </div>
-    <div class="caps-grid">
-      <div class="cap-item fade-up">
-        <div class="cap-icon">🔬</div>
-        <div class="cap-title">植入级材料认证</div>
-        <div class="cap-text">NuSil MED 系列通过 USP Class VI、ISO 10993 全套生物相容性测试，满足长期植入器械最高标准。</div>
-        <a href="#products" class="cap-link">了解产品系列 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-1">
-        <div class="cap-icon">📦</div>
-        <div class="cap-title">完整产品品类</div>
-        <div class="cap-text">涵盖硅胶弹性体、粘合剂、凝胶、液体硅橡胶、涂层等 500+ SKU，覆盖所有主流器械应用场景。</div>
-        <a href="#products" class="cap-link">查看全系列 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-2">
-        <div class="cap-icon">🚀</div>
-        <div class="cap-title">快速打样与交付</div>
-        <div class="cap-text">国内现货库存，支持小批量打样需求；标准产品 5–10 个工作日内交付，特规产品协商排期。</div>
-        <a href="#contact" class="cap-link">申请样品 →</a>
-      </div>
-      <div class="cap-item fade-up">
-        <div class="cap-icon">🛡️</div>
-        <div class="cap-title">质量可追溯</div>
-        <div class="cap-text">每批次产品均附原厂 CoA（检验合格证），支持材料来源追溯，满足 QMS 审核要求。</div>
-        <a href="#contact" class="cap-link">了解质量体系 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-1">
-        <div class="cap-icon">🤝</div>
-        <div class="cap-title">工程联合开发</div>
-        <div class="cap-text">提供配方设计、成型工艺优化、粘合工艺改良等联合开发支持，帮助客户缩短产品开发周期。</div>
-        <a href="#contact" class="cap-link">咨询工程师 →</a>
-      </div>
-      <div class="cap-item fade-up fade-up-delay-2">
-        <div class="cap-icon">🌏</div>
-        <div class="cap-title">全球供应链对接</div>
-        <div class="cap-text">与 Avantor / NuSil 总部直连，可获取最新配方升级信息及全球库存支持，确保供货稳定。</div>
-        <a href="#contact" class="cap-link">了解更多 →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SERVICE PATH ===== -->
-<section class="bg-light" id="service-path">
-  <div class="container">
-    <div class="sec-header center fade-up">
-      <div class="sec-eyebrow">合作流程</div>
-      <h2 class="sec-title">三步完成从需求到交付</h2>
-      <p class="sec-subtitle">无论你处$��哪个项目阶段，我们都能在对的节点提供专业支持</p>
-    </div>
-    <div class="steps-grid">
-      <div class="steps-connector"></div>
-      <div class="step fade-up">
-        <div class="step-num">1</div>
-        <div class="step-title">材料预筛选</div>
-        <div class="step-text">告诉我们应用场景与技术要求，24 小时内给出 3–5 个候选冋号及对比分析，帮助团队快速锁定方向。</div>
-      </div>
-      <div class="step fade-up fade-up-delay-1">
-        <div class="step-num">2</div>
-        <div class="step-title">样品与测试支持</div>
-        <div class="step-text">提供原厂样品及完整 TDS / SDS / 生物相容性资料，协调测试机构，确保数据满足注册要求。</div>
-      </div>
-      <div class="step fade-up fade-up-delay-2">
-        <div class="step-num">3</div>
-        <div class="step-title">注册与量产协同</div>
-        <div class="step-text">配合技术文件与法规审查，注册通过后无缝切换量产供应，持续提供批次 CoA 及变更管理支持。</div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:48px" class="fade-up">
-      <a href="#contact" class="btn-primary">提交项目需求 →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PRODUCTS ===== -->
-<section id="products">
-  <div class="container">
-    <div class="sec-header center fade-up">
-      <div class="sec-eyebrow">产品系列</div>
-      <h2 class="sec-title">NuSil 医疗级硅胶全系列</h2>
-      <p class="sec-subtitle">覆盖医疗器械从研发到量产的全部硅胶材料需求</p>
-    </div>
-    <div class="products-grid fade-up">
-      <div class="product-item">
-        <div class="product-icon">🩺</div>
-        <div class="product-title">植入级弹性体</div>
-        <div class="product-text">骨科、心脏、神经等长期植入器械，要求材料在体内长期稳定、无溶出。</div>
-        <div class="product-tags">
-          <span class="product-tag">MED-4940</span>
-          <span class="product-tag">MED-4950</span>
-          <span class="product-tag">MED-4965</span>
-        </div>
-        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
-      </div>
-      <div class="product-item">
-        <div class="product-icon">💉</div>
-        <div class="product-title">液体硅橡胶 LSR</div>
-        <div class="product-text">可穿戴、手术器械精密部件，注射成型批量生产，流动性好、收缩率低。</div>
-        <div class="product-tags">
-          <span class="product-tag">MED-6820</span>
-          <span class="product-tag">MED-6830</span>
-          <span class="product-tag">LSR 系列</span>
-        </div>
-        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
-      </div>
-      <div class="product-item">
-        <div class="product-icon">🔗</div>
-        <div class="product-title">医用硅胶粘合剂</div>
-        <div class="product-text">器械组装、导管封端与基材粘接，常温/加热固化多种选择，与金属、塑料相容性优。</div>
-        <div class="product-tags">
-          <span class="product-tag">MED-1511</span>
-          <span class="product-tag">MED-1137</span>
-          <span class="product-tag">单组分系列</span>
-        </div>
-        <a href="#contact" class="product-link">申请样品 →</a>
-      </div>
-      <div class="product-item">
-        <div class="product-icon">💧</div>
-        <div class="product-title">植入级凝胶</div>
-        <div class="product-text">脑起搏器导线包覆、脊柱融合器缓冲填充，需长期植入且维持柔顺性。</div>
-        <div class="product-tags">
-          <span class="product-tag">MED-6345</span>
-          <span class="product-tag">MED-6382</span>
-          <span class="product-tag">凝胶系列</span>
-        </div>
-        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
-      </div>
-      <div class="product-item">
-        <div class="product-icon">🎨</div>
-        <div class="product-title">硅胶涂层与流体</div>
-        <div class="product-text">导管润滑、IVD 试剂盒密封件、手术器械表面防护，要求化学惰性与皮肤安全。</div>
-        <div class="product-tags">
-          <span class="product-tag">涂层系列</span>
-          <span class="product-tag">流体系列</span>
-        </div>
-        <a href="#contact" class="product-link">申请样品 →</a>
-      </div>
-      <div class="product-item">
-        <div class="product-icon">🔧</div>
-        <div class="product-title">特种功能硅胶</div>
-        <div class="product-text">介入器械显影、神经刺激电极等特殊场景，提供荧光、X 光显影、导电改性方案。</div>
-        <div class="product-tags">
-          <span class="product-tag">显影系列</span>
-          <span class="product-tag">导电系列</span>
-          <span class="product-tag">功能改性</span>
-        </div>
-        <a href="#ai" class="product-link">向 AI 助手提问 →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== APPLICATIONS ===== -->
-<section class="bg-light" id="solutions">
-  <div class="container">
-    <div class="sec-header fade-up">
-      <div class="sec-eyebrow">应用方案</div>
-      <h2 class="sec-title">覆盖主流医疗器械<br/>应用场景</h2>
-      <p class="sec-subtitle">从心血管到可穿戴，我们的材料解决方案已应用于国内外主流医疗器械产品线。</p>
-    </div>
-    <div class="apps-grid fade-up">
-      <div class="app-card app-card-primary">
-        <div>
-          <div class="app-card-num">01</div>
-          <div class="app-eyebrow">核心优势</div>
-          <div class="app-title">从材料到器械<br/>全周期技术支持</div>
-          <div class="app-text">我们不只是材料供应商——从产品立项时的材料预筛选，到注册申报阶段的测试数据准备，再到量产后的批次管理，全程提供专业支持。</div>
-          <ul class="app-list">
-            <li>材料需求分析与候选推荐</li>
-            <li>样品快速获取与测试支持</li>
-            <li>注册申报技术文件准备</li>
-            <li>量产供应链保障</li>
-          </ul>
-        </div>
-        <a href="#contact" class="btn-white" style="margin-top:32px; align-self:flex-start">立即咨询 →</a>
-      </div>
-      <div class="app-card fade-up fade-up-delay-1">
-        <div class="app-eyebrow">应用领域</div>
-        <div class="app-title">心血管器械</div>
-        <div class="app-text">球囊导管、封堵器、支架系统等，要求材料在体内长期稳定、无溶出。NuSil 植入级弹性体是行业首选。</div>
-      </div>
-      <div class="app-card fade-up fade-up-delay-2">
-        <div class="app-eyebrow">应用领域</div>
-        <div class="app-title">神经与脊柱器械</div>
-        <div class="app-text">脑起搏器导线包覆、脊柱融合器缓冲层，需要高弹性与优异的生物稳定性，MED 凝胶系列表现突出。</div>
-      </div>
-      <div class="app-card fade-up fade-up-delay-3">
-        <div class="app-eyebrow">应用领域</div>
-        <div class="app-title">可穿戴与 IVD</div>
-        <div class="app-text">贴身传感器基底、试剂盒密封件，要求皮肤安全性与化学惰性，LSR 及涂层系列是理想选择。</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== AI ASSISTANT ===== -->
-<section class="ai-section" id="ai">
-  <div class="ai-inner" style="padding:0 24px">
-    <div class="ai-header fade-up">
-      <div class="sec-eyebrow sec-eyebrow-dim">AI 选材助手</div>
-      <h2 class="sec-title sec-title-white">不确定该选哪款？<br/>先问 AI 选材助手</h2>
-      <p class="sec-subtitle sec-subtitle-dim">基于完整 NuSil 技术文档库，中英文均可提问，可转人工工程师跟进</p>
-    </div>
-    <div class="ai-chips fade-up">
-      <div class="ai-chip">植入级硅胶有哪几类，我该怎么选？</div>
-      <div class="ai-chip">MED-4940 和 MED-4950 有什么区别？</div>
-      <div class="ai-chip">心脏导管用哪款硅胶粘合剂更合适？</div>
-      <div class="ai-chip">LSR 注射成型时需要注意哪些工艺参数？</div>
-      <div class="ai-chip">NuSil 的 ISO 10993 测试报告可以提供吗？</div>
-    </div>
-    <div class="ai-feats fade-up">
-      <div class="ai-feat">
-        <div class="ai-feat-icon">📚</div>
-        <div>
-          <div class="ai-feat-title">完整技术文档库</div>
-          <div class="ai-feat-text">覆盖 500+ NuSil 产品的 TDS、SDS 及应用指南</div>
-        </div>
-      </div>
-      <div class="ai-feat">
-        <div class="ai-feat-icon">⚡</div>
-        <div>
-          <div class="ai-feat-title">实时精准检索</div>
-          <div class="ai-feat-text">RAG 语义检索，引用原始数据，避免编造</div>
-        </div>
-      </div>
-      <div class="ai-feat">
-        <div class="ai-feat-icon">🌐</div>
-        <div>
-          <div class="ai-feat-title">中英文双语支持</div>
-          <div class="ai-feat-text">中文提问、中英文文档检索，无语言障碍</div>
-        </div>
-      </div>
-    </div>
-    <div class="ai-cta-card fade-up">
-      <div class="ai-cta-badge">
-        <div class="ai-cta-badge-dot"></div>AI 助手在线
-      </div>
-      <div class="ai-cta-title">立即体验 AI 选材助手</div>
-      <p class="ai-cta-desc">基于完整 NuSil 技术文档库，中英文均可提问。输入产品型号、应用场景或材料要求，获取精准选材建议。</p>
-      <a href="http://124.223.67.96:8000/qa" target="_blank" rel="noopener" class="ai-cta-btn">
-        立即体验 AI 选材助手 →
+    <div class="flex items-center gap-3">
+      <a href="https://ai.bio-corporation.com" target="_blank"
+         class="hidden rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:text-slate-900 md:inline-flex">
+        AI Technical Q&amp;A
       </a>
-      <p class="ai-cta-note">独立页面运行，支持完整对话历史 · 可转人工工程师跟进</p>
-    </div>  </div>
-</section>
-
-<!-- ===== CTA BAND ===== -->
-<div class="cta-band">
-  <div class="cta-inner fade-up">
-    <h2 class="cta-title">与硅胶材料工程师直接对话</h2>
-    <p class="cta-text">无论是材料选型、样品申请还是法规文件准备，我们的专业团队将在 24 小时内响应。</p>
-    <div class="cta-actions">
-      <a href="#contact" class="btn-white">发送询价 →</a>
-      <a href="#ai" class="btn-outline-white">先问 AI 助手</a>
+      <a href="#contact"
+         class="inline-flex rounded-xl bg-[#2563EB] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90">
+        Request Sample
+      </a>
+      <button onclick="toggleMenu()" class="flex items-center justify-center rounded-lg p-2 text-slate-600 hover:bg-slate-100 md:hidden">
+        <svg id="menu-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
   </div>
-</div>
 
-<!-- ===== CONTACT ===== -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-split">
-      <div>
-        <div class="sec-eyebrow fade-up">联系我们</div>
-        <h2 class="sec-title fade-up">获取材料支持<br/>与报价</h2>
-        <p class="sec-subtitle fade-up">
-          无论是材料选型咨询、样品申请还是批量采购，我们的技术团队将在 24 小时内响应。
-        </p>
-        <div class="contact-info fade-up">
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📧</div>
-            <div>
-              <div class="contact-info-label">邮件</div>
-              <div class="contact-info-value">info@bio-corporation.com</div>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">💬</div>
-            <div>
-              <div class="contact-info-label">微信 / 企业微信</div>
-              <div class="contact-info-value">扫描或搜索：BIOCorporation</div>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">🌍</div>
-            <div>
-              <div class="contact-info-label">服务范围</div>
-              <div class="contact-info-value">中国大陆及港澳地区</div>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">⏱️</div>
-            <div>
-              <div class="contact-info-label">响应时效</div>
-              <div class="contact-info-value">工作日 24h 内回复，紧急需求优先</div>
-            </div>
-          </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="mobile-menu flex-col gap-1 border-t border-slate-100 bg-white px-6 pb-4 pt-3 md:hidden">
+    <a href="#platforms" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Products</a>
+    <a href="#why-bio" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Why BIO</a>
+    <a href="#applications" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Applications</a>
+    <a href="#contact" onclick="toggleMenu()" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">Contact</a>
+    <a href="https://ai.bio-corporation.com" target="_blank" class="block rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">AI Technical Q&amp;A</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="relative overflow-hidden bg-[#0B1F3A] text-white">
+  <div class="absolute inset-0" style="background: radial-gradient(circle at top right, rgba(37,99,235,0.28), transparent 28%), radial-gradient(circle at bottom left, rgba(255,255,255,0.06), transparent 26%)"></div>
+  <div class="relative mx-auto grid max-w-7xl gap-14 px-6 py-24 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-32">
+    <div class="max-w-3xl">
+      <div class="mb-6 inline-flex rounded-full border border-white/20 px-4 py-1.5 text-xs tracking-[0.2em] text-white/80" style="background:rgba(255,255,255,0.08)">
+        ADVANCED MEDICAL SILICONE PLATFORM
+      </div>
+      <h1 class="max-w-3xl text-5xl font-semibold leading-tight tracking-tight md:text-6xl">
+        Advanced Silicone Materials for Medical &amp; Healthcare Applications
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-white/75">
+        Authorized distributor of NuSil by Avantor — supplying implant-grade silicone, medical adhesives, LSR/HCR elastomers, and fluorosilicone systems to medical device manufacturers.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#contact"
+           class="rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-[#0B1F3A] shadow-lg transition hover:opacity-90">
+          Talk to Expert
+        </a>
+        <a href="#platforms"
+           class="rounded-2xl border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+          Explore Platforms
+        </a>
+      </div>
+      <div class="mt-12 grid grid-cols-2 gap-5 border-t border-white/15 pt-8 md:grid-cols-4">
+        <div>
+          <div class="text-base font-semibold">NuSil Authorized</div>
+          <div class="mt-1 text-sm text-white/65">Official regional distributor</div>
+        </div>
+        <div>
+          <div class="text-base font-semibold">200+ Products</div>
+          <div class="mt-1 text-sm text-white/65">Full NuSil catalog coverage</div>
+        </div>
+        <div>
+          <div class="text-base font-semibold">ISO 10993 / USP VI</div>
+          <div class="mt-1 text-sm text-white/65">Regulatory-ready materials</div>
+        </div>
+        <div>
+          <div class="text-base font-semibold">AI Technical Q&amp;A</div>
+          <div class="mt-1 text-sm text-white/65">Dedicated knowledge portal</div>
         </div>
       </div>
-      <div class="fade-up">
-        <div class="contact-form">
-          <h3 class="form-title">发送询价 / 咨询</h3>
-          <form id="contactForm" onsubmit="handleSubmit(event)">
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">姓名 *</label>
-                <input class="form-input" type="text" placeholder="您的姓名" required />
-              </div>
-              <div class="form-group">
-                <label class="form-label">公司</label>
-                <input class="form-input" type="text" placeholder="所在公司" />
-              </div>
+    </div>
+
+    <div class="flex items-center lg:justify-end">
+      <div class="w-full max-w-xl rounded-[28px] border border-white/10 p-5 shadow-2xl" style="background:rgba(255,255,255,0.08);backdrop-filter:blur(12px)">
+        <div class="rounded-[24px] border border-white/10 bg-white/95 p-6 text-slate-900">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+            <div>
+              <div class="text-xs tracking-[0.18em] text-slate-500">PRODUCT PLATFORM</div>
+              <div class="mt-1 text-xl font-semibold">BIO Material Matrix</div>
             </div>
-            <div class="form-group">
-              <label class="form-label">联系方式 *</label>
-              <input class="form-input" type="text" placeholder="邮箱或手机号" required />
+            <div class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">NuSil</div>
+          </div>
+          <div class="mt-5 space-y-4">
+            <div class="rounded-2xl border border-slate-200 p-4">
+              <div class="text-sm font-semibold text-slate-900">Implant-Grade Silicone</div>
+              <div class="mt-1 text-sm leading-6 text-slate-600">ISO 10993 &amp; USP Class VI — for cardiac, neural, and soft-tissue applications</div>
             </div>
-            <div class="form-group">
-              <label class="form-label">咨询类型</label>
-              <select class="form-select">
-                <option>产品选型咨询</option>
-                <option>样品申请</option>
-                <option>批量采购报价</option>
-                <option>技术文件支持</option>
-                <option>法规合规咨询</option>
-                <option>其他</option>
-              </select>
+            <div class="rounded-2xl border border-slate-200 p-4">
+              <div class="text-sm font-semibold text-slate-900">Medical Adhesives</div>
+              <div class="mt-1 text-sm leading-6 text-slate-600">RTV bonding systems for device assembly, encapsulation, and catheter tipping</div>
             </div>
-            <div class="form-group">
-              <label class="form-label">详细需求</label>
-              <textarea class="form-textarea" placeholder="请描述您的具体需求，如产品类型、应用场景、数量等"></textarea>
+            <div class="rounded-2xl border border-slate-200 p-4">
+              <div class="text-sm font-semibold text-slate-900">LSR / HCR Elastomers</div>
+              <div class="mt-1 text-sm leading-6 text-slate-600">Precision rubber platforms for injection molding and custom compounding</div>
             </div>
-            <button type="submit" class="form-submit">发送咨询 →</button>
-            <div class="form-success" id="formSuccess">
-              消息已发送！我们将在 24 小时内回复您。
+          </div>
+          <div class="mt-5 rounded-2xl bg-slate-50 p-4">
+            <div class="text-xs tracking-[0.18em] text-slate-500">AI ENTRY</div>
+            <div class="mt-2 text-lg font-semibold">Technical Q&amp;A Portal</div>
+            <div class="mt-1 text-sm leading-6 text-slate-600">
+              Deep product knowledge, datasheet Q&amp;A, and material selection — available 24 / 7 at a dedicated AI interface.
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjI0MCAxOTUgODQwIDI2MCI+PGcgZmlsbD0iI2ZmZmZmZiI+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzM4LjY2LDQyOC43NCkgc2NhbGUoMC4xNjExLC0wLjE2MTEpIiBkPSJNMTM4NiA0MDJRMTM4NiAyMTAgMTI0Mi4wIDEwNS4wUTEwOTggMCA4NDIgMEgxMzdWMTQwOUg3ODJRMTA0MCAxNDA5IDExNzIuNSAxMzE5LjVRMTMwNSAxMjMwIDEzMDUgMTA1NVExMzA1IDkzNSAxMjM4LjUgODUyLjVRMTE3MiA3NzAgMTAzNiA3NDFRMTIwNyA3MjEgMTI5Ni41IDYzMy41UTEzODYgNTQ2IDEzODYgNDAyWk0xMDA4IDEwMTVRMTAwOCAxMTEwIDk0Ny41IDExNTAuMFE4ODcgMTE5MCA3NjggMTE5MEg0MzJWODQxSDc3MFE4OTUgODQxIDk1MS41IDg4NC41UTEwMDggOTI4IDEwMDggMTAxNVpNMTA5MCA0MjVRMTA5MCA2MjMgODA2IDYyM0g0MzJWMjE5SDgxN1E5NTkgMjE5IDEwMjQuNSAyNzAuNVExMDkwIDMyMiAxMDkwIDQyNVoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MDQuOTcsNDI4Ljc0KSBzY2FsZSgwLjE2MTEsLTAuMTYxMSkiIGQ9Ik0xMzcgMFYxNDA5SDQzMlYwWiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcyNC42Niw0MjguNzQpIHNjYWxlKDAuMTYxMSwtMC4xNjExKSIgZD0iTTE1MDcgNzExUTE1MDcgNDkxIDE0MjAuMCAzMjQuMFExMzMzIDE1NyAxMTcxLjAgNjguNVExMDA5IC0yMCA3OTMgLTIwUTQ2MSAtMjAgMjcyLjUgMTc1LjVRODQgMzcxIDg0IDcxMVE4NCAxMDUwIDI3Mi4wIDEyNDAuMFE0NjAgMTQzMCA3OTUgMTQzMFExMTMwIDE0MzAgMTMxOC41IDEyMzguMFExNTA3IDEwNDYgMTUwNyA3MTFaTTEyMDYgNzExUTEyMDYgOTM5IDEwOTguMCAxMDY4LjVROTkwIDExOTggNzk1IDExOThRNTk3IDExOTggNDg5LjAgMTA2OS41UTM4MSA5NDEgMzgxIDcxMVEzODEgNDc5IDQ5MS41IDM0NS41UTYwMiAyMTIgNzkzIDIxMlE5OTEgMjEyIDEwOTguNSAzNDIuMFExMjA2IDQ3MiAxMjA2IDcxMVoiLz48L2c+PC9zdmc+" style="height:32px;width:auto;display:block;margin-bottom:14px" alt="BIO">
-        </div>
-        <p>专注于 NuSil 医疗级硅胶材料的分销与技术服务，为国内医疗器械制造商提供从材料供应到工程落地的全链路支持。</p>
+<!-- WHAT WE DO -->
+<section class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+  <div class="max-w-3xl">
+    <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">What We Do</div>
+    <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
+      A medical-grade silicone platform built for demanding applications.
+    </h2>
+    <p class="mt-5 text-lg leading-8 text-slate-600">
+      BIO Corporation is the authorized regional distributor of NuSil by Avantor — the global standard for implantable and medical-grade silicone. We supply materials, provide formulation support, and connect engineering teams with the technical depth they need to qualify and scale.
+    </p>
+  </div>
+</section>
+
+<!-- PRODUCT PLATFORMS -->
+<section id="platforms" class="bg-slate-50 py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-2xl">
+        <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">Product Platform</div>
+        <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
+          Structured for clarity, engineered for expansion.
+        </h2>
       </div>
-      <div>
-        <div class="footer-col-title">产品</div>
-        <ul class="footer-links">
-          <li><a href="#products">植入级弹性体</a></li>
-          <li><a href="#products">液体硅橡胶 LSR</a></li>
-          <li><a href="#products">医用粘合剂</a></li>
-          <li><a href="#products">植入级凝胶</a></li>
-          <li><a href="#products">硅胶涂层</a></li>
-        </ul>
+      <p class="max-w-xl text-base leading-7 text-slate-600">
+        Four core material families covering the full spectrum of medical silicone requirements — from long-term implants to precision device assembly.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+        <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900">Implant-Grade Silicone</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">High-purity elastomers, gels, and adhesives for long-term in-vivo performance. Qualified to ISO 10993 and USP Class VI for cardiac, neural, orthopedic, and soft-tissue implants.</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
       </div>
-      <div>
-        <div class="footer-col-title">服务</div>
-        <ul class="footer-links">
-          <li><a href="#solutions">材料选型咨询</a></li>
-          <li><a href="#solutions">工程联合开发</a></li>
-          <li><a href="#solutions">注册法规支持</a></li>
-          <li><a href="#ai">AI 智能助手</a></li>
-          <li><a href="#contact">样品申请</a></li>
-        </ul>
+      <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+        <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900">Medical Adhesives</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">One- and two-component RTV systems for device bonding, PCB encapsulation, skin-contact interfaces, and catheter tipping. Flexible cure schedules and substrate compatibility.</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
       </div>
-      <div>
-        <div class="footer-col-title">公司</div>
-        <ul class="footer-links">
-          <li><a href="#about">关于我们</a></li>
-          <li><a href="#contact">联系我们</a></li>
-          <li><a href="#">隐私政策</a></li>
-        </ul>
+      <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+        <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900">LSR / HCR Elastomers</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">Liquid silicone rubber and high-consistency rubber for injection molding, transfer molding, and extrusion. Broad durometer range with custom compounding options.</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
+      </div>
+      <div class="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+        <div class="mb-8 h-32 rounded-2xl" style="background:linear-gradient(135deg,#E2E8F0,white,#DBEAFE)"></div>
+        <h3 class="text-xl font-semibold tracking-tight text-slate-900">Fluorosilicone Systems</h3>
+        <p class="mt-3 text-sm leading-7 text-slate-600">Specialty silicones with outstanding resistance to fuels, solvents, and aggressive media. For applications where standard silicone performance is insufficient.</p>
+        <a href="#contact" class="mt-6 inline-flex text-sm font-semibold text-[#2563EB]">Request Sample →</a>
       </div>
     </div>
-    <hr class="footer-divider" />
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2026 BIO Corporation. 保留所有权利。</div>
-      <div class="footer-icp">医疗硅胶材料专业供应商</div>
+  </div>
+</section>
+
+<!-- WHY BIO -->
+<section id="why-bio" class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+  <div class="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+    <div>
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">Why BIO</div>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
+        A technical partner, not just a supplier.
+      </h2>
+      <p class="mt-5 text-lg leading-8 text-slate-600">
+        Serious medical device engineers choose BIO because we combine the material quality of a global standard with the responsiveness and cost structure of a regional specialist.
+      </p>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div class="rounded-[24px] border border-slate-200 p-6">
+        <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">01</div>
+        <div class="text-lg font-semibold text-slate-900">Medical-Focused Platform</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600">Our entire portfolio is built around NuSil by Avantor — the global benchmark for implantable silicone. No industrial compromises.</p>
+      </div>
+      <div class="rounded-[24px] border border-slate-200 p-6">
+        <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">02</div>
+        <div class="text-lg font-semibold text-slate-900">Custom Formulation &amp; Sampling</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600">From material selection to formulation customization, we provide fast sample turnaround and full documentation to support your qualification timeline.</p>
+      </div>
+      <div class="rounded-[24px] border border-slate-200 p-6">
+        <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">03</div>
+        <div class="text-lg font-semibold text-slate-900">Direct Technical Support</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600">Application engineers with hands-on silicone formulation experience. Typical 48-hour technical response — no tier-1 supplier wait times.</p>
+      </div>
+      <div class="rounded-[24px] border border-slate-200 p-6">
+        <div class="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-semibold text-slate-700">04</div>
+        <div class="text-lg font-semibold text-slate-900">Regional Cost Advantage</div>
+        <p class="mt-2 text-sm leading-7 text-slate-600">Local inventory, RMB-denominated pricing, and duty-optimized logistics — without compromising material origin or compliance documentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section id="applications" class="bg-[#0F172A] py-24 text-white">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="max-w-3xl">
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#60A5FA]">Applications</div>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight">
+        Precision materials across the medical device spectrum.
+      </h2>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
+        <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
+        <h3 class="text-xl font-semibold">Medical Devices</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70">Implantable components, catheter bodies, drug delivery coatings, wound care interfaces, and surgical instrument grips requiring long-term biocompatibility.</p>
+      </div>
+      <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
+        <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
+        <h3 class="text-xl font-semibold">Wearables &amp; Sensing</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70">Skin-contact enclosures, hearable devices, CGM patches, and flexible sensor substrates demanding durability, biocompatibility, and process consistency.</p>
+      </div>
+      <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
+        <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
+        <h3 class="text-xl font-semibold">Aesthetic &amp; Reconstructive</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70">Breast implant shells and fill gels, facial reconstruction, and injectable-grade systems requiring the highest purity and complete regulatory documentation.</p>
+      </div>
+      <div class="rounded-[24px] border border-white/10 p-6" style="background:rgba(255,255,255,0.05);backdrop-filter:blur(8px)">
+        <div class="mb-8 h-28 rounded-2xl" style="background:linear-gradient(135deg,rgba(255,255,255,0.08),rgba(96,165,250,0.15))"></div>
+        <h3 class="text-xl font-semibold">Optical &amp; Precision</h3>
+        <p class="mt-3 text-sm leading-7 text-white/70">Intraocular lens materials, ophthalmic bonding adhesives, and precision optical encapsulants with defined refractive and clarity properties.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI STRATEGY -->
+<section class="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+  <div class="grid gap-10 rounded-[32px] border border-slate-200 bg-slate-50 p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12">
+    <div>
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">AI Technical Q&amp;A</div>
+      <h2 class="mt-4 text-3xl font-semibold tracking-tight text-slate-900">
+        In-depth product knowledge, available around the clock.
+      </h2>
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600">
+        Our dedicated AI portal is trained on the full NuSil technical library — datasheets, formulation guides, compliance data, and application notes. Ask anything from viscosity specs to ISO 10993 classifications.
+      </p>
+    </div>
+    <a href="https://ai.bio-corporation.com" target="_blank"
+       class="inline-flex items-center justify-center rounded-2xl bg-[#0B1F3A] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 whitespace-nowrap">
+      Open AI Technical Q&amp;A →
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="border-t border-slate-200 bg-white">
+  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1fr_0.85fr] lg:px-10">
+    <div>
+      <div class="text-sm font-semibold uppercase tracking-[0.18em] text-[#2563EB]">Contact</div>
+      <h2 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900">
+        Start your next medical silicone project with BIO.
+      </h2>
+      <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+        Whether you need a material recommendation, a custom sample, or regulatory documentation — our team typically responds within 48 hours.
+      </p>
+    </div>
+
+    <div class="rounded-[28px] border border-slate-200 p-8 shadow-sm">
+      <div class="space-y-5">
+        <div>
+          <div class="text-sm text-slate-500">Email</div>
+          <a href="mailto:sales@bio-corporation.com" class="mt-1 block text-base font-semibold text-slate-900 hover:text-[#2563EB] transition">sales@bio-corporation.com</a>
+        </div>
+        <div>
+          <div class="text-sm text-slate-500">WeChat</div>
+          <div class="mt-1 text-base font-semibold text-slate-900">搜索 BIOCorporation</div>
+        </div>
+        <div>
+          <div class="text-sm text-slate-500">Service Region</div>
+          <div class="mt-1 text-base font-semibold text-slate-900">中国大陆及港澳地区</div>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="mailto:sales@bio-corporation.com" class="rounded-2xl bg-[#2563EB] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90">
+          Request Sample
+        </a>
+        <a href="https://ai.bio-corporation.com" target="_blank" class="rounded-2xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400">
+          AI Technical Q&amp;A
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#0B1F3A] text-white">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+    <div class="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+      <div>
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjM0MCAyMDAgNjIwIDIzMiI+PGcgZmlsbD0iI2ZmZmZmZiI+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzYwLjY2LDQyOC43NCkgc2NhbGUoMC4xNjExLC0wLjE2MTEpIiBkPSJNMTM4NiA0MDJRMTM4NiAyMTAgMTI0Mi4wIDEwNS4wUTEwOTggMCA4NDIgMEgxMzdWMTQwOUg3ODJRMTA0MCAxNDA5IDExNzIuNSAxMzE5LjVRMTMwNSAxMjMwIDEzMDUgMTA1NVExMzA1IDkzNSAxMjM4LjUgODUyLjVRMTE3MiA3NzAgMTAzNiA3NDFRMTIwNyA3MjEgMTI5Ni41IDYzMy41UTEzODYgNTQ2IDEzODYgNDAyWk0xMDA4IDEwMTVRMTAwOCAxMTEwIDk0Ny41IDExNTAuMFE4ODcgMTE5MCA3NjggMTE5MEg0MzJWODQxSDc3MFE4OTUgODQxIDk1MS41IDg4NC41UTEwMDggOTI4IDEwMDggMTAxNVpNMTA5MCA0MjVRMTA5MCA2MjMgODA2IDYyM0g0MzJWMjE5SDgxN1E5NTkgMjE5IDEwMjQuNSAyNzAuNVExMDkwIDMyMiAxMDkwIDQyNVoiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MDQuOTcsNDI4Ljc0KSBzY2FsZSgwLjE2MTEsLTAuMTYxMSkiIGQ9Ik0xMzcgMFYxNDA5SDQzMlYwWiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcwMi42Niw0MjguNzQpIHNjYWxlKDAuMTYxMSwtMC4xNjExKSIgZD0iTTE1MDcgNzExUTE1MDcgNDkxIDE0MjAuMCAzMjQuMFExMzMzIDE1NyAxMTcxLjAgNjguNVExMDA5IC0yMCA3OTMgLTIwUTQ2MSAtMjAgMjcyLjUgMTc1LjVRODQgMzcxIDg0IDcxMVE4NCAxMDUwIDI3Mi4wIDEyNDAuMFE0NjAgMTQzMCA3OTUgMTQzMFExMTMwIDE0MzAgMTMxOC41IDEyMzguMFExNTA3IDEwNDYgMTUwNyA3MTFaTTEyMDYgNzExUTEyMDYgOTM5IDEwOTguMCAxMDY4LjVROTkwIDExOTggNzk1IDExOThRNTk3IDExOTggNDg5LjAgMTA2OS41UTM4MSA5NDEgMzgxIDcxMVEzODEgNDc5IDQ5MS41IDM0NS41UTYwMiAyMTIgNzkzIDIxMlE5OTEgMjEyIDEwOTguNSAzNDIuMFExMjA2IDQ3MiAxMjA2IDcxMVoiLz48L2c+PC9zdmc+" style="height:30px;width:auto;display:block" alt="BIO Corporation">
+        <p class="mt-5 text-sm leading-7 text-white/60">Authorized regional distributor of NuSil by Avantor. Supplying medical-grade silicone materials to device manufacturers across China and the Greater Bay Area.</p>
+        <p class="mt-4 text-sm text-white/40">© 2026 BIO Corporation. All rights reserved.</p>
+      </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5">Products</div>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li><a href="#platforms" class="hover:text-white transition">Implant-Grade Silicone</a></li>
+          <li><a href="#platforms" class="hover:text-white transition">Medical Adhesives</a></li>
+          <li><a href="#platforms" class="hover:text-white transition">LSR / HCR Elastomers</a></li>
+          <li><a href="#platforms" class="hover:text-white transition">Fluorosilicone Systems</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5">Applications</div>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li><a href="#applications" class="hover:text-white transition">Medical Devices</a></li>
+          <li><a href="#applications" class="hover:text-white transition">Wearables &amp; Sensing</a></li>
+          <li><a href="#applications" class="hover:text-white transition">Aesthetic &amp; Reconstructive</a></li>
+          <li><a href="#applications" class="hover:text-white transition">Optical &amp; Precision</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-[0.18em] text-white/50 mb-5">Contact</div>
+        <ul class="space-y-3 text-sm text-white/70">
+          <li><a href="mailto:sales@bio-corporation.com" class="hover:text-white transition">sales@bio-corporation.com</a></li>
+          <li>WeChat: BIOCorporation</li>
+          <li><a href="https://ai.bio-corporation.com" target="_blank" class="hover:text-white transition">AI Technical Q&amp;A →</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
-  // ===== NAV scroll effect =====
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
-  });
-
-  // ===== Mobile menu =====
-  const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
-  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  // ===== Scroll animations =====
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // ===== Contact form (demo) =====
-  function handleSubmit(e) {
-    e.preventDefault();
-    setTimeout(() => {
-      document.getElementById('formSuccess').style.display = 'block';
-      e.target.reset();
-    }, 300);
+  function toggleMenu() {
+    const menu = document.getElementById(mobile-menu);
+    menu.classList.toggle(open);
   }
-
-  // ===== Smooth active nav highlight =====
-  const sections = document.querySelectorAll('section[id], div[id]');
-  const navAnchors = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) current = s.id;
-    });
-    navAnchors.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--navy)' : '';
-      a.style.background = a.getAttribute('href') === '#' + current ? 'var(--light)' : '';
-    });
+  window.addEventListener(scroll, function() {
+    const nav = document.getElementById(nav);
+    if (window.scrollY > 10) {
+      nav.classList.add(nav-scrolled);
+    } else {
+      nav.classList.remove(nav-scrolled);
+    }
   });
 </script>
 </body>
